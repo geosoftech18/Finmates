@@ -507,7 +507,7 @@ export default function Home() {
 
        {/* Team Section */}
 
-       <section className="pt-48 mx-auto px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+       <section className=" mx-auto px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -515,7 +515,7 @@ export default function Home() {
               <Users className="w-4 h-4" />
               Leadership Excellence
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">
               Meet Our Team
             </h2>
             <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -750,7 +750,7 @@ export default function Home() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
              {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>
             <p className="text-xl text-[#45556c]">Your Strategic Financial Partner</p>
           </div>
 
@@ -777,7 +777,7 @@ export default function Home() {
           <div className="flex justify-between items-center mb-16">
             <div>
               <p className="text-blue-600 font-medium text-sm uppercase tracking-wide mb-4">Portfolio</p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent">
                 Case Studies
               </h2>
             </div>
@@ -1071,19 +1071,19 @@ export default function Home() {
         {/* Content Container */}
         <div className="relative z-10 container mx-auto px-4 py-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className=" gap-12 items-center">
               {/* Left Content - Empty for image space */}
-              <div></div>
+              
 
               {/* Right Content */}
               <div className="space-y-8 text-white">
                 <div className="space-y-6">
-                  <h1 className="text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-up">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight animate-fade-in-up">
                     Establish Your New Territory
                     <span className="block text-blue-300">With Us</span>
                   </h1>
 
-                  <p className="text-lg text-gray-200 leading-relaxed max-w-2xl animate-fade-in-up animation-delay-200">
+                  <p className="text-lg text-gray-40 leading-relaxed max-w-2xl animate-fade-in-up animation-delay-200">
                     Embark on a transformative journey with FinMates, where financial success meets innovation. We guide
                     you through uncharted territories, offering tailored solutions for your unique business landscape.
                     Our commitment includes:

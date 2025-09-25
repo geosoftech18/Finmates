@@ -79,6 +79,7 @@ export function TimelineCarousel({
 }) {
   // Exactly 4 visible; startIndex defines leftmost item
   const [startIndex, setStartIndex] = React.useState(0)
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
   const itemCount = items.length
 
   const goNext = React.useCallback(() => {
@@ -134,12 +135,19 @@ export function TimelineCarousel({
           >
             {items.map((item, i) => {
               const tone = toneClasses(item.tone || "blue")
+              const isActive = hoveredIndex === i || (hoveredIndex === null && i === 0)
               return (
                 <div key={`${item.year}-${i}`} role="listitem" className="w-1/4 shrink-0 grow-0 p-4">
-                  <div className="group relative flex flex-col items-center">
+                  <div 
+                    className="group relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredIndex(i)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
                     {/* Floating info card on hover (match style from your original) */}
                     <div
-                      className="absolute -top-6 z-20 hidden w-72 -translate-y-52 rounded-xl border bg-gradient-to-br p-6 shadow-2xl group-hover:block md:-translate-y-60 lg:-translate-y-60 xl:-translate-y-60 2xl:-translate-y-60"
+                      className={`absolute -top-6 z-20 w-72 -translate-y-52 rounded-xl border bg-gradient-to-br p-6 shadow-2xl md:-translate-y-60 lg:-translate-y-60 xl:-translate-y-60 2xl:-translate-y-60 ${
+                        isActive ? "block" : "hidden group-hover:block"
+                      }`}
                       style={{ pointerEvents: "none" }}
                       // color accents
                       aria-hidden="true"
@@ -188,7 +196,9 @@ export function TimelineCarousel({
                     </div>
 
                     {/* Label above dot */}
-                    <p className="mb-2 -translate-y-8 text-center text-lg font-semibold text-blue-500 transition-all duration-300 group-hover:scale-105 group-hover:text-blue-700">
+                    <p className={`mb-2 -translate-y-8 text-center text-lg font-semibold transition-all duration-300 ${
+                      isActive ? "scale-105 text-blue-700" : "text-blue-500 group-hover:scale-105 group-hover:text-blue-700"
+                    }`}>
                       {item.title}
                     </p>
 
@@ -196,16 +206,16 @@ export function TimelineCarousel({
                     <div className="relative mt-8">
                       <div
                         className={cn(
-                          "z-10 h-5 w-5 rounded-full transition-all duration-300 bg-black group-hover:scale-125 group-hover:shadow-lg",
-                          "group-hover:bg-gradient-to-r",
+                          "z-10 h-5 w-5 rounded-full transition-all duration-300",
+                          isActive ? "scale-125 shadow-lg bg-gradient-to-r" : "bg-black group-hover:scale-125 group-hover:shadow-lg group-hover:bg-gradient-to-r",
                           tone.dot,
                         )}
                       />
                       <div
                         className={cn(
-                          "absolute -left-[2px] -top-[2px] inset-0 rounded-full opacity-0 group-hover:opacity-50",
+                          "absolute -left-[2px] -top-[2px] inset-0 rounded-full border-2 animate-spin-slow transition-opacity duration-300",
                           tone.ring,
-                          "border-2 animate-spin-slow",
+                          isActive ? "opacity-50" : "opacity-0 group-hover:opacity-50",
                         )}
                         style={{ width: "28px", height: "28px" }}
                         aria-hidden="true"

@@ -112,7 +112,7 @@ export default function FinmatesHeader() {
       aria-label="Main"
     >
       {/* Mobile top strip with Tally trigger (matches original) */}
-      <div className="flex w-full bg-gray-300 lg:hidden">
+      <div className="flex w-full px-4 bg-gray-300 lg:hidden">
         <button
           className="ml-auto py-2 font-bold underline underline-offset-4"
           data-tally-open="mO4XQk"

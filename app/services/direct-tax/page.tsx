@@ -51,7 +51,7 @@ const toggleFaq = (index: number) => {
      <FinmatesHeader/>
 
       <section
-        className="relative h-screen w-screen !bg-cover !bg-no-repeat"
+        className="relative pt-16 h-screen w-screen !bg-cover !bg-no-repeat"
         style={{
           background:
             'linear-gradient(to right, rgb(17, 24, 39), rgba(12, 98, 197, 0.3)), url("https://images.ctfassets.net/787ztwmlvqd6/A8gYZuZpaevEwYOxtNza9/d9e36e16fd127391179015450269ab9e/WhatsApp_Image_2024-01-19_at_11.30.39.jpeg")',
@@ -62,10 +62,10 @@ const toggleFaq = (index: number) => {
         <div className="relative m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
-            <h1 className="w-full text-center xl:text-6xl font-bold text-white md:text-start  text-4xl lg:text-6xl">
+            <h1 className="w-full text-center sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white md:text-start  text-2xl ">
               Direct &amp; Indirect Tax, M&amp;A Advisory
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            <h1 className="w-full text-center text-lg font-bold text-white md:text-start md:text-2xl lg:text-4xl">
               Expert Guidance for Complex Financial Transactions
             </h1>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
@@ -77,7 +77,7 @@ const toggleFaq = (index: number) => {
               dynamic financial landscape.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
-              <button className="rounded-md bg-gray-900 px-8 py-4 font-bold text-white">Lets Connect</button>
+              <button className="rounded-md bg-[#003b8d] px-8 py-4 font-bold text-white">Lets Connect</button>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ const toggleFaq = (index: number) => {
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
                 Ready for Expert Guidance on Financial Transactions?
               </h3>
-              <h2 className="text-center text-3xl font-bold text-p-3 md:text-3xl lg:ml-4 lg:text-start lg:text-4xl">
+              <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
                   <span className="text-p-3">Explore Direct &amp; Indirect Tax, M&amp;A Advisory with FinMates</span>
                 </div>
@@ -265,7 +265,7 @@ const toggleFaq = (index: number) => {
       </section>
 
        {/* FAQ Section */}
-       <section className="py-20 pt-48 bg-white">
+       <section className="md:py-20 md:pt-48 bg-white">
         <div className="max-w-8xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
@@ -300,7 +300,7 @@ const toggleFaq = (index: number) => {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
               Have Questions? Explore our FAQs or Reach Out to Our Tax and M&A Experts.
               </h2>
 

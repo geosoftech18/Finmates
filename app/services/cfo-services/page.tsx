@@ -90,7 +90,7 @@ const toggleFaq = (index: number) => {
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
                 Ready for Expert Guidance on Financial Transactions?
               </h3>
-              <h2 className="text-center text-3xl font-bold text-p-3 md:text-3xl lg:ml-4 lg:text-start lg:text-4xl">
+              <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
                   <span className="text-p-3">Explore the Full Spectrum of and power of CFO Services</span>
                 </div>
@@ -146,7 +146,7 @@ const toggleFaq = (index: number) => {
       <section className="h-full w-full">
         <div className="m-auto flex h-full w-full max-w-full flex-col items-center px-6 py-20 md:px-5 md:py-20">
           <div className="my-10 w-full md:w-2/3">
-            <h2 className="mb-5 text-center max-md:text-3xl lg:text-5xl">Working Process</h2>
+            <h2 className="mb-5 text-center max-md:text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Working Process</h2>
           </div>
 
           <div className="w-full">
@@ -275,7 +275,7 @@ const toggleFaq = (index: number) => {
       </section>
 
        {/* FAQ Section */}
-       <section className="py-20 pt-48 bg-white">
+       <section className="md:py-20 md:pt-48 bg-white">
         <div className="max-w-8xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
@@ -310,7 +310,7 @@ const toggleFaq = (index: number) => {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
               Have Questions? Explore our FAQs or Reach Out to Our CFO Experts.
               </h2>
 

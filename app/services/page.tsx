@@ -373,7 +373,7 @@ export default function ServicesPage() {
         {/* Process Section */}
         <section className="h-full w-full">
           <div className="m-auto flex h-full w-full max-w-8xl flex-col items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
-            <h2 className="text-xl font-bold md:ml-4 md:text-3xl lg:text-4xl">Our Process</h2>
+            <h2 className="text-2xl font-bold md:ml-4 md:text-3xl lg:text-4xl">Our Process</h2>
             <h2 className="text-center text-2xl font-bold md:ml-4 md:text-3xl lg:text-5xl">
               Get Solution to All Your Finance Needs
             </h2>
@@ -547,7 +547,7 @@ export default function ServicesPage() {
             <div className="text-base font-semibold uppercase tracking-wider mb-4" style={{ color: "#008bd0" }}>
               Company News
             </div>
-            <h2 className="text-5xl font-bold" style={{ color: "#002244" }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: "#002244" }}>
               OUR LATEST ARTICLES
             </h2>
           </div>

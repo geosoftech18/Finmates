@@ -74,6 +74,7 @@ export default function Home() {
   const [hoveredTeamMember, setHoveredTeamMember] = useState<number | null>(null)
   const [currentCaseSlide, setCurrentCaseSlide] = useState(0)
   const [hoveredCase, setHoveredCase] = useState<number | null>(null)
+  const [currentArticle, setCurrentArticle] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -360,98 +361,162 @@ export default function Home() {
 
 
       {/* Hero Slider Section */}
-      <div className="relative h-screen overflow-hidden">
-        {/* Background Images with transition */}
-        <div className="absolute inset-0">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={slide.image || "/placeholder.svg"}
-                alt="Professional businessman"
-                className="w-full h-full object-cover"
-              />
+      <div className="relative min-h-screen overflow-hidden">
+        {/* Mobile Layout - Image at top, content below */}
+        <div className="md:hidden mt-22">
+          {/* Image Section */}
+          <div className="relative h-80 px-4 pt-4">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.image || "/placeholder.svg"}
+                  alt="Professional businessman"
+                  className="w-full h-full object-cover rounded-4xl"
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Content Section - White background */}
+          <div className="bg-white px-4 py-6">
+            <div className="max-w-2xl mx-auto text-center">
+              {/* Dynamic Content */}
+              <div className="transition-all duration-500">
+                {/* Main Heading */}
+                <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4" style={{ color: "#002244" }}>
+                  {slides[currentSlide].title.includes("FinMates CFO") ? (
+                    <>
+                      Strategic Financial Solutions with <span className="text-[#008bd0]">FinMates CFO</span> Service
+                    </>
+                  ) : slides[currentSlide].title.includes("SME") ? (
+                    <>
+                      Expert IPO Readiness with <span className="text-[#008bd0]">FinMates SME</span> Service
+                    </>
+                  ) : slides[currentSlide].title.includes("Advisory") ? ( 
+                    <>
+                      Transform Your Business with <span className="text-[#008bd0]">FinMates Advisory</span>
+                    </>
+                  ):(
+                    <>
+                    Transformative Accounting Services <span className="text-[#008bd0]"> by FinMates</span>
+                    </>
+                  )}
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-sm sm:text-base mb-6 leading-relaxed" style={{ color: "#333333" }}>
+                  {slides[currentSlide].subtitle}
+                </p>
+
+                {/* CTA Button */}
+                <Button
+                  className="text-white px-6 py-2 text-sm font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl mb-4"
+                  style={{ backgroundColor: "#008bd0" }}
+                >
+                  {slides[currentSlide].buttonText}
+                </Button>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Content Overlay */}
-        <div className="relative h-full flex items-center">
-          {/* White curved background - desktop/tablet only */}
-          <div 
-            className="absolute left-0 top-0 h-full hidden md:block md:w-3/5"
-            style={{
-              background: 'white',
-              borderTopRightRadius: '0',
-              borderBottomRightRadius: '20rem',
-              borderTopLeftRadius: '0',
-              borderBottomLeftRadius: '0'
-            }}
-          ></div>
-          
-          {/* Curved White Content Section */}
-          <div className="relative w-full max-w-7xl mx-auto">
-            <div className="relative">
+        {/* Desktop/Tablet Layout - Original design */}
+        <div className="hidden md:block relative h-screen">
+          {/* Background Images with transition */}
+          <div className="absolute inset-0">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.image || "/placeholder.svg"}
+                  alt="Professional businessman"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
 
-              {/* Decorative dots
-              <div className="absolute left-8 top-1/2 transform -translate-y-1/2 flex flex-col space-y-3">
-                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-              </div> */}
+          {/* Content Overlay */}
+          <div className="relative h-full flex items-center">
+            {/* White curved background - desktop/tablet only */}
+            <div 
+              className="absolute left-0 top-0 h-full md:w-3/5"
+              style={{
+                background: 'white',
+                borderTopRightRadius: '0',
+                borderBottomRightRadius: '20rem',
+                borderTopLeftRadius: '0',
+                borderBottomLeftRadius: '0'
+              }}
+            ></div>
+            
+            {/* Content Section */}
+            <div className="relative w-full max-w-7xl mx-auto">
+              <div className="relative">
+                {/* Main Content with transitions */}
+                <div className="relative z-10 md:pl-20 md:pr-8 py-16 max-w-2xl">
+                  {/* Dynamic Content */}
+                  <div className="transition-all duration-500 text-left">
+                    {/* Main Heading */}
+                    <h1 className="text-5xl font-bold leading-tight mb-6" style={{ color: "#002244" }}>
+                      {slides[currentSlide].title.includes("FinMates CFO") ? (
+                        <>
+                          Strategic Financial Solutions with <span className="text-[#008bd0]">FinMates CFO</span> Service
+                        </>
+                      ) : slides[currentSlide].title.includes("SME") ? (
+                        <>
+                          Expert IPO Readiness with <span className="text-[#008bd0]">FinMates SME</span> Service
+                        </>
+                      ) : slides[currentSlide].title.includes("Advisory") ? ( 
+                        <>
+                          Transform Your Business with <span className="text-[#008bd0]">FinMates Advisory</span>
+                        </>
+                      ):(
+                        <>
+                        Transformative Accounting Services <span className="text-[#008bd0]"> by FinMates</span>
+                        </>
+                      )}
+                    </h1>
 
-              {/* Main Content with transitions */}
-              <div className="relative z-10 px-6 md:pl-20 md:pr-8 py-16 max-w-2xl">
-                {/* Logo/Icon */}
-                {/* <div className="mb-8">
-                  <div className="w-12 h-12 rounded-full border-2 border-blue-400 flex items-center justify-center">
-                    <div className="w-6 h-6 rounded-full bg-blue-400"></div>
+                    {/* Subtitle */}
+                    <p className="text-xl mb-8 leading-relaxed" style={{ color: "#333333" }}>
+                      {slides[currentSlide].subtitle}
+                    </p>
+
+                    {/* CTA Button */}
+                    <Button
+                      className="text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+                      style={{ backgroundColor: "#008bd0" }}
+                    >
+                      {slides[currentSlide].buttonText}
+                    </Button>
                   </div>
-                </div> */}
-
-                {/* Dynamic Content */}
-                <div className="transition-all duration-500">
-                  {/* Main Heading */}
-                  <h1 className="text-5xl font-bold leading-tight mb-6" style={{ color: "#002244" }}>
-                    {slides[currentSlide].title.includes("FinMates CFO") ? (
-                      <>
-                        Strategic Financial Solutions with <span className="text-[#008bd0]">FinMates CFO</span> Service
-                      </>
-                    ) : slides[currentSlide].title.includes("SME") ? (
-                      <>
-                        Expert IPO Readiness with <span className="text-[#008bd0]">FinMates SME</span> Service
-                      </>
-                    ) : slides[currentSlide].title.includes("Advisory") ? ( 
-                      <>
-                        Transform Your Business with <span className="text-[#008bd0]">FinMates Advisory</span>
-                      </>
-                    ):(
-                      <>
-                      Transformative Accounting Services <span className="text-[#008bd0]"> by FinMates</span>
-                      </>
-                    )}
-                  </h1>
-
-                  {/* Subtitle */}
-                  <p className="text-xl mb-8 leading-relaxed" style={{ color: "#333333" }}>
-                    {slides[currentSlide].subtitle}
-                  </p>
-
-                  {/* CTA Button */}
-                  <Button
-                    className="text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
-                    style={{ backgroundColor: "#008bd0" }}
-                  >
-                    {slides[currentSlide].buttonText}
-                  </Button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Mobile Navigation Dots - Bottom Center */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:hidden">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide ? "bg-[#008bd0] w-4" : "bg-black bg-opacity-50"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Left Side Navigation Dots with click handlers (desktop only) */}
@@ -474,35 +539,34 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Image with Experience Badge */}
-            <div className="relative pb-16 pr-20">
-              <div className="relative overflow-visible rounded-lg flex justify-center md:justify-start">
+            <div className="relative pb-8 md:pb-16 pr-0 md:pr-20">
+              <div className="relative overflow-visible rounded-lg flex justify-center">
                 <img
                   src="/images/finmate-partner.png?height=600&width=500"
                   alt="Professional business consultant"
-                  className="w-full h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl object-cover rounded-lg"
+                  className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-cover rounded-lg"
                 />
 
                 {/* Experience Badge - Hidden on Mobile */}
-                <div className="absolute -bottom-8 -right-8 z-10 hidden md:block">
+                <div className="absolute -bottom-4 md:-bottom-8 -right-4 md:-right-8 z-10 hidden md:block">
                   <div
-                    className="px-10 py-10 shadow-xl cursor-pointer transition-transform hover:scale-105"
+                    className="px-6 py-6 md:px-10 md:py-10 shadow-xl cursor-pointer transition-transform hover:scale-105"
                     style={{ 
                       backgroundColor: "rgb(37 99 235)",
-                      
                       borderBottomRightRadius: "4rem"
                     }}
                     onMouseEnter={() => setStartCountup(true)}
                     onMouseLeave={() => setStartCountup(false)}
                   >
                     <div className="text-center">
-                      <div className="text-6xl font-bold text-white">
+                      <div className="text-4xl md:text-6xl font-bold text-white">
                         {startCountup ? (
                           <CountUp end={16} duration={2.5} delay={0} />
                         ) : (
                           "16"
                         )}
                       </div>
-                      <div className="text-2xl text-white font-medium">years</div>
+                      <div className="text-lg md:text-2xl text-white font-medium">years</div>
                     </div>
                   </div>
                 </div>
@@ -517,7 +581,7 @@ export default function Home() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
                 Your Trusted Financial Partner
               </h2>
 
@@ -564,76 +628,75 @@ export default function Home() {
       </section>
 
        {/* Our Values Section */}
-       <section className=" bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-8xl mx-auto ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+       <section className="py-12 md:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Image */}
-            <div className="">
-              <div className="">
+            <div className="order-2 lg:order-1">
+              <div className="relative">
                 <img
                   src="/images/values.jpg?height=600&width=500"
                   alt="Hands holding puzzle pieces symbolizing teamwork and collaboration"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-w-md mx-auto lg:max-w-full object-cover rounded-lg"
                 />
               </div>
             </div>
 
             {/* Right Side - Values Content */}
-            <div className="space-y-8 ">
+            <div className="order-1 lg:order-2 space-y-6 md:space-y-8">
               {/* Section Label */}
-              <div className="text-lg font-bold uppercase  tracking-wider my-4" style={{ color: "#008bd0" }}>
+              <div className="text-base md:text-lg font-bold uppercase tracking-wider" style={{ color: "#008bd0" }}>
                 Our Values
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-3xl font-bold leading-tight" style={{ color: "#001736" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#001736" }}>
                 Guiding Principles for Excellence
               </h2>
 
               {/* Description Paragraph */}
-              <p className="text-lg leading-relaxed" style={{ color: "#001736" }}>
+              <p className="text-base md:text-lg leading-relaxed" style={{ color: "#001736" }}>
                 At FinMates, our values form the bedrock of our commitment to excellence, integrity, and client
                 satisfaction.
               </p>
 
               {/* Value Boxes - 2x2 Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {/* Client-Centric Approach */}
-                <div className="flex items-start space-x-4 value-box">
+                <div className="flex items-start space-x-3 md:space-x-4 value-box">
                   <div className="flex-shrink-0">
                     <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                      <img src="/images/icon1.png" alt="" className="w-10 h-10 text-white" />
-                      {/* <Users className="w-6 h-6 text-white" /> */}
+                      <img src="/images/icon1.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2" style={{ color: "#001736" }}>
+                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: "#001736" }}>
                       Client-Centric Approach
                     </h3>
-                    <p className="text-lg leading-relaxed" style={{ color: "#001736" }}>
+                    <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
                       We prioritize our clients' needs, ensuring tailored solutions for their unique challenges.
                     </p>
                   </div>
                 </div>
 
                 {/* Integrity and Transparency */}
-                <div className="flex items-start space-x-4 value-box">
+                <div className="flex items-start space-x-3 md:space-x-4 value-box">
                   <div className="flex-shrink-0">
                     <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                     <img src="/images/icon2.png" alt="" className="w-10 h-10 text-white" />
+                     <img src="/images/icon2.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2" style={{ color: "#001736" }}>
+                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: "#001736" }}>
                       Integrity and Transparency
                     </h3>
-                    <p className="text-lg leading-relaxed" style={{ color: "#001736" }}>
+                    <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
                       Upholding the highest ethical standards, we operate with integrity, transparency, and a commitment
                       to trust.
                     </p>
@@ -641,20 +704,20 @@ export default function Home() {
                 </div>
 
                 {/* Innovation and Adaptability */}
-                <div className="flex items-start space-x-4 value-box">
+                <div className="flex items-start space-x-3 md:space-x-4 value-box">
                   <div className="flex-shrink-0">
                     <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                     <img src="/images/icon3.png" alt="" className="w-10 h-10 text-white" />
+                     <img src="/images/icon3.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2" style={{ color: "#001736" }}>
+                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: "#001736" }}>
                       Innovation and Adaptability
                     </h3>
-                    <p className="text-lg leading-relaxed" style={{ color: "#001736" }}>
+                    <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
                       Embracing innovation, we continuously evolve to meet the dynamic demands of the financial
                       landscape.
                     </p>
@@ -662,20 +725,20 @@ export default function Home() {
                 </div>
 
                 {/* Collaborative Excellence */}
-                <div className="flex items-start space-x-4 value-box">
+                <div className="flex items-start space-x-3 md:space-x-4 value-box">
                   <div className="flex-shrink-0">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                      <img src="/images/icon4.png" alt="" className="w-10 h-10 text-white" />
+                      <img src="/images/icon4.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2" style={{ color: "#001736" }}>
+                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: "#001736" }}>
                       Collaborative Excellence
                     </h3>
-                    <p className="text-lg leading-relaxed" style={{ color: "#001736" }}>
+                    <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
                       Fostering a culture of collaboration, we bring together diverse expertise to deliver unparalleled
                       financial solutions.
                     </p>
@@ -684,7 +747,7 @@ export default function Home() {
               </div>
 
               {/* Closing Line */}
-              <p className="text-lg italic pt-4" style={{ color: "#666666" }}>
+              <p className="text-base md:text-lg italic pt-4" style={{ color: "#666666" }}>
                 Experience the FinMates difference, where values drive our journey towards success.
               </p>
             </div>
@@ -697,7 +760,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl font-bold" style={{ color: "#002244" }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: "#002244" }}>
               Our Services
             </h2>
 
@@ -854,7 +917,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-white mb-4">Why FinMates</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Why FinMates</h2>
             <p className="text-xl text-gray-300">Your Strategic Financial Partner</p>
           </div>
 
@@ -927,13 +990,13 @@ export default function Home() {
               {/* Mobile Navigation Arrows */}
               <button 
                 onClick={prevWhySlide}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all duration-300"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all duration-300"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button 
                 onClick={nextWhySlide}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all duration-300"
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white bg-opacity-80 rounded-full text-gray-800 hover:bg-opacity-100 transition-all duration-300"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -962,7 +1025,7 @@ export default function Home() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
              {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>
             <p className="text-xl text-[#45556c]">Your Strategic Financial Partner</p>
           </div>
 
@@ -984,7 +1047,7 @@ export default function Home() {
 
       {/* Team Section */}
 
-      <section className=" mx-auto px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className=" mx-auto px-4 py-10 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -992,7 +1055,7 @@ export default function Home() {
               <Users className="w-4 h-4" />
               Leadership Excellence
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">
               Meet Our Team
             </h2>
             <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -1215,7 +1278,7 @@ export default function Home() {
                 Connect with our expert team to discuss your financial goals and discover how we can help your business
                 thrive.
               </p>
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
+              <button className="bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white px-8 py-3 rounded-full font-medium hover:from-[#003b8d] hover:to-[#003b8d] transition-all duration-300 hover:scale-105 shadow-lg">
                 Schedule a Consultation
               </button>
             </div>
@@ -1224,7 +1287,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 pt-48 bg-white">
+      <section className="md:py-20 md:pt-48  bg-white">
         <div className="max-w-8xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
@@ -1259,7 +1322,7 @@ export default function Home() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
                 Some Question, Answered For You
               </h2>
 
@@ -1331,13 +1394,13 @@ export default function Home() {
             <div className="text-base font-semibold uppercase tracking-wider mb-4" style={{ color: "#008bd0" }}>
               Company News
             </div>
-            <h2 className="text-5xl font-bold" style={{ color: "#002244" }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: "#002244" }}>
               OUR LATEST ARTICLES
             </h2>
           </div>
 
-          {/* Article Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Article Cards - Desktop Grid / Mobile Carousel */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
             {/* Article 1 */}
             <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
               <div className="p-10 relative overflow-hidden">
@@ -1464,6 +1527,176 @@ export default function Home() {
                 </button>
                 <ArrowRight className="w-4 h-4 group-hover:text-white" />
               </div>
+            </div>
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            <div className="relative overflow-hidden">
+              {/* Left Arrow */}
+              <button
+                onClick={() => setCurrentArticle(currentArticle === 0 ? 2 : currentArticle - 1)}
+                className="absolute -left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Previous article"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-700" />
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => setCurrentArticle(currentArticle === 2 ? 0 : currentArticle + 1)}
+                className="absolute -right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Next article"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-700" />
+              </button>
+
+              <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentArticle * 100}%)` }}>
+                {/* Article 1 - Mobile */}
+                <div className="w-full flex-shrink-0 px-2">
+                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <div className="p-6 relative overflow-hidden">
+                      {/* Hover overlay rises from bottom to top */}
+                      <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                      <div className="relative z-10">
+                        {/* Date Section */}
+                        <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
+                          <div className="text-gray-400">📅</div>
+                          <span className="text-sm text-gray-500">October 28, 2023</span>
+                        </div>
+
+                        {/* Article Title */}
+                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
+                          the transform Community create a lasting impact
+                        </h3>
+
+                        {/* Author Section */}
+                        <div className="flex items-center space-x-3 mb-8">
+                          <img
+                            src="/about/value.jpg?height=32&width=32"
+                            alt="Admin profile"
+                            className="w-8 h-8 rounded-full object-cover"
+                          />
+                          <div className="flex items-center space-x-1">
+                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
+                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
+                              admin
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Footer */}
+                    <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
+                      <button className="text-sm font-medium group-hover:text-white hover:underline">
+                        Read More
+                      </button>
+                      <ArrowRight className="w-4 h-4 group-hover:text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Article 2 - Mobile */}
+                <div className="w-full flex-shrink-0 px-2">
+                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <div className="p-6 relative overflow-hidden">
+                      {/* Hover overlay rises from bottom to top */}
+                      <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                      <div className="relative z-10">
+                        {/* Date Section */}
+                        <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
+                          <div className="text-gray-400">📅</div>
+                          <span className="text-sm text-gray-500">October 25, 2023</span>
+                        </div>
+
+                        {/* Article Title */}
+                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
+                          the transform Community create a lasting impact
+                        </h3>
+
+                        {/* Author Section */}
+                        <div className="flex items-center space-x-3 mb-8">
+                          <img
+                            src="/about/value.jpg?height=32&width=32"
+                            alt="Admin profile"
+                            className="w-8 h-8 rounded-full object-cover"
+                          />
+                          <div className="flex items-center space-x-1">
+                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
+                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
+                              admin
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Footer */}
+                    <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
+                      <button className="text-sm font-medium group-hover:text-white hover:underline">
+                        Read More
+                      </button>
+                      <ArrowRight className="w-4 h-4 group-hover:text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Article 3 - Mobile */}
+                <div className="w-full flex-shrink-0 px-2">
+                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <div className="p-6 relative overflow-hidden">
+                      {/* Hover overlay rises from bottom to top */}
+                      <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                      <div className="relative z-10">
+                        {/* Date Section */}
+                        <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
+                          <div className="text-gray-400">📅</div>
+                          <span className="text-sm text-gray-500">October 22, 2023</span>
+                        </div>
+
+                        {/* Article Title */}
+                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
+                          the transform Community create a lasting impact
+                        </h3>
+
+                        {/* Author Section */}
+                        <div className="flex items-center space-x-3 mb-8">
+                          <img
+                            src="/about/value.jpg?height=32&width=32"
+                            alt="Admin profile"
+                            className="w-8 h-8 rounded-full object-cover"
+                          />
+                          <div className="flex items-center space-x-1">
+                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
+                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
+                              admin
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Footer */}
+                    <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
+                      <button className="text-sm font-medium group-hover:text-white hover:underline">
+                        Read More
+                      </button>
+                      <ArrowRight className="w-4 h-4 group-hover:text-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Carousel Navigation Dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentArticle(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentArticle ? "bg-[#008bd0] w-6" : "bg-gray-300"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

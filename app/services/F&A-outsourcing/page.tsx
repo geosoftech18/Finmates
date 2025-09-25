@@ -51,7 +51,7 @@ const toggleFaq = (index: number) => {
      <FinmatesHeader/>
 
       <section
-        className="relative h-screen w-screen !bg-cover !bg-no-repeat"
+        className="relative pt-8 h-screen w-screen !bg-cover !bg-no-repeat"
         style={{
           background:
             'linear-gradient(to right, rgb(17, 24, 39), rgba(12, 98, 197, 0.3)), url("https://images.ctfassets.net/787ztwmlvqd6/A8gYZuZpaevEwYOxtNza9/d9e36e16fd127391179015450269ab9e/WhatsApp_Image_2024-01-19_at_11.30.39.jpeg")',
@@ -77,7 +77,7 @@ const toggleFaq = (index: number) => {
                freeing up your internal team for strategic analysis and decision support.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
-              <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-black">Lets Connect</button>
+              <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ const toggleFaq = (index: number) => {
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
               Ready to Optimize Your Finance and Accounting Functions?
               </h3>
-              <h2 className="text-center text-3xl font-bold text-p-3 md:text-3xl lg:ml-4 lg:text-start lg:text-4xl">
+              <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
                   <span className="text-p-3">Experience F&A Outsourcing with FinMates</span>
                 </div>
@@ -146,7 +146,7 @@ const toggleFaq = (index: number) => {
       <section className="h-full w-full">
         <div className="m-auto flex h-full w-full max-w-full flex-col items-center px-6 py-20 md:px-5 md:py-20">
           <div className="my-10 w-full md:w-2/3">
-            <h2 className="mb-5 text-center max-md:text-3xl lg:text-5xl">Working Process</h2>
+            <h2 className="mb-5 text-center max-md:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Working Process</h2>
           </div>
 
           <div className="w-full">
@@ -275,7 +275,7 @@ const toggleFaq = (index: number) => {
       </section>
 
        {/* FAQ Section */}
-       <section className="py-20 pt-48 bg-white">
+       <section className="md:py-20 md:pt-48 bg-white">
         <div className="max-w-8xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
@@ -310,7 +310,7 @@ const toggleFaq = (index: number) => {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ color: "#002244" }}>
               Have Questions? Explore our FAQs or Reach Out to Our Experts.
               </h2>
 
