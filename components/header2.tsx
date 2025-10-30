@@ -128,10 +128,10 @@ export default function FinmatesHeader() {
         <a href="/" aria-label="Finmates">
           <img
             alt="Finmates"
-            width={100}
+            width={200}
             height={40}
-            className="max-xsm:h-9 relative z-10 ml-2 h-10 w-full object-contain object-center"
-            src="/images/logo.svg"
+            className="max-xsm:h-9 relative z-10 ml-2 h-16 w-full object-contain object-center"
+            src="/images/finmate-logo.png"
           />
         </a>
 

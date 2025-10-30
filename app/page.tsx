@@ -194,11 +194,13 @@ export default function Home() {
   }
 
   const nextTeamSlide = () => {
-    setCurrentTeamSlide((prev) => (prev + 1) % Math.ceil(teamMembers.length / 3))
+    const lastStart = Math.max(0, teamMembers.length - 3)
+    setCurrentTeamSlide((prev) => (prev + 1 > lastStart ? 0 : prev + 1))
   }
 
   const prevTeamSlide = () => {
-    setCurrentTeamSlide((prev) => (prev - 1 + Math.ceil(teamMembers.length / 3)) % Math.ceil(teamMembers.length / 3))
+    const lastStart = Math.max(0, teamMembers.length - 3)
+    setCurrentTeamSlide((prev) => (prev - 1 < 0 ? lastStart : prev - 1))
   }
 
   const nextTeamMobile = () => {
@@ -259,7 +261,7 @@ export default function Home() {
     {
       name: "Pinkesh Jain",
       position: "Founder & CFO Lead",
-      image: "/about/founder.jpeg?height=200&width=300",
+      image: "/team/pinkesh jain.png?height=200&width=300",
       bio: "Seasoned professional with over 16 years of corporate experience in financial solutions and strategic business development.",
       expertise: ["Financial Strategy", "Corporate Finance", "Business Development", "IPO Management"],
       contact: {
@@ -271,7 +273,7 @@ export default function Home() {
     {
       name: "Sumit Khasgiwala",
       position: "Co Founder & Lead Taxation",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/team/CA Sumit Khasgiwala.png?height=200&width=300",
       bio: "Expert in taxation and regulatory compliance with extensive experience in helping businesses navigate complex tax landscapes.",
       expertise: ["Tax Planning", "Regulatory Compliance", "GST Advisory", "Corporate Taxation"],
       contact: {
@@ -283,7 +285,7 @@ export default function Home() {
     {
       name: "Rajat Jain",
       position: "Chartered Accountant",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/team/CA Rajat Jain.png?height=200&width=300",
       bio: "Qualified Chartered Accountant specializing in financial reporting, audit, and strategic financial planning for growing businesses.",
       expertise: ["Financial Reporting", "Audit & Assurance", "Strategic Planning", "Risk Management"],
       contact: {
@@ -292,6 +294,41 @@ export default function Home() {
         phone: "+91-XXXXXXXXXX",
       },
     },
+    {
+      name: "Varsha Jain",
+      position: "Lead Outsourcing Accountant",
+      image: "/team/Varsha Jain.png?height=200&width=300",
+      bio: "Experienced Chartered Accountant with a strong background in outsourced accounting services, financial management, and compliance solutions. She helps businesses streamline financial operations and maintain accuracy across multi-client portfolios.",
+      expertise: [
+        "Outsourced Accounting",
+        "Financial Management",
+        "Compliance & Reporting",
+        "Process Optimization"
+      ],
+      contact: {
+        linkedin: "#",
+        email: "rajat@finmates.com",
+        phone: "+91-XXXXXXXXXX",
+      },
+    },
+    {
+      name: "CS Jaymin",
+      position: "Corporate Legal & Governance Advisor",
+      image: "/team/jaymin.jpg?height=200&width=300",
+      bio: "Company Secretary and corporate legal expert with deep expertise in corporate governance, regulatory compliance, and business structuring. Provides strategic legal advisory to ensure organizations remain compliant and well-governed.",
+      expertise: [
+        "Corporate Governance",
+        "Regulatory Compliance",
+        "Legal Advisory",
+        "Business Structuring"
+      ],
+      contact: {
+        linkedin: "#",
+        email: "rajat@finmates.com",
+        phone: "+91-XXXXXXXXXX",
+      },
+    }
+    
   ]
 
   const nextWhySlide = () => {
@@ -1010,7 +1047,7 @@ export default function Home() {
                 key={index}
                 onClick={() => goToWhySlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentWhySlide ? "scale-125" : "hover:scale-110"
+                  index === currentWhySlide ? "scale-125 w-8" : "hover:scale-110"
                 }`}
                 style={{
                   backgroundColor: index === currentWhySlide ? "#00C16A" : "#CCCCCC",
@@ -1138,95 +1175,78 @@ export default function Home() {
             <div className="hidden md:block relative overflow-hidden">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateX(-${currentTeamSlide * 100}%)` }}
+                style={{ transform: `translateX(-${currentTeamSlide * (100 / 3)}%)` }}
               >
-                {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, slideIndex) => (
-                  <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {teamMembers.slice(slideIndex * 3, slideIndex * 3 + 3).map((member, memberIndex) => {
-                        const globalIndex = slideIndex * 3 + memberIndex
-                        return (
-                          <div
-                            key={globalIndex}
-                            className="group relative"
-                            onMouseEnter={() => setHoveredTeamMember(globalIndex)}
-                            onMouseLeave={() => setHoveredTeamMember(null)}
-                          >
-                            <div
-                              className={`bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
-                                hoveredTeamMember === globalIndex
-                                  ? "shadow-2xl -translate-y-4 scale-105"
-                                  : "hover:shadow-xl hover:-translate-y-2"
-                              }`}
-                            >
-                              <div className="relative overflow-hidden">
-                                <div
-                                  className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 ${
-                                    hoveredTeamMember === globalIndex ? "scale-110" : "group-hover:scale-105"
-                                  }`}
-                                >
-                                  <img
-                                    src={member.image || "/placeholder.svg"}
-                                    alt={member.name}
-                                    className="w-full h-full "
-                                  />
-                                </div>
-                                <div
-                                  className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
-                                    hoveredTeamMember === globalIndex ? "opacity-100" : "opacity-0"
-                                  }`}
-                                >
-                                  <div className="absolute bottom-4 left-4 right-4">
-                                    <div className="flex justify-center gap-3">
-                                      <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                        <Linkedin className="w-4 h-4" />
-                                      </button>
-                                      <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                        <Mail className="w-4 h-4" />
-                                      </button>
-                                      <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                        <Phone className="w-4 h-4" />
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="p-6">
-                                <div className="mb-4">
-                                  <h3
-                                    className={`text-xl font-bold transition-colors duration-300 ${
-                                      hoveredTeamMember === globalIndex ? "text-blue-700" : "text-slate-900"
-                                    }`}
-                                  >
-                                    {member.name}
-                                  </h3>
-                                  <p className="text-blue-600 font-medium text-sm">{member.position}</p>
-                                </div>
-                                <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                  {member.expertise.slice(0, 2).map((skill, skillIndex) => (
-                                    <span
-                                      key={skillIndex}
-                                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
-                                        hoveredTeamMember === globalIndex
-                                          ? "bg-blue-600 text-white"
-                                          : "bg-blue-100 text-blue-700"
-                                      }`}
-                                    >
-                                      {skill}
-                                    </span>
-                                  ))}
-                                  {member.expertise.length > 2 && (
-                                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-                                      +{member.expertise.length - 2} more
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
+                {teamMembers.map((member, globalIndex) => (
+                  <div
+                    key={globalIndex}
+                    className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 box-border"
+                    onMouseEnter={() => setHoveredTeamMember(globalIndex)}
+                    onMouseLeave={() => setHoveredTeamMember(null)}
+                  >
+                    <div
+                      className={`bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
+                        hoveredTeamMember === globalIndex
+                          ? "shadow-2xl -translate-y-4 scale-105"
+                          : "hover:shadow-xl hover:-translate-y-2"
+                      }`}
+                    >
+                      <div className="relative overflow-hidden">
+                        <div
+                          className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 ${
+                            hoveredTeamMember === globalIndex ? "scale-110" : "group-hover:scale-105"
+                          }`}
+                        >
+                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full " />
+                        </div>
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
+                            hoveredTeamMember === globalIndex ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <div className="flex justify-center gap-3">
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Linkedin className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Mail className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Phone className="w-4 h-4" />
+                              </button>
                             </div>
                           </div>
-                        )
-                      })}
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="mb-4">
+                          <h3
+                            className={`text-xl font-bold transition-colors duration-300 ${
+                              hoveredTeamMember === globalIndex ? "text-blue-700" : "text-slate-900"
+                            }`}
+                          >
+                            {member.name}
+                          </h3>
+                          <p className="text-blue-600 font-medium text-sm">{member.position}</p>
+                        </div>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {member.expertise.slice(0, 2).map((skill, skillIndex) => (
+                            <span
+                              key={skillIndex}
+                              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                                hoveredTeamMember === globalIndex ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-700"
+                              }`}
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                          {member.expertise.length > 2 && (
+                            <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">+{member.expertise.length - 2} more</span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -1253,17 +1273,17 @@ export default function Home() {
             {/* Mobile dots */}
             <div className="md:hidden flex gap-2">
               {teamMembers.map((_, index) => (
-                <button key={index} onClick={() => setCurrentTeamMobile(index)} className={`w-2 h-2 rounded-full ${index === currentTeamMobile ? "bg-blue-600 scale-125" : "bg-gray-300"}`} />
+                <button key={index} onClick={() => setCurrentTeamMobile(index)} className={`w-2 h-2 rounded-full ${index === currentTeamMobile ? "bg-blue-600 scale-125 w-5" : "bg-gray-300"}`} />
               ))}
             </div>
             {/* Desktop/Tablet dots */}
             <div className="hidden md:flex gap-2">
-              {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, index) => (
+              {Array.from({ length: Math.max(1, teamMembers.length - 2) }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentTeamSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTeamSlide ? "bg-blue-600 scale-125" : "bg-gray-300 hover:bg-blue-400"
+                    index === currentTeamSlide ? "bg-blue-600 scale-125 w-5" : "bg-gray-300 hover:bg-blue-400"
                   }`}
                 />
               ))}
@@ -1287,8 +1307,8 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="md:py-20 md:pt-48  bg-white">
-        <div className="max-w-8xl  mx-auto px-6">
+      <section className="md:py-20 md:pt-20  bg-white">
+        <div className="max-w-7xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
             <div className="relative">

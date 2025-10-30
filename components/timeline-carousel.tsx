@@ -80,6 +80,8 @@ export function TimelineCarousel({
   // Exactly 4 visible; startIndex defines leftmost item
   const [startIndex, setStartIndex] = React.useState(0)
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
+  const [activeOffset, setActiveOffset] = React.useState(0) // 0..3 within current four
+  const [isPaused, setIsPaused] = React.useState(false)
   const itemCount = items.length
 
   const goNext = React.useCallback(() => {
@@ -100,8 +102,33 @@ export function TimelineCarousel({
   // For the main line under cards
   const currentFour = [0, 1, 2, 3].map((i) => at(startIndex + i))
 
+  // Auto-advance active card 1->2->3->4, then slide and restart
+  React.useEffect(() => {
+    if (itemCount === 0) return
+    if (isPaused) return
+    const visibleCount = Math.min(4, itemCount)
+    const lastVisibleOffset = visibleCount - 1
+    const id = window.setInterval(() => {
+      setActiveOffset((prev) => {
+        const activeAbsoluteIndex = (startIndex + prev) % itemCount
+        // If currently on the absolute last item, wrap to start immediately (no delay)
+        if (activeAbsoluteIndex === itemCount - 1) {
+          setStartIndex(0)
+          return 0
+        }
+        if (prev < lastVisibleOffset) {
+          return prev + 1
+        }
+        // when hitting the 4th (or last visible), slide and reset to first
+        setStartIndex((s) => (s + 1) % itemCount)
+        return 0
+      })
+    }, 2500)
+    return () => window.clearInterval(id)
+  }, [itemCount, isPaused, startIndex])
+
   return (
-    <section className={cn("w-full", className)} aria-label="Company journey timeline carousel">
+    <section className={cn("w-full pb-24 relative", className)} aria-label="Company journey timeline carousel">
       <header className="mb-8 flex items-center justify-center">
         <h2 className="text-pretty text-3xl font-bold">{heading}</h2>
       </header>
@@ -135,13 +162,14 @@ export function TimelineCarousel({
           >
             {items.map((item, i) => {
               const tone = toneClasses(item.tone || "blue")
-              const isActive = hoveredIndex === i || (hoveredIndex === null && i === 0)
+              const activeAbsoluteIndex = (startIndex + activeOffset) % itemCount
+              const isActive = hoveredIndex === i || (hoveredIndex === null && i === activeAbsoluteIndex)
               return (
                 <div key={`${item.year}-${i}`} role="listitem" className="w-1/4 shrink-0 grow-0 p-4">
                   <div 
                     className="group relative flex flex-col items-center"
-                    onMouseEnter={() => setHoveredIndex(i)}
-                    onMouseLeave={() => setHoveredIndex(null)}
+                    onMouseEnter={() => { setHoveredIndex(i); setIsPaused(true) }}
+                    onMouseLeave={() => { setHoveredIndex(null); setIsPaused(false) }}
                   >
                     {/* Floating info card on hover (match style from your original) */}
                     <div
@@ -196,8 +224,8 @@ export function TimelineCarousel({
                     </div>
 
                     {/* Label above dot */}
-                    <p className={`mb-2 -translate-y-8 text-center text-lg font-semibold transition-all duration-300 ${
-                      isActive ? "scale-105 text-blue-700" : "text-blue-500 group-hover:scale-105 group-hover:text-blue-700"
+                    <p aria-hidden={isActive} className={`mb-2 -translate-y-8 text-center text-lg font-semibold transition-all duration-300 ${
+                      isActive ? "scale-105 text-blue-700 opacity-0" : "text-blue-500 group-hover:scale-105 group-hover:text-blue-700"
                     }`}>
                       {item.title}
                     </p>
@@ -259,6 +287,12 @@ export function TimelineCarousel({
           })}
         </div>
       </div>
+
+      {/* Bottom overlay to prevent underlying text from showing through when cards float */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 md:h-72 bg-gradient-to-b from-transparent to-background"
+      />
 
       {/* Accessibility hints */}
       <div className="sr-only" aria-live="polite">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -11,6 +11,8 @@ import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import { TestimonialSlider } from "@/components/testimonials/slider"
+import { testimonials } from "@/components/testimonials/data"
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("financial-services")
@@ -73,6 +75,11 @@ export default function ServicesPage() {
     setCurrentSlide(index)
   }
 
+  const categories = useMemo(() => {
+    const set = new Set<string>()
+    testimonials.forEach((t) => t.category && set.add(t.category))
+    return ["All", ...Array.from(set)]
+  }, [])
   // keep original one-card shift logic; visible cards determined by CSS breakpoints
 
   const qualityFeatures = {
@@ -325,50 +332,29 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="h-full w-full bg-neutral-50">
-          <div className="m-auto flex h-full w-full max-w-8xl items-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
-            <div className="flex w-full flex-wrap items-center justify-center rounded-2xl bg-white p-2 shadow-xl md:w-1/3">
-              <div className="flex w-1/2 items-center justify-evenly rounded-2xl border-0 py-10 shadow-lg md:w-1/2">
-                <img src="/services/bodhitree.png?height=40&width=100" className="w-full object-contain h-10" />
-              </div>
-            </div>
-            <div className="w-full md:w-2/3">
-              <div className="h-full w-full">
-                <div className="h-full w-full space-y-10">
-                  <div className="space-y-5">
-                    <p className="md:text-lg">
-                      Thanks to FinMates' SME IPO Listing services, we confidently took the leap into the public domain.
-                      Their expert guidance ensured compliance and success throughout the process, propelling our
-                      business to new heights. Exceptional service!
-                    </p>
-                    <p className="md:text-lg italic">Bodhitree Multmedia Limited</p>
-                  </div>
-                  <div className="flex w-full items-center gap-5">
-                    <img
-                      width="48"
-                      height="48"
-                      className="h-12 w-12 overflow-hidden rounded-full object-cover object-center"
-                      src="/services/male.png?height=48&width=48"
-                    />
-                    <div className="space-y-2">
-                      <h4 className="font-medium italic">Mautik Tolia</h4>
-                      <p className="text-sm">MD</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 pt-5">
-                  <Button className="rounded-full bg-blue-800 p-4 hover:bg-blue-700">
-                    <ChevronLeft className="text-white" />
-                  </Button>
-                  <Button className="rounded-full bg-blue-800 p-4 hover:bg-blue-700">
-                    <ChevronRight className="text-white" />
-                  </Button>
-                </div>
-              </div>
-            </div>
+         {/* Testimonials Section */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
+             {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>
+            <p className="text-xl text-[#45556c]">Your Strategic Financial Partner</p>
           </div>
-        </section>
+
+
+        <TestimonialSlider
+          items={testimonials}
+          layout="split" // "split" | "full" | "grid"
+          autoplay
+          autoplayDelay={5000}
+          transition="slide" // "slide" | "fade" | "zoom" | "flip3d"
+          showDots
+          showArrows
+          showProgress
+          enableFiltering
+          categories={categories}
+          tickerColumns={3}
+        />
+      </section>
 
         {/* Process Section */}
         <section className="h-full w-full">

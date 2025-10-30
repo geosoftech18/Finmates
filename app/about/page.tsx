@@ -177,11 +177,12 @@ export default function Home() {
     },
   ]
 
+  
   const teamMembers = [
     {
       name: "Pinkesh Jain",
       position: "Founder & CFO Lead",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/team/pinkesh jain.png?height=200&width=300",
       bio: "Seasoned professional with over 16 years of corporate experience in financial solutions and strategic business development.",
       expertise: ["Financial Strategy", "Corporate Finance", "Business Development", "IPO Management"],
       contact: {
@@ -193,7 +194,7 @@ export default function Home() {
     {
       name: "Sumit Khasgiwala",
       position: "Co Founder & Lead Taxation",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/team/CA Sumit Khasgiwala.png?height=200&width=300",
       bio: "Expert in taxation and regulatory compliance with extensive experience in helping businesses navigate complex tax landscapes.",
       expertise: ["Tax Planning", "Regulatory Compliance", "GST Advisory", "Corporate Taxation"],
       contact: {
@@ -205,7 +206,7 @@ export default function Home() {
     {
       name: "Rajat Jain",
       position: "Chartered Accountant",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/team/CA Rajat Jain.png?height=200&width=300",
       bio: "Qualified Chartered Accountant specializing in financial reporting, audit, and strategic financial planning for growing businesses.",
       expertise: ["Financial Reporting", "Audit & Assurance", "Strategic Planning", "Risk Management"],
       contact: {
@@ -214,8 +215,42 @@ export default function Home() {
         phone: "+91-XXXXXXXXXX",
       },
     },
+    {
+      name: "Varsha Jain",
+      position: "Lead Outsourcing Accountant",
+      image: "/team/Varsha Jain.png?height=200&width=300",
+      bio: "Experienced Chartered Accountant with a strong background in outsourced accounting services, financial management, and compliance solutions. She helps businesses streamline financial operations and maintain accuracy across multi-client portfolios.",
+      expertise: [
+        "Outsourced Accounting",
+        "Financial Management",
+        "Compliance & Reporting",
+        "Process Optimization"
+      ],
+      contact: {
+        linkedin: "#",
+        email: "rajat@finmates.com",
+        phone: "+91-XXXXXXXXXX",
+      },
+    },
+    {
+      name: "CS Jaymin",
+      position: "Corporate Legal & Governance Advisor",
+      image: "/team/jaymin.jpg?height=200&width=300",
+      bio: "Company Secretary and corporate legal expert with deep expertise in corporate governance, regulatory compliance, and business structuring. Provides strategic legal advisory to ensure organizations remain compliant and well-governed.",
+      expertise: [
+        "Corporate Governance",
+        "Regulatory Compliance",
+        "Legal Advisory",
+        "Business Structuring"
+      ],
+      contact: {
+        linkedin: "#",
+        email: "rajat@finmates.com",
+        phone: "+91-XXXXXXXXXX",
+      },
+    }
+    
   ]
-
   const caseStudies = [
     {
       title: "Make better decisions",
@@ -724,7 +759,7 @@ export default function Home() {
                 key={index}
                 onClick={() => setCurrentTeamSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTeamSlide ? "bg-blue-600 scale-125" : "bg-gray-300 hover:bg-blue-400"
+                  index === currentTeamSlide ? "bg-blue-600 w-6 scale-125" : "bg-gray-300 hover:bg-blue-400"
                 }`}
               />
             ))}
@@ -746,8 +781,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
+       {/* Testimonials Section */}
+       <section className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
              {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003b8d] mb-4">Our Testimonials</h2>

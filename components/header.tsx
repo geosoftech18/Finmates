@@ -12,7 +12,7 @@ return(
             {/* Left Side - Logo */}
             <div className="flex flex-col">
               <a href="/">
-              <img  src="/images/logo.svg" alt="" className="w-40 h-10" />
+              <img  src="/images/finmate-logo.png" alt="" className="w-40 h-10" />
               </a>
             </div>
 

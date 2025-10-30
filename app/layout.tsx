@@ -4,7 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
+  title: 'FinMates.in',
   description: 'Created with Geo Softech',
   generator: 'GEO SOFTECH',
 }

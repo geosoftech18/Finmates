@@ -20,6 +20,11 @@ export default function Footer() {
                   Contact Us
                 </a>
               </li>
+              <li>
+                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/careers">
+                  Careers
+                </a>
+              </li>
             </ul>
   
             <ul className="space-y-3">
@@ -27,7 +32,7 @@ export default function Footer() {
               <li>
                 <a
                   className="text-sm md:text-base text-gray-200 hover:text-white transition-colors"
-                  href="https://www.finmates.in/services/cfo-services-elevating-financial-leadership"
+                  href="https://www.finmates.in/services/cfo-services"
                 >
                   CFO Services
                 </a>
@@ -35,13 +40,13 @@ export default function Footer() {
               <li>
                 <a
                   className="text-sm md:text-base text-gray-200 hover:text-white transition-colors"
-                  href="https://www.finmates.in/services/direct-and-indirect-tax-m-and-a-advisory-expert-guidance-for-complex"
+                  href="https://www.finmates.in/services/direct-tax"
                 >
                   Direct tax and regulatory service
                 </a>
               </li>
               <li>
-                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/services/f-and-a-outsourcing">
+                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/services/F&A-outsourcing">
                   F&amp;A Outsourcing
                 </a>
               </li>
@@ -49,22 +54,17 @@ export default function Footer() {
   
             <ul className="space-y-3">
               <h3 className="text-lg md:text-xl font-bold text-gray-200">More Services</h3>
-              <li>
-                <a
-                  className="text-sm md:text-base text-gray-200 hover:text-white transition-colors"
-                  href="https://www.finmates.in/services/corporate-fundraising-and-m-and-a-advisory"
-                >
-                  Corporate Fundraising and M&amp;A Advisory
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-sm md:text-base text-gray-200 hover:text-white transition-colors"
-                  href="https://www.finmates.in/services/sme-ipo-listing-guidance-for-going-public"
-                >
-                  SME IPO readiness support
-                </a>
-              </li>
+              
+                <li>
+                  <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/services/M&A-Advisory">
+                    Corporate Fundraising and M&A Advisory
+                  </a>
+                </li>
+                <li>
+                  <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/services/SME-IPO">
+                    SME IPO readness support
+                  </a>
+                </li>
             </ul>
   
             <ul className="space-y-3">
