@@ -311,6 +311,7 @@ export function ApplyForm({ job, open, onClose }: ApplyFormProps) {
 
     setIsLoading(true)
     try {
+      console.log("Starting application submission...")
       const formDataToSend = new FormData()
       formDataToSend.append("jobId", job.id)
       formDataToSend.append("name", formData.name)
@@ -328,18 +329,44 @@ export function ApplyForm({ job, open, onClose }: ApplyFormProps) {
       formDataToSend.append("companyName", formData.companyName)
       formDataToSend.append("jobTitle", formData.jobTitle)
       formDataToSend.append("workDuration", formData.workDuration)
+      formDataToSend.append("coverLetter", "") // Add empty coverLetter field as API expects it
       if (formData.resume) {
         formDataToSend.append("resume", formData.resume)
       }
 
+      console.log("Sending application to API...")
       const response = await fetch("/api/apply", {
         method: "POST",
         body: formDataToSend,
       })
 
+      console.log("Response status:", response.status, response.statusText)
+
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text()
+        let errorMessage = "Failed to submit application. Please try again."
+        
+        try {
+          const errorJson = JSON.parse(errorText)
+          errorMessage = errorJson.message || errorMessage
+        } catch {
+          errorMessage = errorText || errorMessage
+        }
+        
+        toast({
+          title: "Submission Failed",
+          description: errorMessage,
+          variant: "destructive",
+        })
+        return
+      }
+
       const result = await response.json()
+      console.log("API response:", result)
 
       if (result.success) {
+        console.log("Application submitted successfully!")
         setApplicationData({
           applicantName: formData.name,
           applicantEmail: formData.email,
@@ -356,9 +383,10 @@ export function ApplyForm({ job, open, onClose }: ApplyFormProps) {
         })
       }
     } catch (error) {
+      console.error("Application submission error:", error)
       toast({
         title: "Submission Error",
-        description: "Failed to submit application. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit application. Please try again.",
         variant: "destructive",
       })
     } finally {

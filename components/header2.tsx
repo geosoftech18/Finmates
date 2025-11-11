@@ -9,8 +9,9 @@ const NAV_LINKS: NavLink[] = [
   { name: "Home", url: "/" },
   { name: "About", url: "/about" },
   { name: "Services", url: "/services" },
-  { name: "Contact Us", url: "/contact-us" },
   { name: "Careers", url: "/careers" },
+  { name: "Contact Us", url: "/contact-us" },
+ 
 ]
 
 export default function FinmatesHeader() {

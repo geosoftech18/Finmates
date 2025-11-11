@@ -73,11 +73,11 @@ export default function ContactPage() {
 
               <p className="text-[#001736] mb-4 text-xl">We'll help you with our valuable Conversation.</p>
 
-              <p className="text-[#001736] mb-6 text-xl">
+              {/* <p className="text-[#001736] mb-6 text-xl">
                 Fill the form below or Directly Reach Us Now: info@finmates.in
                 <br />
                 and 09833943776
-              </p>
+              </p> */}
             </div>
 
             {/* Contact Details */}
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-gray-800">General Enquiries.</h4>
-                  <p className="text-base text-[#001736]">Phone: (+91) 9833943776 Email: enquiry@finmates.in</p>
+                  <p className="text-base text-[#001736]">Phone: (+91) 9833943776 Email: info@finmates.in</p>
                 </div>
               </div>
 

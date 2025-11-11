@@ -232,7 +232,7 @@ async function sendConfirmationEmail(applicationData: any) {
     const { subject, html } = generateApplicationConfirmationEmail(applicationData)
 
     const mailOptions = {
-      from: process.env.SMTP_USER,
+      from: `FinMates <noreply@finmates.in>`,
       to: applicationData.applicantEmail,
       subject: subject,
       html: html,
@@ -248,19 +248,26 @@ async function sendConfirmationEmail(applicationData: any) {
 
 // Save resume file to Supabase storage or local filesystem
 async function saveResumeFile(file: File, email: string): Promise<string> {
-  try {
-    // Check if Supabase Storage is configured
-    if (isSupabaseConfigured()) {
-      console.log("Using Supabase Storage for resume upload")
+  // Try Supabase first if configured
+  if (isSupabaseConfigured()) {
+    try {
+      console.log("Attempting to upload resume to Supabase Storage...")
       const result = await uploadResumeToSupabase(file, email)
+      console.log("Successfully uploaded to Supabase Storage")
       return result.publicUrl
-    } else {
-      console.log("Supabase Storage not configured, using local storage")
-      return await saveResumeFileLocally(file, email)
+    } catch (supabaseError) {
+      console.warn("Supabase upload failed, falling back to local storage:", supabaseError)
+      // Fall through to local storage
     }
+  }
+  
+  // Fallback to local storage
+  try {
+    console.log("Using local storage for resume upload")
+    return await saveResumeFileLocally(file, email)
   } catch (error) {
-    console.error("Error saving resume file:", error)
-    throw new Error("Failed to save resume file")
+    console.error("Error saving resume file locally:", error)
+    throw new Error("Failed to save resume file. Please try again.")
   }
 }
 

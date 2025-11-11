@@ -61,6 +61,14 @@ export default function ServicesPage() {
       image: "/services/SME_IPO_Listing.jpg",
       link:"/services/SME-IPO"
     },
+    {
+    title: "Annual Report Preparation",
+      subtitle: "Comprehensive Financial Reporting",
+      description:
+        "We prepare comprehensive annual reports for listed companies, ensuring compliance with SEBI regulations and investor-ready visual layouts.",
+        image: "/services/F&A.png",
+      link:"services/annual-report-preparation"
+    },
   ]
 
   const nextSlide = () => {
@@ -198,7 +206,7 @@ export default function ServicesPage() {
 
         {/* Services Section */}
         <section className="h-full w-full">
-          <div className="m-auto flex h-full w-full max-w-8xl flex-col items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
+          <div className="m-auto flex h-full w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
             <h1 className="text-xl font-bold md:ml-4 md:text-3xl lg:text-4xl">Our Services</h1>
             <h2 className="text-center text-2xl font-bold md:ml-4 md:text-3xl lg:text-5xl">Solutions We Provide</h2>
             <p className="w-full text-center text-sm md:w-2/3 md:text-lg">
@@ -548,7 +556,7 @@ export default function ServicesPage() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500">October 28, 2023</span>
                   </div>
 
@@ -590,7 +598,7 @@ export default function ServicesPage() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500">October 25, 2023</span>
                   </div>
 
@@ -634,7 +642,7 @@ export default function ServicesPage() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center text-center w-3/6 space-x-1 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400 ">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500 ">October 22, 2023</span>
                   </div>
 

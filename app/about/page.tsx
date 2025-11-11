@@ -1,6 +1,7 @@
 "use client"
 import { Building2, Users, TrendingUp, HandCoins, ChevronLeft, ChevronRight, Linkedin, Mail, Phone } from "lucide-react"
-import { useState, useEffect ,useMemo} from "react"
+import { useState, useEffect ,useMemo, useRef} from "react"
+import CountUp from "react-countup"
 import MagneticCursor from "@/components/MagneticCursor"
 import { TimelineCarousel } from "@/components/timeline-carousel"
 import JourneySection from "@/components/journey-section"
@@ -9,6 +10,7 @@ import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
+import { useRouter } from "next/navigation"
 
 
 export default function Home() {
@@ -26,6 +28,9 @@ export default function Home() {
   const [isCarouselHovered, setIsCarouselHovered] = useState(false)
   const [currentTeamMobile, setCurrentTeamMobile] = useState(0)
   const [currentCaseMobile, setCurrentCaseMobile] = useState(0)
+  const [startStatsCountup, setStartStatsCountup] = useState(false)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   const slides = [
     {
@@ -117,6 +122,30 @@ export default function Home() {
   useEffect(() => {
     setProgress(0);
   }, [currentSlide]);
+
+  // Intersection Observer for stats counter
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setStartStatsCountup(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, []);
 
   const storySlides = [
     {
@@ -378,11 +407,21 @@ export default function Home() {
   }
 
   const nextTeamSlide = () => {
-    setCurrentTeamSlide((prev) => (prev + 1) % Math.ceil(teamMembers.length / 3))
+    const lastStart = Math.max(0, teamMembers.length - 3)
+    setCurrentTeamSlide((prev) => (prev + 1 > lastStart ? 0 : prev + 1))
   }
 
   const prevTeamSlide = () => {
-    setCurrentTeamSlide((prev) => (prev - 1 + Math.ceil(teamMembers.length / 3)) % Math.ceil(teamMembers.length / 3))
+    const lastStart = Math.max(0, teamMembers.length - 3)
+    setCurrentTeamSlide((prev) => (prev - 1 < 0 ? lastStart : prev - 1))
+  }
+
+  const nextTeamMobile = () => {
+    setCurrentTeamMobile((prev) => (prev + 1) % teamMembers.length)
+  }
+
+  const prevTeamMobile = () => {
+    setCurrentTeamMobile((prev) => (prev - 1 + teamMembers.length) % teamMembers.length)
   }
 
   useEffect(() => {
@@ -409,7 +448,7 @@ export default function Home() {
      
 
        <section 
-         className="container mx-auto px-4 py-20"
+         className="container mx-auto px-4 md:py-20 py-36"
          onMouseEnter={() => setIsCarouselHovered(true)}
          onMouseLeave={() => setIsCarouselHovered(false)}
        >
@@ -513,8 +552,12 @@ export default function Home() {
             </div>
 
             {/* Right Content - Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div ref={statsRef} className="grid grid-cols-2 gap-4">
               {storySlides[0].stats.map((stat, index) => {
+                // Parse number and suffix from stat.number (e.g., "10 +" -> 10 and "+")
+                const numberMatch = stat.number.match(/(\d+)\s*(.*)/);
+                const number = numberMatch ? parseInt(numberMatch[1], 10) : 0;
+                const suffix = numberMatch ? numberMatch[2].trim() : "";
                 
                 return (
                   <div
@@ -525,7 +568,16 @@ export default function Home() {
                         <img src={stat.icon} alt={stat.text} width={45} height={45} />
                      
                     </div>
-                    <div className="text-2xl font-bold text-[#003b8d]">{stat.number}</div>
+                    <div className="text-2xl font-bold text-[#003b8d]">
+                      {startStatsCountup ? (
+                        <>
+                          <CountUp end={number} duration={2.5} delay={index * 0.2} />
+                          {suffix && ` ${suffix}`}
+                        </>
+                      ) : (
+                        `0${suffix ? ` ${suffix}` : ""}`
+                      )}
+                    </div>
                     <div className="text-sm text-slate-600 leading-tight">{stat.text}</div>
                   </div>
                 )
@@ -542,8 +594,8 @@ export default function Home() {
 
        {/* Team Section */}
 
-       <section className=" mx-auto px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <div className="max-w-7xl mx-auto">
+       <section className=" mx-auto px-4 py-10 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-sm">
@@ -559,221 +611,200 @@ export default function Home() {
           </div>
 
           {/* Team Carousel Container */}
-          {/* Mobile: single-card carousel */}
-          <div className="md:hidden relative overflow-hidden">
-            <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentTeamMobile * 100}%)` }}>
-              {teamMembers.map((member, index) => (
-                <div key={index} className="w-full flex-shrink-0">
-                  <div className="group relative bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div className="relative overflow-hidden">
-                      <div className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500`}>
-                        <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full " />
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <div className="mb-4">
-                        <h3 className={`text-xl font-bold`}>{member.name}</h3>
-                        <p className="text-blue-600 font-medium text-sm">{member.position}</p>
-                      </div>
-                      <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {member.expertise.slice(0, 2).map((skill, skillIndex) => (
-                          <span key={skillIndex} className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">{skill}</span>
-                        ))}
-                        {member.expertise.length > 2 && (
-                          <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">+{member.expertise.length - 2} more</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Mobile arrows */}
-            <button onClick={() => setCurrentTeamMobile((p) => (p - 1 + teamMembers.length) % teamMembers.length)} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow flex items-center justify-center text-slate-700">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button onClick={() => setCurrentTeamMobile((p) => (p + 1) % teamMembers.length)} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow flex items-center justify-center text-slate-700">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Desktop/Tablet */}
-          <div className="hidden md:block relative overflow-hidden">
-            <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentTeamSlide * 100}%)` }}
-            >
-              {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {teamMembers.slice(slideIndex * 3, slideIndex * 3 + 3).map((member, memberIndex) => {
-                      const globalIndex = slideIndex * 3 + memberIndex
-                      return (
+          <div className="relative overflow-hidden py-4">
+            {/* Mobile: 1-card carousel */}
+            <div className="md:hidden relative overflow-hidden">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentTeamMobile * 100}%)` }}
+              >
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <div
+                      className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
+                        hoveredTeamMember === index
+                          ? "shadow-2xl scale-105"
+                          : "hover:shadow-xl hover:scale-105"
+                      }`}
+                      onMouseEnter={() => setHoveredTeamMember(index)}
+                      onMouseLeave={() => setHoveredTeamMember(null)}
+                    >
+                      <div className="relative overflow-hidden">
+                        <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100">
+                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full object-cover object-top" />
+                        </div>
                         <div
-                          key={globalIndex}
-                          className="group relative"
-                          onMouseEnter={() => setHoveredTeamMember(globalIndex)}
-                          onMouseLeave={() => setHoveredTeamMember(null)}
+                          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
+                            hoveredTeamMember === index ? "opacity-100" : "opacity-0"
+                          }`}
                         >
-                          {/* Team Member Card */}
-                          <div
-                            className={`bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
-                              hoveredTeamMember === globalIndex
-                                ? "shadow-2xl -translate-y-4 scale-105"
-                                : "hover:shadow-xl hover:-translate-y-2"
-                            }`}
-                          >
-                            {/* Profile Image Container */}
-                            <div className="relative overflow-hidden">
-                              <div
-                                className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 ${
-                                  hoveredTeamMember === globalIndex ? "scale-110" : "group-hover:scale-105"
-                                }`}
-                              >
-                                <img
-                                  src={member.image || "/placeholder.svg"}
-                                  alt={member.name}
-                                  className="w-full h-full "
-                                />
-                              </div>
-
-                              {/* Overlay with contact info - appears on hover */}
-                              <div
-                                className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
-                                  hoveredTeamMember === globalIndex ? "opacity-100" : "opacity-0"
-                                }`}
-                              >
-                                <div className="absolute bottom-4 left-4 right-4">
-                                  <div className="flex justify-center gap-3">
-                                    <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                      <Linkedin className="w-4 h-4" />
-                                    </button>
-                                    <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                      <Mail className="w-4 h-4" />
-                                    </button>
-                                    <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                                      <Phone className="w-4 h-4" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <div className="flex justify-center gap-3">
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Linkedin className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Mail className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Phone className="w-4 h-4" />
+                              </button>
                             </div>
-
-                            {/* Card Content */}
-                            <div className="p-6">
-                              {/* Name and Position */}
-                              <div className="mb-4">
-                                <h3
-                                  className={`text-xl font-bold transition-colors duration-300 ${
-                                    hoveredTeamMember === globalIndex ? "text-blue-700" : "text-slate-900"
-                                  }`}
-                                >
-                                  {member.name}
-                                </h3>
-                                <p className="text-blue-600 font-medium text-sm">{member.position}</p>
-                              </div>
-
-                              {/* Bio */}
-                              <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-
-                              {/* Expertise Tags */}
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                {member.expertise.slice(0, 2).map((skill, skillIndex) => (
-                                  <span
-                                    key={skillIndex}
-                                    className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
-                                      hoveredTeamMember === globalIndex
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-blue-100 text-blue-700"
-                                    }`}
-                                  >
-                                    {skill}
-                                  </span>
-                                ))}
-                                {member.expertise.length > 2 && (
-                                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-                                    +{member.expertise.length - 2} more
-                                  </span>
-                                )}
-                              </div>
-
-                              {/* Expanded Info - shows on hover */}
-                              {/* <div
-                                className={`transition-all duration-500 overflow-hidden ${
-                                  hoveredTeamMember === globalIndex ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                                }`}
-                              >
-                                <div className="border-t border-gray-100 pt-4">
-                                  <h4 className="text-sm font-semibold text-slate-900 mb-2">All Expertise:</h4>
-                                  <div className="flex flex-wrap gap-1">
-                                    {member.expertise.map((skill, skillIndex) => (
-                                      <span
-                                        key={skillIndex}
-                                        className="px-2 py-1 rounded text-xs bg-gradient-to-r from-blue-50 to-purple-50 text-slate-700 border border-blue-200"
-                                      >
-                                        {skill}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div> */}
-                            </div>
-
-                            {/* Decorative Elements */}
-                            <div
-                              className={`absolute top-4 right-4 w-8 h-8 rounded-full transition-all duration-300 ${
-                                hoveredTeamMember === globalIndex
-                                  ? "bg-gradient-to-br from-blue-400 to-purple-600 opacity-60 scale-125"
-                                  : "bg-gradient-to-br from-blue-300 to-blue-500 opacity-20"
-                              }`}
-                            ></div>
                           </div>
                         </div>
-                      )
-                    })}
+                      </div>
+                      <div className="p-6">
+                        <div className="mb-4">
+                          <h3 className={`text-xl font-bold ${hoveredTeamMember === index ? "text-blue-700" : "text-slate-900"}`}>{member.name}</h3>
+                          <p className="text-blue-600 font-medium text-sm">{member.position}</p>
+                        </div>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 h-16 overflow-hidden text-ellipsis line-clamp-3">{member.bio}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {member.expertise.slice(0, 2).map((skill, skillIndex) => (
+                            <span key={skillIndex} className={`px-3 py-1 rounded-full text-xs font-medium ${hoveredTeamMember === index ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-700"}`}>{skill}</span>
+                          ))}
+                          {member.expertise.length > 2 && (
+                            <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">+{member.expertise.length - 2} more</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* Mobile arrows */}
+              <button onClick={prevTeamMobile} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow flex items-center justify-center text-slate-700">
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button onClick={nextTeamMobile} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow flex items-center justify-center text-slate-700">
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevTeamSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 z-10"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={nextTeamSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 z-10"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            {/* Desktop/Tablet: 3-card-per-slide carousel */}
+            <div className="hidden md:block relative overflow-visible py-4">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentTeamSlide * (100 / 3)}%)` }}
+              >
+                {teamMembers.map((member, globalIndex) => (
+                  <div
+                    key={globalIndex}
+                    className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 py-4 box-border"
+                    onMouseEnter={() => setHoveredTeamMember(globalIndex)}
+                    onMouseLeave={() => setHoveredTeamMember(null)}
+                  >
+                    <div
+                      className={`bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
+                        hoveredTeamMember === globalIndex
+                          ? "shadow-2xl scale-105"
+                          : "hover:shadow-xl hover:scale-105"
+                      }`}
+                    >
+                      <div className="relative overflow-hidden">
+                        <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100">
+                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full object-cover object-top" />
+                        </div>
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
+                            hoveredTeamMember === globalIndex ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <div className="flex justify-center gap-3">
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Linkedin className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Mail className="w-4 h-4" />
+                              </button>
+                              <button className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                                <Phone className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="mb-4">
+                          <h3
+                            className={`text-xl font-bold transition-colors duration-300 ${
+                              hoveredTeamMember === globalIndex ? "text-blue-700" : "text-slate-900"
+                            }`}
+                          >
+                            {member.name}
+                          </h3>
+                          <p className="text-blue-600 font-medium text-sm">{member.position}</p>
+                        </div>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 h-16 overflow-hidden text-ellipsis line-clamp-3">{member.bio}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {member.expertise.slice(0, 2).map((skill, skillIndex) => (
+                            <span
+                              key={skillIndex}
+                              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                                hoveredTeamMember === globalIndex ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-700"
+                              }`}
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                          {member.expertise.length > 2 && (
+                            <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">+{member.expertise.length - 2} more</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop/Tablet Arrows */}
+              <button
+                onClick={prevTeamSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 z-10"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextTeamSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 z-10"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
           </div>
 
           {/* Carousel Indicators */}
           <div className="flex justify-center mt-8 gap-2">
-            {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentTeamSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTeamSlide ? "bg-blue-600 w-6 scale-125" : "bg-gray-300 hover:bg-blue-400"
-                }`}
-              />
-            ))}
+            {/* Mobile dots */}
+            <div className="md:hidden flex gap-2">
+              {teamMembers.map((_, index) => (
+                <button key={index} onClick={() => setCurrentTeamMobile(index)} className={`w-2 h-2 rounded-full ${index === currentTeamMobile ? "bg-blue-600 scale-125 w-5" : "bg-gray-300"}`} />
+              ))}
+            </div>
+            {/* Desktop/Tablet dots */}
+            <div className="hidden md:flex gap-2">
+              {Array.from({ length: Math.max(1, teamMembers.length - 2) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTeamSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTeamSlide ? "bg-blue-600 scale-125 w-5" : "bg-gray-300 hover:bg-blue-400"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Call to Action */}
           <div className="text-center mt-12">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 max-w-7xl mx-auto">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Ready to Work With Us?</h3>
-              <p className="text-slate-600 mb-6">
+            <div className="bg-white rounded-2xl  md:p-12 py-12 shadow-lg border border-gray-100 max-w-7xl mx-auto">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Ready to Work With Us?</h3>
+              <p className="text-slate-600 mb-8 text-lg">
                 Connect with our expert team to discuss your financial goals and discover how we can help your business
                 thrive.
               </p>
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
+              <button onClick={() => router.push("/contact-us")} className="bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white px-8 py-3 rounded-full font-medium hover:from-[#003b8d] hover:to-[#003b8d] transition-all duration-300 hover:scale-105 shadow-lg">
                 Schedule a Consultation
               </button>
             </div>
@@ -1062,7 +1093,7 @@ export default function Home() {
                 Join our portfolio of successful clients and let us help you achieve remarkable financial outcomes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
+                <button className="bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
                   Start Your Project
                 </button>
                 <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105">
@@ -1185,7 +1216,7 @@ export default function Home() {
                     <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-100 transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                    <p className="text-gray-100 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
                       {service.description}
                     </p>
 

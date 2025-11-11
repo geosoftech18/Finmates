@@ -206,7 +206,7 @@ const toggleFaq = (index: number) => {
         </div>
       </section>
 
-      <section className="h-full w-full bg-neutral-50">
+      {/* <section className="h-full w-full bg-neutral-50">
         <div className="m-auto flex h-full w-full max-w-8xl items-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
           <div className="flex w-full flex-wrap items-center justify-center rounded-2xl bg-white p-2 shadow-xl md:w-1/3">
             <div
@@ -280,18 +280,18 @@ const toggleFaq = (index: number) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
        {/* FAQ Section */}
        <section className="py-20 pt-48 bg-white">
-        <div className="max-w-8xl  mx-auto px-6">
+        <div className="max-w-7xl  mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Side - Illustration */}
             <div className="relative">
                 {/* Vector Illustration */}
                
                   {/* Person with notepad/tablet */}
-                  <div className="flex justify-center mb-8">
+                  <div className="flex justify-center md:mb-8">
                     <img
                       src="/images/faqs.jpeg?height=300&width=250"
                       alt="Professional with tablet and notepad"
@@ -318,7 +318,7 @@ const toggleFaq = (index: number) => {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
               Have Questions? Explore our FAQs or Reach Out to Our Financial Experts.
               </h2>
 

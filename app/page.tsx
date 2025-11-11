@@ -23,6 +23,7 @@ import FinmatesHeader from "@/components/header2"
 import { TestimonialCard } from "@/components/testimonials/testimonial-card"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
+import { useRouter } from "next/navigation"
 
 const slides = [
   {
@@ -31,6 +32,7 @@ const slides = [
     subtitle: "Empowering Businesses Through Virtual and onsite CFO Services and Beyond",
     buttonText: "Discover More",
     image: "/images/slide1.png",
+    link: "/services/cfo-services",
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ const slides = [
     subtitle: "Driving Excellence in Accounting, Taxation, and More",
     buttonText: "Get Started Today",
     image: "/images/slide2.png",
+    link: "/services",
   },
   {
     id: 3,
@@ -45,6 +48,7 @@ const slides = [
     subtitle: "Comprehensive Solutions for Today's Dynamic Business Landscape",
     buttonText: "Learn More",
     image: "/images/slide3.png",
+    link: "/services/SME-IPO",
   },
   {
     id: 4,
@@ -52,13 +56,16 @@ const slides = [
     subtitle: "From Automation to IPO Guidance, We've Got You Covered",
     buttonText: "Learn More",
     image: "/images/slide4.png",
+    link: "/services/F&A-outsourcing",
   },
 ]
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [currentServiceSlide, setCurrentServiceSlide] = useState(0)
-  const [currentWhySlide, setCurrentWhySlide] = useState(0)
+  const [currentServiceSlide, setCurrentServiceSlide] = useState(5) // Start at middle set (assuming 5 items)
+  const [currentWhySlide, setCurrentWhySlide] = useState(6) // Start at middle set (assuming 6 items)
+  const [isTransitioning, setIsTransitioning] = useState(true)
+  const [isServiceTransitioning, setIsServiceTransitioning] = useState(true)
   const [selectedCard, setSelectedCard] = useState<number | null>(null)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [startCountup, setStartCountup] = useState(false)
@@ -75,6 +82,7 @@ export default function Home() {
   const [currentCaseSlide, setCurrentCaseSlide] = useState(0)
   const [hoveredCase, setHoveredCase] = useState<number | null>(null)
   const [currentArticle, setCurrentArticle] = useState(0)
+  const router = useRouter()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -152,7 +160,7 @@ export default function Home() {
     },
     {
       id: 4,
-      title: "Corporate Fundraising and M&A Advisory",
+      title: "Pitch Deck & Fundraising",
       subtitle: "Strategic Financial Services",
       description:
         "We provide end-to-end corporate finance solutions, including pitch deck creation, financial modeling, fundraising advisory, debt financing, due diligence, and M&A support, ensuring streamlined processes and optimal outcomes for our clients.",
@@ -168,26 +176,63 @@ export default function Home() {
       illustration: "/services/SME_IPO_Listing.jpg?height=200&width=200",
       link:"services/SME-IPO"
     },
+    {
+      id: 6,
+      title: "Annual Report Preparation",
+      subtitle: "Comprehensive Financial Reporting",
+      description:
+        "We prepare comprehensive annual reports for listed companies, ensuring compliance with SEBI regulations and investor-ready visual layouts.",
+        illustration: "/services/F&A.png?height=200&width=200",
+      link:"services/annual-report-preparation"
+    },
   
   ]
 
   const nextService = () => {
     setIsAutoScrollPaused(true)
-    setCurrentServiceSlide((prev) => (prev + 1) % services.length)
+    setCurrentServiceSlide((prev) => {
+      const next = prev + 1
+      const totalItems = services.length * 3
+      const middleSet = services.length
+      if (next >= totalItems - 2) {
+        // Jump to middle set without animation when near end
+        setTimeout(() => {
+          setIsServiceTransitioning(false)
+          setCurrentServiceSlide(middleSet)
+          setTimeout(() => setIsServiceTransitioning(true), 50)
+        }, 700)
+        return next
+      }
+      return next
+    })
     // Resume auto-scroll after 3 seconds
     setTimeout(() => setIsAutoScrollPaused(false), 3000)
   }
 
   const prevService = () => {
     setIsAutoScrollPaused(true)
-    setCurrentServiceSlide((prev) => (prev - 1 + services.length) % services.length)
+    setCurrentServiceSlide((prev) => {
+      const next = prev - 1
+      const middleSet = services.length
+      if (next <= 1) {
+        // Jump to middle set without animation when near start
+        setTimeout(() => {
+          setIsServiceTransitioning(false)
+          setCurrentServiceSlide(middleSet)
+          setTimeout(() => setIsServiceTransitioning(true), 50)
+        }, 700)
+        return next
+      }
+      return next
+    })
     // Resume auto-scroll after 3 seconds
     setTimeout(() => setIsAutoScrollPaused(false), 3000)
   }
 
   const goToService = (index: number) => {
     setIsAutoScrollPaused(true)
-    setCurrentServiceSlide(index)
+    // Jump to the equivalent position in the middle set
+    setCurrentServiceSlide(services.length + index)
     // Resume auto-scroll after 3 seconds
     setTimeout(() => setIsAutoScrollPaused(false), 3000)
 
@@ -332,15 +377,43 @@ export default function Home() {
   ]
 
   const nextWhySlide = () => {
-    setCurrentWhySlide((prev) => (prev + 1) % whyFinMates.length)
+    setCurrentWhySlide((prev) => {
+      const next = prev + 1
+      const totalItems = whyFinMates.length * 3
+      const middleSet = whyFinMates.length
+      if (next >= totalItems - 2) {
+        // Jump to middle set without animation when near end
+        setTimeout(() => {
+          setIsTransitioning(false)
+          setCurrentWhySlide(middleSet)
+          setTimeout(() => setIsTransitioning(true), 50)
+        }, 700)
+        return next
+      }
+      return next
+    })
   }
 
   const prevWhySlide = () => {
-    setCurrentWhySlide((prev) => (prev - 1 + whyFinMates.length) % whyFinMates.length)
+    setCurrentWhySlide((prev) => {
+      const next = prev - 1
+      const middleSet = whyFinMates.length
+      if (next <= 1) {
+        // Jump to middle set without animation when near start
+        setTimeout(() => {
+          setIsTransitioning(false)
+          setCurrentWhySlide(middleSet)
+          setTimeout(() => setIsTransitioning(true), 50)
+        }, 700)
+        return next
+      }
+      return next
+    })
   }
 
   const goToWhySlide = (index: number) => {
-    setCurrentWhySlide(index)
+    // Jump to the equivalent position in the middle set
+    setCurrentWhySlide(whyFinMates.length + index)
   }
 
   const categories = useMemo(() => {
@@ -452,6 +525,7 @@ export default function Home() {
 
                 {/* CTA Button */}
                 <Button
+                  onClick={() => router.push(slides[currentSlide].link)}
                   className="text-white px-6 py-2 text-sm font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl mb-4"
                   style={{ backgroundColor: "#008bd0" }}
                 >
@@ -531,6 +605,7 @@ export default function Home() {
 
                     {/* CTA Button */}
                     <Button
+                      onClick={() => router.push(slides[currentSlide].link)}
                       className="text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
                       style={{ backgroundColor: "#008bd0" }}
                     >
@@ -825,11 +900,11 @@ export default function Home() {
             {/* Mobile: 1 card carousel */}
             <div className="md:hidden relative overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out"
+                className={`flex ${isServiceTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
                 style={{ transform: `translateX(-${currentServiceSlide * 100}%)` }}
               >
-                {services.map((serviceItem) => (
-                  <div key={serviceItem.id} className="w-full flex-shrink-0">
+                {[...services, ...services, ...services].map((serviceItem, index) => (
+                  <div key={`${serviceItem.id}-${index}`} className="w-full flex-shrink-0">
                     <div
                       onClick={() => handleCardClick(serviceItem.id)}
                       className={`
@@ -878,129 +953,140 @@ export default function Home() {
             </div>
 
             {/* Desktop/Tablet: 3-card window that shifts by 1 */}
-            <div className={`hidden md:grid md:grid-cols-3 gap-6 md:gap-8`}>
-              {Array.from({ length: 3 }, (_, offset) => {
-                const serviceItem = services[(currentServiceSlide + offset) % services.length]
-                return (
+            <div className="hidden md:block overflow-hidden">
+              <div 
+                className={`flex ${isServiceTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
+                style={{ transform: `translateX(-${currentServiceSlide * (100 / 3)}%)` }}
+              >
+                {[...services, ...services, ...services].map((serviceItem, index) => (
                   <div
-                    key={serviceItem.id}
+                    key={`${serviceItem.id}-${index}`}
+                    className="w-full md:w-1/3 flex-shrink-0 px-3"
                     onClick={() => handleCardClick(serviceItem.id)}
-                    className={`
-                      group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300
-                      ${selectedCard === serviceItem.id ? " border-2" : "border-0"}
-                      hover:shadow-xl hover:scale-105
-                    `}
-                    style={{
-                      borderColor: selectedCard === serviceItem.id ? "#007BFF" : "transparent",
-                      animationDuration: selectedCard === serviceItem.id ? "0.6s" : "0s",
-                    }}
                   >
-                    <div className="relative overflow-hidden ">
-                      <img
-                        src={serviceItem.illustration || "/placeholder.svg"}
-                        alt={serviceItem.title}
-                        className="w-4/5 h-4/5 lg:pl-10 object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300"></div>
-                    </div>
+                    <div
+                      className={`
+                        group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300
+                        ${selectedCard === serviceItem.id ? " border-2" : "border-0"}
+                        hover:shadow-xl hover:scale-105
+                      `}
+                      style={{
+                        borderColor: selectedCard === serviceItem.id ? "#007BFF" : "transparent",
+                        animationDuration: selectedCard === serviceItem.id ? "0.6s" : "0s",
+                      }}
+                    >
+                      <div className="relative overflow-hidden h-64 flex items-center justify-center bg-gray-50">
+                        <img
+                          src={serviceItem.illustration || "/placeholder.svg"}
+                          alt={serviceItem.title}
+                          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300"></div>
+                      </div>
 
-                    <div className="space-y-4 p-4">
-                      <h3 className="text-2xl font-bold" style={{ color: "#002244" }}>
-                        {serviceItem.title}
-                      </h3>
+                      <div className="space-y-4 p-4">
+                        <h3 className="text-2xl font-bold" style={{ color: "#002244" }}>
+                          {serviceItem.title}
+                        </h3>
 
-                      <p className="text-base font-medium" style={{ color: "#002244" }}>
-                        {serviceItem.subtitle}
-                      </p>
+                        <p className="text-base font-medium" style={{ color: "#002244" }}>
+                          {serviceItem.subtitle}
+                        </p>
 
-                      <p className="text-md leading-relaxed line-clamp-4" style={{ color: "#666" }}>
-                        {serviceItem.description}
-                      </p>
+                        <p className="text-md leading-relaxed line-clamp-4" style={{ color: "#666" }}>
+                          {serviceItem.description}
+                        </p>
 
-                      <a href={serviceItem.link}
-                        className="group flex items-center space-x-2 px-6 py-3 "
-                      >
-                        <span className="font-medium">Explore More</span>
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </a>
+                        <a href={serviceItem.link}
+                          className="group flex items-center space-x-2 px-6 py-3 "
+                        >
+                          <span className="font-medium">Explore More</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </a>
+                      </div>
                     </div>
                   </div>
-                )
-              })}
+                ))}
+              </div>
             </div>
           </div>
 
          
           {/* Carousel Dots */}
           <div className="flex justify-center mt-12 space-x-3">
-            {Array.from({ length: services.length }, (_, index) => (
-              <button
-                key={index}
-                onClick={() => goToService(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentServiceSlide ? "w-6 scale-125" : "h-2 hover:scale-110"
-                }`}
-                style={{
-                  backgroundColor: index === currentServiceSlide ? "#007BFF" : "#CCCCCC",
-                }}
-              />
-            ))}
+            {Array.from({ length: services.length }, (_, index) => {
+              const activeIndex = currentServiceSlide % services.length
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToService(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? "w-6 scale-125" : "h-2 hover:scale-110"
+                  }`}
+                  style={{
+                    backgroundColor: index === activeIndex ? "#007BFF" : "#CCCCCC",
+                  }}
+                />
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Why FinMates Section */}
-      <section className="py-20 mb-48 max-h-[500px]" style={{ backgroundColor: "#001f3f" }}>
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 mb-48 max-h-[500px] relative" style={{ backgroundColor: "#001f3f" }}>
+        <div className="max-w-7xl mx-auto px-6 relative">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Why FinMates</h2>
             <p className="text-xl text-gray-300">Your Strategic Financial Partner</p>
           </div>
 
+          {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
+          <button 
+            onClick={prevWhySlide}
+            className="hidden md:block absolute left-0 top-[65%] transform -translate-y-1/2 -translate-x-12 z-10 p-3 text-white hover:text-blue-300 transition-all duration-300"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button 
+            onClick={nextWhySlide}
+            className="hidden md:block absolute right-0 top-[65%] transform -translate-y-1/2 translate-x-12 z-10 p-3 text-white hover:text-blue-300 transition-all duration-300"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
           {/* Feature Cards Container */}
           <div className="relative">
-            {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
-            <button 
-              onClick={prevWhySlide}
-              className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 p-3 text-white hover:bg-white hover:text-gray-800 transition-all duration-300"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button 
-              onClick={nextWhySlide}
-              className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 p-3 text-white hover:bg-white hover:text-gray-800 transition-all duration-300"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
             {/* Desktop View - 3-card window auto-advancing by 1 */}
-            <div className="hidden md:block px-12 overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3">
-                {Array.from({ length: 3 }, (_, offset) => {
-                  const item = whyFinMates[(currentWhySlide + offset) % whyFinMates.length]
-                  return (
-                    <div key={`${item.id}-${offset}`} className="bg-gray-50 border-1 border-gray-300 p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+            <div className="hidden md:block overflow-hidden">
+              <div 
+                className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
+                style={{ transform: `translateX(-${currentWhySlide * (100 / 3)}%)` }}
+              >
+                {[...whyFinMates, ...whyFinMates, ...whyFinMates].map((item, index) => (
+                  <div key={`${item.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0">
+                    <div className="bg-gray-50 border-1 border-gray-300 p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center h-full">
                       <div className="mb-6">
                         <img src={item.icon} alt={`${item.title} illustration`} className="w-28 h-28 mx-auto" />
                       </div>
                       <h3 className="text-2xl font-bold mb-4" style={{ color: "#0070f3" }}>{item.title}</h3>
                       <p className="text-gray-700 text-xl leading-relaxed">{item.description}</p>
                     </div>
-                  )
-                })}
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* Mobile View - Carousel with single card */}
             <div className="md:hidden relative overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out"
+                className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
                 style={{ transform: `translateX(-${currentWhySlide * 100}%)` }}
               >
-                {whyFinMates.map((item) => (
-                  <div key={item.id} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-gray-50 border-1 border-gray-300 p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                {[...whyFinMates, ...whyFinMates, ...whyFinMates].map((item, index) => (
+                  <div key={`${item.id}-${index}`} className="w-full flex-shrink-0">
+                    <div className="bg-gray-50 border-1 border-gray-300 p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center h-full">
                       {/* Icon */}
                       <div className="mb-6">
                         <img
@@ -1042,18 +1128,21 @@ export default function Home() {
 
           {/* Carousel Pagination - Only visible on mobile */}
           <div className="flex justify-center mt-12 space-x-3 md:hidden">
-            {whyFinMates.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToWhySlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentWhySlide ? "scale-125 w-8" : "hover:scale-110"
-                }`}
-                style={{
-                  backgroundColor: index === currentWhySlide ? "#00C16A" : "#CCCCCC",
-                }}
-              />
-            ))}
+            {whyFinMates.map((_, index) => {
+              const activeIndex = currentWhySlide % whyFinMates.length
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToWhySlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? "scale-125 w-8" : "hover:scale-110"
+                  }`}
+                  style={{
+                    backgroundColor: index === activeIndex ? "#00C16A" : "#CCCCCC",
+                  }}
+                />
+              )
+            })}
           </div>
         </div>
       </section>
@@ -1085,7 +1174,7 @@ export default function Home() {
       {/* Team Section */}
 
       <section className=" mx-auto px-4 py-10 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-sm">
@@ -1101,7 +1190,7 @@ export default function Home() {
           </div>
 
           {/* Team Carousel Container */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden py-4">
             {/* Mobile: 1-card carousel */}
             <div className="md:hidden relative overflow-hidden">
               <div
@@ -1111,17 +1200,17 @@ export default function Home() {
                 {teamMembers.map((member, index) => (
                   <div key={index} className="w-full flex-shrink-0">
                     <div
-                      className="group relative bg-white rounded-2xl overflow-hidden shadow-lg"
+                      className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
+                        hoveredTeamMember === index
+                          ? "shadow-2xl scale-105"
+                          : "hover:shadow-xl hover:scale-105"
+                      }`}
                       onMouseEnter={() => setHoveredTeamMember(index)}
                       onMouseLeave={() => setHoveredTeamMember(null)}
                     >
                       <div className="relative overflow-hidden">
-                        <div
-                          className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 ${
-                            hoveredTeamMember === index ? "scale-110" : "group-hover:scale-105"
-                          }`}
-                        >
-                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full " />
+                        <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100">
+                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full object-cover object-top" />
                         </div>
                         <div
                           className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
@@ -1148,7 +1237,7 @@ export default function Home() {
                           <h3 className={`text-xl font-bold ${hoveredTeamMember === index ? "text-blue-700" : "text-slate-900"}`}>{member.name}</h3>
                           <p className="text-blue-600 font-medium text-sm">{member.position}</p>
                         </div>
-                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 h-16 overflow-hidden text-ellipsis line-clamp-3">{member.bio}</p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           {member.expertise.slice(0, 2).map((skill, skillIndex) => (
                             <span key={skillIndex} className={`px-3 py-1 rounded-full text-xs font-medium ${hoveredTeamMember === index ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-700"}`}>{skill}</span>
@@ -1172,7 +1261,7 @@ export default function Home() {
             </div>
 
             {/* Desktop/Tablet: 3-card-per-slide carousel */}
-            <div className="hidden md:block relative overflow-hidden">
+            <div className="hidden md:block relative overflow-visible py-4">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentTeamSlide * (100 / 3)}%)` }}
@@ -1180,24 +1269,20 @@ export default function Home() {
                 {teamMembers.map((member, globalIndex) => (
                   <div
                     key={globalIndex}
-                    className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 box-border"
+                    className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4 py-4 box-border"
                     onMouseEnter={() => setHoveredTeamMember(globalIndex)}
                     onMouseLeave={() => setHoveredTeamMember(null)}
                   >
                     <div
                       className={`bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 transform ${
                         hoveredTeamMember === globalIndex
-                          ? "shadow-2xl -translate-y-4 scale-105"
-                          : "hover:shadow-xl hover:-translate-y-2"
+                          ? "shadow-2xl scale-105"
+                          : "hover:shadow-xl hover:scale-105"
                       }`}
                     >
                       <div className="relative overflow-hidden">
-                        <div
-                          className={`aspect-square bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 ${
-                            hoveredTeamMember === globalIndex ? "scale-110" : "group-hover:scale-105"
-                          }`}
-                        >
-                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full " />
+                        <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100">
+                          <img src={member.image || "/placeholder.svg"} alt={member.name} className="w-full h-full object-cover object-top" />
                         </div>
                         <div
                           className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 ${
@@ -1230,7 +1315,7 @@ export default function Home() {
                           </h3>
                           <p className="text-blue-600 font-medium text-sm">{member.position}</p>
                         </div>
-                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{member.bio}</p>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 h-16 overflow-hidden text-ellipsis line-clamp-3">{member.bio}</p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           {member.expertise.slice(0, 2).map((skill, skillIndex) => (
                             <span
@@ -1289,16 +1374,16 @@ export default function Home() {
               ))}
             </div>
           </div>
-
+            
           {/* Call to Action */}
           <div className="text-center mt-12">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 max-w-7xl mx-auto">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Ready to Work With Us?</h3>
-              <p className="text-slate-600 mb-6">
+            <div className="bg-white rounded-2xl  md:p-12 py-12 shadow-lg border border-gray-100 max-w-7xl mx-auto">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Ready to Work With Us?</h3>
+              <p className="text-slate-600 mb-8 text-lg">
                 Connect with our expert team to discuss your financial goals and discover how we can help your business
                 thrive.
               </p>
-              <button className="bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white px-8 py-3 rounded-full font-medium hover:from-[#003b8d] hover:to-[#003b8d] transition-all duration-300 hover:scale-105 shadow-lg">
+              <button onClick={() => router.push("/contact-us")}  className="bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white px-8 py-3 rounded-full font-medium hover:from-[#003b8d] hover:to-[#003b8d] transition-all duration-300 hover:scale-105 shadow-lg">
                 Schedule a Consultation
               </button>
             </div>
@@ -1429,7 +1514,7 @@ export default function Home() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500">October 28, 2023</span>
                   </div>
 
@@ -1471,7 +1556,7 @@ export default function Home() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500">October 25, 2023</span>
                   </div>
 
@@ -1515,7 +1600,7 @@ export default function Home() {
                 <div className="relative z-10">
                   {/* Date Section */}
                   <div className="flex items-center text-center w-3/6 space-x-1 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400 ">📅</div>
+                    <div className="text-gray-400 pl-1">📅</div>
                     <span className="text-sm text-gray-500 ">October 22, 2023</span>
                   </div>
 
@@ -1581,7 +1666,7 @@ export default function Home() {
                       <div className="relative z-10">
                         {/* Date Section */}
                         <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
-                          <div className="text-gray-400">📅</div>
+                          <div className="text-gray-400 pl-1">📅</div>
                           <span className="text-sm text-gray-500">October 28, 2023</span>
                         </div>
 
@@ -1625,7 +1710,7 @@ export default function Home() {
                       <div className="relative z-10">
                         {/* Date Section */}
                         <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
-                          <div className="text-gray-400">📅</div>
+                          <div className="text-gray-400 pl-1">📅</div>
                           <span className="text-sm text-gray-500">October 25, 2023</span>
                         </div>
 

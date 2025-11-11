@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
     const transporter = createTransporter()
 
     const mailOptions = {
-      from: process.env.SMTP_USER,
+      from: `FinMates <noreply@finmates.in>`,
       to: trimmedEmail,
       subject: "Finmates - Email Verification Code",
       html: `

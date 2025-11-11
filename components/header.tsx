@@ -45,6 +45,15 @@ return(
                   </li>
                   <li>
                     <a
+                      href="/careers"
+                      className="font-semibold transition-colors duration-200 hover:text-blue-500"
+                      style={{ color: "#003b8d" }}
+                    >
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a
                       href="/contact-us"
                       className="font-semibold transition-colors duration-200 hover:text-blue-500"
                       style={{ color: "#003b8d" }}
@@ -61,15 +70,7 @@ return(
                       Locations
                     </a>
                   </li> */}
-                  <li>
-                    <a
-                      href="/careers"
-                      className="font-semibold transition-colors duration-200 hover:text-blue-500"
-                      style={{ color: "#003b8d" }}
-                    >
-                      Careers
-                    </a>
-                  </li>
+                
                 </ul>
               </div>
             </nav>

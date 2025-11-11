@@ -11,29 +11,29 @@ import FinmatesHeader from "@/components/header2"
 
 const faqs = [
     {
-      question: "What is the difference between on-site and virtual CFO services?",
+      question: "What is included in an annual report for listed companies?",
       answer:
-        "On-site CFOs work directly within your organization, while virtual CFOs provide expertise remotely through digital collaboration.",
+        "An annual report for listed companies includes corporate profile, MD's message, strategic overview, industry review, audited financials, governance reports, AGM notices, disclosures in SEBI format, and ESG/CSR sections with investor-ready visual layouts.",
     },
     {
-      question: "How do CFOs optimize cash flow?",
+      question: "How long does it take to prepare an annual report?",
       answer:
-        "CFOs optimize cash flow through proactive management, identifying liquidity opportunities, and implementing strategies for financial stability.",
+        "The timeline varies based on company size and complexity, typically ranging from 4-8 weeks. We work closely with your team to ensure timely delivery while maintaining the highest standards of accuracy and compliance.",
     },
     {
-      question: "Can CFO services benefit businesses of all sizes?",
+      question: "Do you ensure compliance with SEBI regulations?",
       answer:
-        "Absolutely. Our CFO services are scalable and adaptable, catering to the unique financial needs of businesses, whether small, medium, or large.",
+        "Absolutely. Our team stays updated with the latest SEBI regulations and ensures all disclosures, formats, and requirements are met. We ensure your annual report is fully compliant with current regulatory standards.",
     },
     {
-      question: "What is the duration of a strategic planning session?",
+      question: "Can you customize the visual design of the annual report?",
       answer:
-        "The duration varies based on business complexity. Our goal is to ensure a comprehensive understanding of your financial landscape during the session.",
+        "Yes, we create investor-ready visual layouts that are both compliant and visually appealing. Our designs balance professional presentation with regulatory requirements, ensuring your annual report stands out while meeting all standards.",
     },
     {
-      question: "How does FinMates ensure confidentiality in virtual CFO services?",
+      question: "What is the difference between annual report and financial statements?",
       answer:
-        "We implement robust security measures and adhere to strict confidentiality protocols to safeguard your financial information during virtual collaborations.",
+        "Financial statements are the core accounting documents (balance sheet, P&L, cash flow), while the annual report is a comprehensive document that includes financial statements along with management commentary, corporate governance, strategy, and other disclosures required for listed companies.",
     },
   ]
 
@@ -63,18 +63,13 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center xl:text-7xl font-bold text-white md:text-start text-4xl lg:text-6xl">
-            CFO Services
+            Annual Report Preparation
             </h1>
             <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            Strategic Financial Leadership On-site & Virtually
+            for Listed Companies
             </h1>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              {/* Expert Guidance for Complex Financial Transactions */}
-         
-              
-              Unlock the expertise of seasoned CFOs to drive strategic decision-making and financial leadership.
-               Whether on-site or virtual, our CFO services optimize cash flow, enhance profitability,
-               and guide your business towards sustainable growth.
+              Where Compliance Meets Communication. We deliver comprehensive annual reports that combine regulatory compliance with strategic communication, ensuring your company's story is told effectively while meeting all SEBI and governance requirements.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +83,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-                Ready for Expert Guidance on Financial Transactions?
+                Ready for Professional Annual Report Preparation?
               </h3>
               <h2 className="md:text-center text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
-                  <span className="text-p-3">Explore the Full Spectrum of and power of CFO Services</span>
+                  <span className="text-p-3">Comprehensive Annual Report Services for Listed Companies</span>
                 </div>
               </h2>
             </div>
@@ -101,34 +96,24 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "MIS Dashboard & Review Meeting",
-                h2: "Business & Financial & Drive the action",
-                h3: "Our virtual CFOs use MIS for informed decision-making and generate insightful finance reports for actionable insights in regular review meetings.",
+                h1: "Corporate Profile, MD's Message & Strategy",
+                h2: "Strategic Communication & Leadership Narrative",
+                h3: "We craft compelling corporate profiles and MD's messages that effectively communicate your company's vision, achievements, and strategic direction. Our team ensures your leadership narrative aligns with investor expectations and regulatory requirements.",
               },
               {
-                h1: "Treasure Management",
-                h2: "Maximize Free Cashflow and Increase Velocity",
-                h3: "Our outsourced CFO solutions optimize cash flow by managing receivables and payables, ensuring financial stability through smart practices.",
+                h1: "Industry Review, Audited Financials, Governance Reports",
+                h2: "Comprehensive Financial & Governance Documentation",
+                h3: "Our annual reports include detailed industry analysis, complete audited financial statements, and comprehensive governance reports. We ensure all financial data is accurately presented and governance practices are clearly documented.",
               },
               {
-                h1: "FP&A reporting support.",
-                h2: "Strategic Financial Analysis and Visualization",
-                h3: "Leverage advanced analysis tools like Power BI for efficient evaluation of initiatives. FinMates CFO team provides skilled support for powerful results.",
+                h1: "AGM Notices, Disclosures & SEBI Format",
+                h2: "Regulatory Compliance & Timely Disclosures",
+                h3: "We prepare AGM notices and all required disclosures in strict adherence to SEBI format and regulations. Our team ensures timely compliance with all regulatory requirements, keeping your company ahead of disclosure obligations.",
               },
               {
-                h1: "SOP (Standard Operating Policy)",
-                h2: "Control with Care",
-                h3: "We formulate and implement robust finance and accounting policies, bolstering internal controls for overall management improvement.",
-              },
-              {
-                h1: "Compliance",
-                h2: "Stay Ahead and Stay Informed",
-                h3: "Our virtual CFO team offers expert guidance on evolving taxation and corporate regulations, keeping your company compliant with ease.",
-              },
-              {
-                h1: "Investor Relationship",
-                h2: "Reliable and Timely Reports",
-                h3: "CFOs provide detailed analyses, delivering timely reports to keep investors informed and uphold governance standards",
+                h1: "ESG, CSR & Investor-Ready Visual Layouts",
+                h2: "Modern Reporting with Visual Excellence",
+                h3: "We integrate ESG and CSR reporting with investor-ready visual layouts that make your annual report both informative and visually appealing. Our designs ensure professional presentation while maintaining regulatory compliance.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
@@ -153,40 +138,40 @@ const toggleFaq = (index: number) => {
             <WorkingProcessCarousel
               items={[
                 {
-                  title: "On-site Integration",
-                  desc: "For on-site CFO services, our experts seamlessly integrate into your organization. This ensures a hands-on approach, fostering a deep understanding of your business dynamics and challenges.",
+                  title: "Initial Consultation & Requirements Gathering",
+                  desc: "We begin with a comprehensive consultation to understand your company's specific needs, regulatory requirements, and communication objectives. This ensures we capture all necessary information for your annual report.",
                   bg: "white",
                   titleClass: "text-p",
                   textClass: "text-black",
                   icon: "https://images.ctfassets.net/787ztwmlvqd6/2JNDfxLvjEDv8PdeGHWpHp/495c9a64bcd0eb83d12adc8d01d4758f/On-site_Integration.png",
                 },
                 {
-                  title: "Virtual Collaboration Excellence",
-                  desc: "Virtual CFO services are facilitated through advanced digital collaboration tools. Our virtual CFOs maintain the same level of dedication and strategic insight, providing expert financial leadership remotely.",
+                  title: "Content Development & Financial Data Compilation",
+                  desc: "Our team works closely with your finance and management teams to compile audited financials, develop corporate narratives, and create strategic content that accurately represents your company's performance and vision.",
                   bg: "bg-p",
                   titleClass: "text-white",
                   textClass: "text-white",
                   icon: "https://images.ctfassets.net/787ztwmlvqd6/76kHa28Zay2puSVnE9SjDa/e01a2a4096e1ec7f9d2a9dc053511fa8/Virtual_Collaboration_Excellence.png",
                 },
                 {
-                  title: "Strategic Planning Session",
-                  desc: "A strategic planning session is conducted to align financial objectives with broader business goals. This session serves as the foundation for developing comprehensive strategies for cash flow optimization and profitability enhancement.",
+                  title: "Design & Visual Layout Development",
+                  desc: "We create investor-ready visual layouts that balance professional design with regulatory compliance. Our designs ensure readability, visual appeal, and adherence to SEBI formatting requirements.",
                   bg: "white",
                   titleClass: "text-p",
                   textClass: "text-black",
                   icon: "https://images.ctfassets.net/787ztwmlvqd6/12ekMe75CifjdTIIVxMLgb/75544497a0891d6566a4c171a5ac320b/Strategic_Planning_Session.png",
                 },
                 {
-                  title: "Implementation of Financial Strategies",
-                  desc: "Our seasoned CFOs actively participate in the implementation of financial strategies. Whether it's optimizing cash flow cycles, enhancing profitability, or guiding strategic decisions, we ensure the practical application of financial plans.",
+                  title: "Compliance Review & SEBI Format Verification",
+                  desc: "Our compliance experts thoroughly review all sections to ensure adherence to SEBI regulations, verify disclosure formats, and confirm that all required sections are complete and properly formatted.",
                   bg: "bg-p",
                   titleClass: "text-white",
                   textClass: "text-white",
                   icon: "https://images.ctfassets.net/787ztwmlvqd6/2KdsqtDnmh34VBLqtov3Q3/3e6a56641b43efac5434b55b0e38b5f0/Implementation_of_Financial_Strategies.png",
                 },
                 {
-                  title: "Continuous Monitoring and Feedback",
-                  desc: "We implement a robust monitoring system to continuously assess the effectiveness of financial strategies. Regular feedback loops and performance evaluations ensure ongoing alignment with your business objectives.",
+                  title: "Final Review, Approval & Delivery",
+                  desc: "We conduct a final comprehensive review with your team, incorporate feedback, and ensure all approvals are obtained before delivering the completed annual report ready for printing and distribution to stakeholders.",
                   bg: "white",
                   titleClass: "text-p",
                   textClass: "text-black",
@@ -198,82 +183,6 @@ const toggleFaq = (index: number) => {
         </div>
       </section>
 
-      {/* <section className="h-full w-full bg-neutral-50">
-        <div className="m-auto flex h-full w-full max-w-8xl items-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
-          <div className="flex w-full flex-wrap items-center justify-center rounded-2xl bg-white p-2 shadow-xl md:w-1/3">
-            <div
-              className="flex w-1/2 items-center justify-evenly rounded-2xl border-0 py-10 aria-checked:shadow-card md:w-1/2"
-              aria-checked="true"
-            >
-              <img
-                src="https://images.ctfassets.net/787ztwmlvqd6/4ZWU7rthD8ZtCqV6WhRqRs/62ff94896f5a9ad5cf8cebf51d9c97eb/image.png"
-                className="w-full object-contain"
-                style={{ height: 40, width: 100 }}
-                alt="Client Logo"
-              />
-            </div>
-          </div>
-
-          <div className="w-full md:w-2/3">
-            <div className="h-full w-full">
-              <div>
-                <div className="h-full w-full space-y-10">
-                  <div className="space-y-5">
-                    <p className="md:!text-lg">
-                      Thanks to FinMates' SME IPO Listing services, we confidently took the leap into the public domain.
-                      Their expert guidance ensured compliance and success throughout the process, propelling our
-                      business to new heights. Exceptional service!
-                    </p>
-                    <p className="md:!text-lg">
-                      <em>Bodhitree Multmedia Limited</em>
-                    </p>
-                  </div>
-
-                  <div className="flex w-full items-center gap-5">
-                    <img
-                      width={48}
-                      height={48}
-                      className="h-12 w-12 overflow-hidden rounded-full object-cover object-center"
-                      src="https://images.ctfassets.net/787ztwmlvqd6/4YYF82Qm2WipKaV02T9fR/6f294771bfd0af91daf8d7e2a3b9e660/man.png"
-                      alt="Avatar"
-                    />
-                    <div className="space-y-2">
-                      <h4 className="font-medium italic">Mautik Tolia</h4>
-                      <p className="text-sm">MD</p>
-                    </div>
-                  </div>
-
-                  <div className="border-1 mr-10 flex items-center gap-3 pt-5 md:mr-0">
-                    <button className="rounded-full bg-p-2 p-4">
-                      <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        className="text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-                      </svg>
-                    </button>
-                    <button className="rounded-full bg-p-2 p-4">
-                      <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        className="text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
        {/* FAQ Section */}
        <section className="md:py-20 md:pt-48 bg-white">
         <div className="max-w-7xl  mx-auto px-6">
@@ -283,7 +192,7 @@ const toggleFaq = (index: number) => {
                 {/* Vector Illustration */}
                
                   {/* Person with notepad/tablet */}
-                  <div className="flex justify-center mb-8">
+                  <div className="flex justify-center md:mb-8">
                     <img
                       src="/images/faqs.jpeg?height=300&width=250"
                       alt="Professional with tablet and notepad"
@@ -310,8 +219,8 @@ const toggleFaq = (index: number) => {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold leading-tight" style={{ color: "#002244" }}>
-              Have Questions? Explore our FAQs or Reach Out to Our CFO Experts.
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-tight" style={{ color: "#002244" }}>
+              Have Questions? Explore our FAQs or Reach Out to Our Annual Report Experts.
               </h2>
 
               {/* FAQ Accordion List */}
@@ -380,3 +289,4 @@ const toggleFaq = (index: number) => {
     </main>
   )
 }
+
