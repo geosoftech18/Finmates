@@ -272,3 +272,184 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  outline: none;
+  min-height: 400px;
+}
+
+.ProseMirror p {
+  margin: 1em 0;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+  color: #003b8d;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+  color: #003b8d;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+  color: #008bd0;
+}
+
+/* Blog Content - Bullet Lists (Editor & Viewer) */
+.ProseMirror ul,
+.prose .ProseMirror ul,
+.prose ul,
+.blog-content .ProseMirror ul,
+.blog-editor .ProseMirror ul,
+.blog-editor ul,
+.bullet-list,
+.ProseMirror ol,
+.prose .ProseMirror ol,
+.prose ol,
+.ordered-list {
+  padding-left: 2em !important;
+  margin: 1em 0 !important;
+}
+
+.ProseMirror ul,
+.prose .ProseMirror ul,
+.prose ul,
+.blog-content .ProseMirror ul,
+.blog-editor .ProseMirror ul,
+.blog-editor ul,
+.bullet-list {
+  list-style-type: none !important;
+  list-style: none !important;
+}
+
+.ProseMirror ul li,
+.prose .ProseMirror ul li,
+.prose ul li,
+.blog-content .ProseMirror ul li,
+.blog-editor .ProseMirror ul li,
+.blog-editor ul li,
+.bullet-list li {
+  position: relative !important;
+  margin: 0.5em 0 !important;
+  padding-left: 1.5em !important;
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.ProseMirror ul li::before,
+.prose .ProseMirror ul li::before,
+.prose ul li::before,
+.blog-content .ProseMirror ul li::before,
+.blog-editor .ProseMirror ul li::before,
+.blog-editor ul li::before,
+.bullet-list li::before {
+  content: "●" !important;
+  color: #003b8d !important;
+  font-size: 0.75em !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.15em !important;
+  line-height: 1.5 !important;
+  font-weight: normal !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.ProseMirror ol li {
+  list-style-type: decimal;
+  margin: 0.5em 0;
+  padding-left: 0.5em;
+}
+
+.ProseMirror ol li::marker {
+  color: #003b8d;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.ProseMirror code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 1em;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1em 0;
+}
+
+.ProseMirror table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid #e5e7eb;
+  padding: 0.5em;
+}
+
+.ProseMirror table th {
+  background-color: #f9fafb;
+  font-weight: bold;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 2em 0;
+}
+
+.ProseMirror a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: #1d4ed8;
+}
+
+.ProseMirror .mention {
+  background-color: #dbeafe;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  color: #1e40af;
+}

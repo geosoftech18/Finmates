@@ -9,6 +9,7 @@ const NAV_LINKS: NavLink[] = [
   { name: "Home", url: "/" },
   { name: "About", url: "/about" },
   { name: "Services", url: "/services" },
+  { name: "Blog", url: "/blog" },
   { name: "Careers", url: "/careers" },
   { name: "Contact Us", url: "/contact-us" },
  

@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/auth-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { StatsCard } from "@/components/admin/stats-cards"
-import { Users, Briefcase, FileText, Settings, Plus } from "lucide-react"
+import { Users, Briefcase, FileText, Settings, Plus, BookOpen } from "lucide-react"
 import Link from "next/link"
 
 interface DashboardStats {
@@ -132,6 +132,12 @@ export default function AdminDashboard() {
                 <Button className="w-full justify-start bg-transparent" variant="outline">
                   <Users className="mr-2 h-4 w-4" />
                   View All Applicants
+                </Button>
+              </Link>
+              <Link href="/admin/blogs">
+                <Button className="w-full justify-start bg-transparent" variant="outline">
+                  <FileText className="mr-2 h-4 w-4" />
+                  Manage Blogs
                 </Button>
               </Link>
               
