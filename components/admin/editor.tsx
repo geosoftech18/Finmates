@@ -54,6 +54,10 @@ export default function Editor({ content, onChange, placeholder = 'Start writing
         HTMLAttributes: {
           class: 'text-blue-600 underline',
         },
+        validate: (url) => {
+          // Accept any URL format (relative, absolute, external)
+          return /^https?:\/\/|^\/|^#|^mailto:|^tel:/.test(url) || url.length > 0
+        },
       }),
       Table.configure({
         resizable: true,
@@ -235,9 +239,16 @@ export default function Editor({ content, onChange, placeholder = 'Start writing
         <button
           type="button"
           onClick={() => {
-            const url = window.prompt('Enter URL:')
-            if (url) {
-              editor.chain().focus().setLink({ href: url }).run()
+            const previousUrl = editor.getAttributes('link').href || ''
+            const url = window.prompt('Enter URL:', previousUrl)
+            if (url !== null) {
+              if (url === '') {
+                // Remove link if empty
+                editor.chain().focus().unsetLink().run()
+              } else {
+                // Use the URL exactly as entered (no modification)
+                editor.chain().focus().setLink({ href: url }).run()
+              }
             }
           }}
           className={`px-3 py-1 rounded text-sm ${editor.isActive('link') ? 'bg-blue-500 text-white' : 'bg-white hover:bg-gray-100'}`}

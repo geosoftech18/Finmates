@@ -51,7 +51,7 @@ export default function BlogPage() {
       <FinmatesHeader />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white py-30">
+      <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] pt-40 md:pt-32 pb-18 text-white ">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6">

@@ -101,7 +101,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
       <FinmatesHeader />
 
       {/* Blog Header */}
-      <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white py-16">
+      <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white mt-24 pb-10">
         <div className="container mx-auto px-6 max-w-4xl">
           <Button
             variant="ghost"
@@ -111,7 +111,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
             <ArrowLeft className="mr-2 w-4 h-4" />
             Back to Blogs
           </Button>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">
             {blog.title}
           </h1>
           <div className="flex items-center gap-6 text-blue-100">
@@ -132,7 +132,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
       {/* Featured Image */}
       {blog.featuredImage && (
         <div className="container mx-auto px-6 max-w-4xl -mt-8 mb-8">
-          <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
+          <div className="relative h-96 rounded-lg overflow-hidden shadow-xl ">
             <img
               src={blog.featuredImage}
               alt={blog.title}
@@ -144,7 +144,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
       {/* Blog Content */}
       <section className="py-12">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto  px-6 max-w-4xl">
           {blog && blog.content && (
             <TipTapViewer content={blog.content} />
           )}

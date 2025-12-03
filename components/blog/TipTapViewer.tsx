@@ -49,6 +49,10 @@ export default function TipTapViewer({ content }: TipTapViewerProps) {
         HTMLAttributes: {
           class: "text-blue-600 underline",
         },
+        validate: (url) => {
+          // Accept any URL format (relative, absolute, external)
+          return /^https?:\/\/|^\/|^#|^mailto:|^tel:/.test(url) || url.length > 0
+        },
       }),
       Table.configure({
         resizable: true,
