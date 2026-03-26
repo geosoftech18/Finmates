@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "CFO Services & Virtual CFO for SMEs in India | FinMates",
+  description:
+    "CFO services and virtual CFO support for SMEs in India. Improve financial planning, budgeting, cash flow and reporting with experts. Contact us to strengthen your finance function.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -63,18 +61,15 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center xl:text-7xl font-bold text-white md:text-start text-4xl lg:text-6xl">
-            CFO Services
+            Virtual CFO Services for Growing Businesses
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            Strategic Financial Leadership On-site & Virtually
-            </h1>
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            Build finance clarity, control cash, and scale with confidence
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              {/* Expert Guidance for Complex Financial Transactions */}
-         
-              
-              Unlock the expertise of seasoned CFOs to drive strategic decision-making and financial leadership.
-               Whether on-site or virtual, our CFO services optimize cash flow, enhance profitability,
-               and guide your business towards sustainable growth.
+              We help founders and leadership teams move from reactive accounting to strategic financial management.
+              Get a structured finance system, actionable MIS, and investor-ready reporting in a focused implementation
+              window.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +83,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-                Ready for Expert Guidance on Financial Transactions?
+                Result-Based Virtual CFO Framework
               </h3>
               <h2 className="md:text-center text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
-                  <span className="text-p-3">Explore the Full Spectrum of and power of CFO Services</span>
+                  <span className="text-p-3">From Financial Chaos to Clarity in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -101,41 +96,41 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "MIS Dashboard & Review Meeting",
-                h2: "Business & Financial & Drive the action",
-                h3: "Our virtual CFOs use MIS for informed decision-making and generate insightful finance reports for actionable insights in regular review meetings.",
+                h1: "Who is this for?",
+                h2: "Founders and teams that need financial clarity",
+                h3: "Startups raising funds, SMEs scaling operations, and businesses that need better control over numbers, margins, and decisions.",
               },
               {
-                h1: "Treasure Management",
-                h2: "Maximize Free Cashflow and Increase Velocity",
-                h3: "Our outsourced CFO solutions optimize cash flow by managing receivables and payables, ensuring financial stability through smart practices.",
+                h1: "What we do",
+                h2: "Core Virtual CFO execution",
+                h3: "Financial planning, cash flow forecasting, budgeting, MIS reporting, monthly review rhythms, and leadership-level financial guidance.",
               },
               {
-                h1: "FP&A reporting support.",
-                h2: "Strategic Financial Analysis and Visualization",
-                h3: "Leverage advanced analysis tools like Power BI for efficient evaluation of initiatives. FinMates CFO team provides skilled support for powerful results.",
+                h1: "Results you get",
+                h2: "Clear outcomes, not just reports",
+                h3: "Better cash control, stronger profitability decisions, faster management visibility, and improved investor readiness.",
               },
               {
-                h1: "SOP (Standard Operating Policy)",
-                h2: "Control with Care",
-                h3: "We formulate and implement robust finance and accounting policies, bolstering internal controls for overall management improvement.",
+                h1: "Timeline",
+                h2: "30-60 days implementation",
+                h3: "We set up your structured finance management system in phases so your team can execute confidently without disrupting operations.",
               },
               {
-                h1: "Compliance",
-                h2: "Stay Ahead and Stay Informed",
-                h3: "Our virtual CFO team offers expert guidance on evolving taxation and corporate regulations, keeping your company compliant with ease.",
+                h1: "Strategic support",
+                h2: "Decision support for founders",
+                h3: "Get support on growth planning, pricing decisions, cost optimization, and board/investor updates with practical financial insights.",
               },
               {
-                h1: "Investor Relationship",
-                h2: "Reliable and Timely Reports",
-                h3: "CFOs provide detailed analyses, delivering timely reports to keep investors informed and uphold governance standards",
+                h1: "Compliance and governance",
+                h2: "Stay compliant while scaling",
+                h3: "Build robust internal controls, reporting discipline, and compliance readiness as your business grows in complexity.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-base text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-sm text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-sm text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -315,43 +310,7 @@ const toggleFaq = (index: number) => {
               </h2>
 
               {/* FAQ Accordion List */}
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -374,6 +333,8 @@ const toggleFaq = (index: number) => {
           </div>
         </div>
       </section>
+
+      <QuickContactCTA  />
 
       <Footer/>
       

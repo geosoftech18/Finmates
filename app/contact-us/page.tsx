@@ -1,10 +1,18 @@
+import type { Metadata } from "next"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import FinmatesHeader from "@/components/header2"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import ContactForm from "@/components/contact/contact-form"
 import { Facebook, Twitter, Linkedin, Instagram, Github, Youtube, Locate, LocateIcon, Landmark, LandmarkIcon, LucideLandmark, MapPin, Phone, Clock, MagnetIcon } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Contact Expert CFO & Financial Advisory Team in India | FinMates",
+  description:
+    "Contact our expert CFO and financial advisory team in India for tailored business solutions. Get support on taxation, compliance and fundraising. Reach out today to get started.",
+}
 
 export default function ContactPage() {
   return (
@@ -25,43 +33,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
           {/* Contact Form */}
           <div className="bg-white border p-10 shadow-2xl rounded-xl ">
-            <form className="space-y-6 ">
-              <div>
-                <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-2">
-                  Your Name:
-                </label>
-                <Input id="name" type="text" placeholder="Enter Your Name" className="w-full h-12 lg:text-lg border-gray-300" />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">
-                  Your Email:
-                </label>
-                <Input id="email" type="email" placeholder="Enter Your Email" className="w-full h-12 border-gray-300 lg:text-lg" />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-lg font-medium text-gray-700 mb-2">
-                  Subject:
-                </label>
-                <Input id="subject" type="text" placeholder="Enter Your Subject" className="w-full h-12 border-gray-300 lg:text-lg" />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-lg
-                 font-medium text-gray-700 mb-2">
-                  Your Message/Question:
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Enter Your Message"
-                  rows={12}
-                  className="w-full h-32 border-gray-300 lg:text-lg "
-                />
-              </div>
-
-              <Button className="w-full h-12 bg-[#003b8d] hover:bg-blue-700 text-lg rounded-tl-xl rounded-br-xl text-white py-3">Submit</Button>
-            </form>
+            <ContactForm />
           </div>
 
           {/* Contact Information */}

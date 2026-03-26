@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "SME IPO Readiness & Listing Advisory in India | FinMates",
+  description:
+    "SME IPO readiness and listing advisory to guide your company to the public markets in India. Ensure compliance, documentation and financial preparedness. Learn more and plan your SME IPO.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -63,18 +61,14 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center xl:text-6xl font-bold text-white md:text-start text-4xl lg:text-6xl">
-            SME IPO Listing
+            SME IPO Readiness for Ambitious Businesses
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            Guidance for Going Public
-            </h1>
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            Prepare to go public with confidence and compliance
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              {/* Expert Guidance for Complex Financial Transactions */}
-         
-              
-              Take the leap into the public domain with confidence through
-               FinMates' SME IPO Listing services. Our expert guidance 
-               ensures compliance and success in navigating the complexities of going public, propelling your business to the next level.
+              We help leadership teams transition from private-company reporting to IPO-ready systems, governance, and
+              investor communication with a practical, milestone-driven roadmap.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +82,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-              Ready to Go Public with Confidence?
+              Result-Based SME IPO Framework
               </h3>
               <h2 className="text-center text-3xl font-bold text-p-3 md:text-3xl lg:ml-4 lg:text-start lg:text-4xl">
                 <div>
-                  <span className="text-p-3">Explore SME IPO Listing with FinMates</span>
+                  <span className="text-p-3">From IPO Ambition to Readiness in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -101,41 +95,41 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "Pre-IPO Support / Fundraising",
-                h2: "Streamline Your Path to Capital Market Listing with FinMates",
-                h3: "Expert Guidance for SME IPOs and Listing Processes",
+                h1: "Who is this for?",
+                h2: "SMEs preparing for listing",
+                h3: "Promoter-led businesses planning SME IPO, pre-IPO fundraising, or public-market expansion.",
               },
               {
-                h1: "Investor Relations",
-                h2: "Seamless Execution of Capital Market Listings with FinMates",
-                h3: "Efficient Coordination and Strategic Planning for Your Listing Journey"
+                h1: "What we do",
+                h2: "IPO readiness execution support",
+                h3: "Pre-IPO planning, investor communication, systems readiness, governance setup, and compliance guidance.",
               },
               {
-                h1: "Systems and Controls Optimization",
-                h2: "Enhancing Financial Reporting with FinMates",
-                h3: "Optimize Profitability and Efficiency Through Advanced Analytics and Automation",
+                h1: "Results you get",
+                h2: "Clarity and listing confidence",
+                h3: "Stronger documentation discipline, improved reporting quality, and better investor-facing preparedness.",
               },
               {
-                h1: "Establish Corporate Governance",
-                h2: "Empowering Governance and Risk Management with FinMates",
-                h3: "Comprehensive Support for Enhanced Compliance and Strategic Decision-Making",
+                h1: "Timeline",
+                h2: "30-60 day readiness sprint",
+                h3: "We define an execution roadmap with priority milestones so your team progresses steadily toward IPO goals.",
               },
               {
-                h1: "Post-IPO",
-                h2: "Ensuring Post-IPO Compliance with FinMates",
-                h3: "Effortless Management of Regulatory Obligations and Reporting Requirements",
+                h1: "Governance and controls",
+                h2: "Build listed-company discipline early",
+                h3: "Set up internal controls, board-level reporting cadence, and compliance routines before listing pressure peaks.",
               },
               {
-                h1: "Next step",
-                h2: "Elevate Your Listing to NSE/BSE Mainboard with FinMates",
-                h3: "Seamless Transition and Strategic Capital Expansion Support"
+                h1: "Post-listing continuity",
+                h2: "Support beyond listing event",
+                h3: "Maintain compliance consistency and investor confidence with structured post-IPO financial governance support.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-base text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-sm text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-sm text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -316,44 +310,8 @@ const toggleFaq = (index: number) => {
               Have Questions? Explore our FAQs or Reach Out to Our SME IPO Listing Experts.
               </h2>
 
-                {/* FAQ Accordion List */}
-                <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {/* FAQ Accordion List */}
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -376,6 +334,8 @@ const toggleFaq = (index: number) => {
           </div>
         </div>
       </section>
+
+      <QuickContactCTA  />
 
 
       <Footer/>

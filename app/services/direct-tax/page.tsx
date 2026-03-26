@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "Direct Tax Advisory & Compliance Services in India | FinMates",
+  description:
+    "Direct tax advisory and compliance services for businesses in India. Optimize tax planning, assessments and regulatory filings with experts. Contact us to simplify your direct tax matters.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -63,18 +61,14 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white md:text-start  text-2xl ">
-              Direct &amp; Indirect Tax, M&amp;A Advisory
+              Direct Tax Advisory for Growing Businesses
             </h1>
-            <h1 className="w-full text-center text-lg font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-              Expert Guidance for Complex Financial Transactions
-            </h1>
+            <h2 className="w-full text-center text-lg font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+              Stay compliant, reduce tax risk, and improve planning clarity
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              Expert Guidance for Complex Financial Transactions
-              <br />
-              <br />
-              Trust FinMates for expert advisory services that navigate the intricacies of direct and indirect taxes, as
-              well as mergers and acquisitions. Our team provides strategic advice to ensure compliance and success in a
-              dynamic financial landscape.
+              We help founders and finance teams move from reactive tax handling to proactive tax strategy with better
+              control over compliance timelines, risk exposure, and business decision impact.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#003b8d] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +82,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-                Ready for Expert Guidance on Financial Transactions?
+                Result-Based Direct Tax Framework
               </h3>
               <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
-                  <span className="text-p-3">Explore Direct &amp; Indirect Tax, M&amp;A Advisory with FinMates</span>
+                  <span className="text-p-3">From Tax Uncertainty to Control in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -101,31 +95,31 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "Corporate Tax",
-                h2: "Tax Advisory Services",
-                h3: "Providing holistic tax advisory, we conduct diagnostic reviews for risk mitigation, optimize tax planning, and ensure regulatory compliance, covering ICDS, Ind-AS, POEM, and GAAR applicability.",
+                h1: "Who is this for?",
+                h2: "Teams needing tax clarity and consistency",
+                h3: "SMEs, funded startups, and growing companies with recurring compliance pressure or tax planning gaps.",
               },
               {
-                h1: "Tax Compliance",
-                h2: "Tax Compliance Services",
-                h3: "We provide expert assistance in preparing and filing withholding tax returns, optimize advance tax payments, and manage corporate tax filings, including for overseas entities in India.",
+                h1: "What we do",
+                h2: "Advisory + compliance execution",
+                h3: "Tax planning, return support, assessment support, representation, and structured compliance workflows.",
               },
               {
-                h1: "Tax representation and litigation services",
-                h2: "Tax Representation and Litigation",
-                h3: "We provide expert representation and litigation support for tax matters, including audits, appeals, and dispute resolution.",
+                h1: "Results you get",
+                h2: "Lower risk, better decisions",
+                h3: "Reduced compliance errors, improved tax visibility, and stronger confidence in business and investment decisions.",
               },
               {
-                h1: "International Tax",
-                h2: "International Tax Services",
-                h3: "We advise on outbound investment, tax treaties, BEPS, GAAR, digital payments, and non-resident provisions, with support for Mutual Agreement Procedures and Advance Ruling applications.",
+                h1: "Timeline",
+                h2: "30-60 days for structured rollout",
+                h3: "We map your risks, set compliance rhythm, and establish reporting visibility in a practical phased plan.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-base text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-sm text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-sm text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -304,44 +298,8 @@ const toggleFaq = (index: number) => {
               Have Questions? Explore our FAQs or Reach Out to Our Tax and M&A Experts.
               </h2>
 
-               {/* FAQ Accordion List */}
-               <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {/* FAQ Accordion List */}
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -365,7 +323,7 @@ const toggleFaq = (index: number) => {
         </div>
       </section>
 
-
+      <QuickContactCTA  />
       {/* <section className="h-full w-full">
         <div className="m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-10 max-md:flex-col md:px-5 md:py-20">
           <div className="md:w-5/12">
@@ -380,9 +338,9 @@ const toggleFaq = (index: number) => {
 
           <div className="space-y-2 md:w-7/12">
             <h2 className="text-lg font-bold text-p">FAQ</h2>
-            <h1 className="text-3xl font-bold xl:text-4xl">
+            <h3 className="text-3xl font-bold xl:text-4xl">
               Have Questions? Explore our FAQs or Reach Out to Our Tax and M&amp;A Experts.
-            </h1>
+            </h3>
 
             {[
               {

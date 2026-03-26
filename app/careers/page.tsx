@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
@@ -12,7 +11,6 @@ import type { Job } from "@/types/job"
 import { JobsCarousel } from "@/components/careers/JobsCarousel"
 import { JobDetailsModal } from "@/components/careers/JobDetailsModal"
 import { ApplyForm } from "@/components/careers/ApplyForm"
-
 
 export default function CareersPage() {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
@@ -159,7 +157,7 @@ export default function CareersPage() {
 <section className="h-full w-full ">
           <div className="m-auto flex h-full w-full max-w-7xl items-center gap-10 px-6 py-20 max-md:flex-col-reverse md:px-10 md:py-24">
             <div className="w-full md:w-1/2">
-              <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Join Our Team</h1>
+              <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">Join Our Team</h2>
               <p className="mt-5 text-justify text-base md:mr-16 md:text-lg lg:text-xl">
                 Are you passionate about shaping financial journeys? At FinMates, we're always on the lookout for
                 talented individuals who share our vision for redefining financial solutions. Explore career
@@ -178,7 +176,7 @@ export default function CareersPage() {
               <div className="w-full py-10 md:py-24">
                 <div className="flex w-full flex-col items-center justify-between gap-10 md:flex-row md:flex-row-reverse">
                   <div className="mx-10 w-full text-justify md:w-1/2">
-                    <h1 className="py-10 text-3xl font-bold md:text-4xl">Want to work with us?</h1>
+                    <h2 className="py-10 text-3xl font-bold md:text-4xl">Want to work with us?</h2>
                     <p className="text-lg md:text-xl">
                       Join FinMates, your trusted financial partner, and be part of a team dedicated to excellence and
                       client satisfaction. Explore opportunities with us if you're passionate about driving financial
@@ -200,7 +198,7 @@ export default function CareersPage() {
               <div className="w-full py-10 md:py-24">
                 <div className="flex w-full flex-col items-center justify-between gap-10 md:flex-row">
                   <div className="mx-10 w-full text-justify md:w-1/2">
-                    <h1 className="py-10 text-3xl font-bold md:text-4xl">Work Culture</h1>
+                    <h2 className="py-10 text-3xl font-bold md:text-4xl">Work Culture</h2>
                     <p className="text-lg md:text-xl">
                       At FinMates, we prioritize excellence, integrity, and collaboration. Our client-centric approach
                       ensures tailored solutions, while our culture fosters trust, accountability, and continuous

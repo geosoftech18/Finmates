@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "F&A Outsourcing & Accounting Services for Businesses | FinMates",
+  description:
+    "F&A outsourcing and accounting services that streamline bookkeeping, payables and reporting. Reduce costs, improve accuracy and free internal teams. Learn more about outsourcing with FinMates.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -63,18 +61,14 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center xl:text-7xl font-bold text-white md:text-start text-4xl lg:text-6xl">
-            F&A Outsourcing
+            F&A Outsourcing for Growing Businesses
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            Efficient Finance and Accounting Solutions
-            </h1>
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            Streamline finance operations and improve reporting clarity
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              {/* Expert Guidance for Complex Financial Transactions */}
-         
-              
-              Efficient Finance and Accounting Solutions Transform your finance and accounting functions with FinMates'
-               F&A outsourcing solutions. From meticulous management of Accounts Payable and Collections to seamless Period Closing and strategic Automation, our experts deliver cost-effective solutions,
-               freeing up your internal team for strategic analysis and decision support.
+              Move from fragmented accounting tasks to a reliable, process-driven finance function. We help you reduce
+              operational load, improve controls, and create decision-ready financial data for business growth.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +82,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-              Ready to Optimize Your Finance and Accounting Functions?
+              Result-Based F&A Outsourcing Framework
               </h3>
               <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
-                  <span className="text-p-3">Experience F&A Outsourcing with FinMates</span>
+                  <span className="text-p-3">From Process Gaps to Financial Control in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -101,41 +95,41 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 ">
             {[
               {
-                h1: "Procure-to-Pay",
-                h2: "Efficiency Unleashed: FinMates Procure-to-Pay Service",
-                h3: "Streamline AP with FinMates Procure-to-Pay: Scan, Process, Pay. Minimize leaks, maximize vendor satisfaction.",
+                h1: "Who is this for?",
+                h2: "Businesses facing finance process bottlenecks",
+                h3: "Startups and SMEs with delayed closures, scattered accounting workflows, or overloaded internal teams.",
               },
               {
-                h1: "Order-to-Cash Solutions",
-                h2: "Streamlined Sales Operations: FinMates Order-to-Cash Solutions",
-                h3: "Elevate Sales Efficiency with FinMates Order-to-Cash: Consolidate, Automate, Delight Customers.",
+                h1: "What we do",
+                h2: "End-to-end F&A execution",
+                h3: "Procure-to-pay, order-to-cash, record-to-report, reconciliations, monthly close, and reporting governance.",
               },
               {
-                h1: "Record-to-Report Services",
-                h2: "Seamless Financial Reporting: FinMates' Expert Solutions",
-                h3: "Ensure Financial Integrity with FinMates' Report-to-Report Solutions. Timely Closure, Regulatory Compliance.",
+                h1: "Results you get",
+                h2: "Control, speed, and reliability",
+                h3: "Faster month-end closure, cleaner books, stronger compliance readiness, and higher management confidence.",
               },
               {
-                h1: "Taxation Support Service",
-                h2: "Effortless Tax Management: Partner with FinMates for Compliance Excellence",
-                h3: "Simplify Tax Compliance with FinMates: Expert Guidance, Streamlined Processes.",
+                h1: "Timeline",
+                h2: "30-60 days structured setup",
+                h3: "We onboard and stabilize your finance operations in phases without disrupting day-to-day execution.",
               },
               {
-                h1: "Audit Support & Readiness Services",
-                h2: "Making Sure You’re Audit Ready When It Counts",
-                h3: "Prepare for Audits with Ease: Optimize Efforts with FinMates' Strategic Approach.",
+                h1: "Compliance and audit support",
+                h2: "Always audit-ready",
+                h3: "Build documentation discipline, process controls, and reporting consistency to reduce compliance risk.",
               },
               {
-                h1: "Industry Specialized Services",
-                h2: "Optimize Operations, Drive Growth with FinMates Industry Accounting",
-                h3: "Unlock Growth with FinMates: Specialized Industry Accounting Support.",
+                h1: "Scalable finance backbone",
+                h2: "Built for growth stages",
+                h3: "Create a finance system that scales as transaction volumes, team size, and reporting complexity increase.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-xl font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-lg text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-xl font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-lg text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-base text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -315,43 +309,7 @@ const toggleFaq = (index: number) => {
               </h2>
 
               {/* FAQ Accordion List */}
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -375,6 +333,8 @@ const toggleFaq = (index: number) => {
         </div>
       </section>
 
+
+      <QuickContactCTA  />
 
    <Footer/>
 

@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import FloatingWhatsAppCTA from '@/components/floating-whatsapp-cta'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'FinMates.in',
-  description: 'Created with Geo Softech',
+  title: 'Expert CFO Services & Financial Advisory in India | FinMates',
+  description:
+    'Expert CFO services and financial advisory in India for growing businesses. Improve cash flow, compliance and profitability. Contact us today to discuss your financial goals.',
   generator: 'GEO SOFTECH',
 }
 
@@ -25,7 +27,10 @@ html {
 }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <FloatingWhatsAppCTA />
+      </body>
     </html>
   )
 }

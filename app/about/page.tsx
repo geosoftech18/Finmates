@@ -11,7 +11,7 @@ import FinmatesHeader from "@/components/header2"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
 import { useRouter } from "next/navigation"
-
+import AboutFounder from "@/components/about/about-founder"
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -589,6 +589,8 @@ export default function Home() {
 
 
       <JourneySection/>
+
+      <AboutFounder/> 
       
      
 
@@ -1144,10 +1146,10 @@ export default function Home() {
               {/* Right Content */}
               <div className="space-y-8 text-white">
                 <div className="space-y-6">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight animate-fade-in-up">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight animate-fade-in-up">
                     Establish Your New Territory
                     <span className="block text-blue-300">With Us</span>
-                  </h1>
+                  </h2>
 
                   <p className="text-lg text-gray-40 leading-relaxed max-w-2xl animate-fade-in-up animation-delay-200">
                     Embark on a transformative journey with FinMates, where financial success meets innovation. We guide

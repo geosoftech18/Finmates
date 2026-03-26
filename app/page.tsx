@@ -1,7 +1,7 @@
 "use client"
 import MagneticCursor from "@/components/MagneticCursor"
 import { Button } from "@/components/ui/button"
-import { useState, useEffect ,useMemo} from "react"
+import { useState, useEffect ,useMemo, useRef} from "react"
 import CountUp from "react-countup"
 import {
   Check,
@@ -20,10 +20,22 @@ import {
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 import { TestimonialCard } from "@/components/testimonials/testimonial-card"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
 import { useRouter } from "next/navigation"
+
+interface HomeBlog {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  featuredImage: string | null
+  author: string
+  publishedAt: string | null
+  createdAt: string
+}
 
 const slides = [
   {
@@ -82,7 +94,56 @@ export default function Home() {
   const [currentCaseSlide, setCurrentCaseSlide] = useState(0)
   const [hoveredCase, setHoveredCase] = useState<number | null>(null)
   const [currentArticle, setCurrentArticle] = useState(0)
+  const [latestBlogs, setLatestBlogs] = useState<HomeBlog[]>([])
+  const [startStatsCount, setStartStatsCount] = useState(false)
+  const statsSectionRef = useRef<HTMLElement | null>(null)
   const router = useRouter()
+
+  useEffect(() => {
+    const fetchLatestBlogs = async () => {
+      try {
+        const response = await fetch("/api/blogs?published=true&limit=3")
+        const result = await response.json()
+        if (result.success) {
+          setLatestBlogs(result.data.blogs || [])
+        }
+      } catch (error) {
+        console.error("Failed to fetch latest blogs:", error)
+      }
+    }
+
+    fetchLatestBlogs()
+  }, [])
+
+  useEffect(() => {
+    if (latestBlogs.length === 0) {
+      setCurrentArticle(0)
+      return
+    }
+
+    if (currentArticle >= latestBlogs.length) {
+      setCurrentArticle(0)
+    }
+  }, [latestBlogs, currentArticle])
+
+  useEffect(() => {
+    const target = statsSectionRef.current
+    if (!target) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartStatsCount(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.3 },
+    )
+
+    observer.observe(target)
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -739,6 +800,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section ref={statsSectionRef} className="py-16 md:py-20 bg-gradient-to-r from-[#001f3f] via-[#003b8d] to-[#008bd0]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-blue-100 uppercase tracking-widest text-sm font-semibold mb-3">Our Impact</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white">Numbers That Build Trust</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { value: 16, suffix: "+", label: "Years of Experience" },
+              { value: 300, suffix: "+", label: "Businesses Served" },
+              { value: 1200, suffix: "+", label: "Projects Delivered" },
+              { value: 99, suffix: "%", label: "Client Satisfaction" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="bg-white/12 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-center shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/18"
+              >
+                <div className="text-4xl md:text-5xl font-extrabold text-white">
+                  {startStatsCount ? <CountUp end={item.value} duration={2.5} /> : 0}
+                  {item.suffix}
+                </div>
+                <p className="mt-3 text-blue-100 text-base md:text-lg font-medium">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
        {/* Our Values Section */}
        <section className="py-12 md:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -781,7 +872,7 @@ export default function Home() {
                       className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                      <img src="/images/icon1.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                      <img src="/images/icon1.png" alt="Client-centric service icon" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
@@ -801,7 +892,7 @@ export default function Home() {
                       className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                     <img src="/images/icon2.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                     <img src="/images/icon2.png" alt="Integrity and transparency icon" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
@@ -822,7 +913,7 @@ export default function Home() {
                       className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                     <img src="/images/icon3.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                     <img src="/images/icon3.png" alt="Innovation and adaptability icon" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
@@ -843,7 +934,7 @@ export default function Home() {
                       className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: "#008bd0" }}
                     >
-                      <img src="/images/icon4.png" alt="" className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                      <img src="/images/icon4.png" alt="Collaborative excellence icon" className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </div>
                   </div>
                   <div>
@@ -1032,6 +1123,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Why FinMates Section */}
       <section className="py-20 mb-48 max-h-[500px] relative" style={{ backgroundColor: "#001f3f" }}>
@@ -1491,6 +1583,9 @@ export default function Home() {
         </div>
       </section>
 
+      <QuickContactCTA />
+
+
       {/* Company News Section */}
       <section className="py-20" style={{ backgroundColor: "#f9f9f9" }}>
         <div className="max-w-7xl mx-auto px-6">
@@ -1505,305 +1600,136 @@ export default function Home() {
           </div>
 
           {/* Article Cards - Desktop Grid / Mobile Carousel */}
-          <div className="hidden md:grid md:grid-cols-3 gap-8">
-            {/* Article 1 */}
-            <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-              <div className="p-10 relative overflow-hidden">
-                {/* Hover overlay rises from bottom to top */}
-                <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  {/* Date Section */}
-                  <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400 pl-1">📅</div>
-                    <span className="text-sm text-gray-500">October 28, 2023</span>
-                  </div>
-
-                  {/* Article Title */}
-                  <h3 className="text-xl font-bold mb-10 leading-tight  text-[#002244] group-hover:text-white" >
-                  the transform Community create a lasting impact
-                  </h3>
-
-                  {/* Author Section */}
-                  <div className="flex items-center space-x-3 mb-12">
-                    <img
-                      src="/about/value.jpg?height=32&width=32"
-                      alt="Admin profile"
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
-                    <div className="flex items-center space-x-1">
-                      <span className="text-base text-gray-500 group-hover:text-white">Posted By</span>
-                      <span className="text-base font-bold  text-[#002244] group-hover:text-white" >
-                        admin
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Footer */}
-              <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                <button className="text-sm font-medium group-hover:text-white hover:underline">
-                  Read More
-                </button>
-                <ArrowRight className="w-4 h-4 group-hover:text-white" />
-              </div>
+          {latestBlogs.length === 0 ? (
+            <div className="text-center py-10">
+              <p className="text-lg text-gray-500">No articles available right now.</p>
             </div>
-
-            {/* Article 2 */}
-            <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-              <div className="p-10 relative overflow-hidden">
-                {/* Hover overlay rises from bottom to top */}
-                <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  {/* Date Section */}
-                  <div className="flex items-center w-3/6 space-x-2 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400 pl-1">📅</div>
-                    <span className="text-sm text-gray-500">October 25, 2023</span>
-                  </div>
-
-                  {/* Article Title */}
-                  <h3 className="text-xl font-bold mb-10 leading-tight  text-[#002244] group-hover:text-white" >
-                  the transform Community create a lasting impact
-                  </h3>
-
-                  {/* Author Section */}
-                  <div className="flex items-center space-x-3 mb-12">
-                    <img
-                      src="/about/value.jpg?height=32&width=32"
-                      alt="Admin profile"
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
-                    <div className="flex items-center space-x-1">
-                      <span className="text-base text-gray-500 group-hover:text-white">Posted By</span>
-                      <span className="text-base font-bold  text-[#002244] group-hover:text-white">
-                        admin
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Footer */}
-              <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                <button className="text-sm font-medium group-hover:text-white hover:underline">
-                  Read More
-                </button>
-                <ArrowRight className="w-4 h-4 group-hover:text-white" />
-              </div>
-            </div>
-            
-            
-
-            {/* Article 3 */}
-            <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-              <div className="p-10 relative overflow-hidden">
-                {/* Hover overlay rises from bottom to top */}
-                <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full  group-hover:translate-y-0 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  {/* Date Section */}
-                  <div className="flex items-center text-center w-3/6 space-x-1 mb-4 group-hover:bg-white">
-                    <div className="text-gray-400 pl-1">📅</div>
-                    <span className="text-sm text-gray-500 ">October 22, 2023</span>
-                  </div>
-
-                  {/* Article Title */}
-                  <h3 className="text-xl font-bold mb-10 leading-tight group-hover:text-white text-[#002244]" >
-                  the transform Community create a lasting impact
-                  </h3>
-
-                  {/* Author Section */}
-                  <div className="flex items-center space-x-3 mb-12 ">
-                    <img
-                      src="/about/value.jpg?height=32&width=32"
-                      alt="Admin profile"
-                      className="w-8 h-8 rounded-full object-cover "
-                    />
-                    <div className="flex items-center space-x-1">
-                      <span className="text-base text-gray-500 group-hover:text-white">Posted By</span>
-                      <span className="text-base font-bold text-[#002244] group-hover:text-white" >
-                        admin
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Footer */}
-              <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                <button className="text-sm font-medium group-hover:text-white hover:underline">
-                  Read More
-                </button>
-                <ArrowRight className="w-4 h-4 group-hover:text-white" />
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Carousel */}
-          <div className="md:hidden">
-            <div className="relative overflow-hidden">
-              {/* Left Arrow */}
-              <button
-                onClick={() => setCurrentArticle(currentArticle === 0 ? 2 : currentArticle - 1)}
-                className="absolute -left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
-                aria-label="Previous article"
-              >
-                <ChevronLeft className="w-5 h-5 text-gray-700" />
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => setCurrentArticle(currentArticle === 2 ? 0 : currentArticle + 1)}
-                className="absolute -right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
-                aria-label="Next article"
-              >
-                <ChevronRight className="w-5 h-5 text-gray-700" />
-              </button>
-
-              <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentArticle * 100}%)` }}>
-                {/* Article 1 - Mobile */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                    <div className="p-6 relative overflow-hidden">
-                      {/* Hover overlay rises from bottom to top */}
+          ) : (
+            <>
+              <div className="hidden md:grid md:grid-cols-3 gap-8">
+                {latestBlogs.map((blog) => (
+                  <div key={blog.id} className="group relative bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                    <div className="p-10 relative overflow-hidden">
                       <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                       <div className="relative z-10">
-                        {/* Date Section */}
                         <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
                           <div className="text-gray-400 pl-1">📅</div>
-                          <span className="text-sm text-gray-500">October 28, 2023</span>
+                          <span className="text-sm text-gray-500">
+                            {new Date(blog.publishedAt ?? blog.createdAt).toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
                         </div>
 
-                        {/* Article Title */}
-                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
-                          the transform Community create a lasting impact
+                        <h3 className="text-xl font-bold mb-10 leading-tight text-[#002244] group-hover:text-white">
+                          {blog.title}
                         </h3>
 
-                        {/* Author Section */}
-                        <div className="flex items-center space-x-3 mb-8">
+                        <div className="flex items-center space-x-3 mb-12">
                           <img
-                            src="/about/value.jpg?height=32&width=32"
-                            alt="Admin profile"
+                            src={blog.featuredImage || "/about/value.jpg?height=32&width=32"}
+                            alt={blog.author}
                             className="w-8 h-8 rounded-full object-cover"
                           />
                           <div className="flex items-center space-x-1">
-                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
-                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
-                              admin
-                            </span>
+                            <span className="text-base text-gray-500 group-hover:text-white">Posted By</span>
+                            <span className="text-base font-bold text-[#002244] group-hover:text-white">{blog.author}</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    {/* Footer */}
                     <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                      <button className="text-sm font-medium group-hover:text-white hover:underline">
+                      <button onClick={() => router.push(`/blog/${blog.slug}`)} className="text-sm font-medium group-hover:text-white hover:underline">
                         Read More
                       </button>
                       <ArrowRight className="w-4 h-4 group-hover:text-white" />
                     </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Carousel */}
+              <div className="md:hidden">
+                <div className="relative overflow-hidden">
+                  <button
+                    onClick={() => setCurrentArticle((currentArticle - 1 + latestBlogs.length) % latestBlogs.length)}
+                    className="absolute -left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                    aria-label="Previous article"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-gray-700" />
+                  </button>
+
+                  <button
+                    onClick={() => setCurrentArticle((currentArticle + 1) % latestBlogs.length)}
+                    className="absolute -right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                    aria-label="Next article"
+                  >
+                    <ChevronRight className="w-5 h-5 text-gray-700" />
+                  </button>
+
+                  <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentArticle * 100}%)` }}>
+                    {latestBlogs.map((blog) => (
+                      <div key={blog.id} className="w-full flex-shrink-0 px-2">
+                        <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                          <div className="p-6 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                            <div className="relative z-10">
+                              <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
+                                <div className="text-gray-400 pl-1">📅</div>
+                                <span className="text-sm text-gray-500">
+                                  {new Date(blog.publishedAt ?? blog.createdAt).toLocaleDateString("en-US", {
+                                    month: "long",
+                                    day: "numeric",
+                                    year: "numeric",
+                                  })}
+                                </span>
+                              </div>
+
+                              <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
+                                {blog.title}
+                              </h3>
+
+                              <div className="flex items-center space-x-3 mb-8">
+                                <img
+                                  src={blog.featuredImage || "/about/value.jpg?height=32&width=32"}
+                                  alt={blog.author}
+                                  className="w-8 h-8 rounded-full object-cover"
+                                />
+                                <div className="flex items-center space-x-1">
+                                  <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
+                                  <span className="text-sm font-bold text-[#002244] group-hover:text-white">{blog.author}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
+                            <button onClick={() => router.push(`/blog/${blog.slug}`)} className="text-sm font-medium group-hover:text-white hover:underline">
+                              Read More
+                            </button>
+                            <ArrowRight className="w-4 h-4 group-hover:text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Article 2 - Mobile */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                    <div className="p-6 relative overflow-hidden">
-                      {/* Hover overlay rises from bottom to top */}
-                      <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                      <div className="relative z-10">
-                        {/* Date Section */}
-                        <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
-                          <div className="text-gray-400 pl-1">📅</div>
-                          <span className="text-sm text-gray-500">October 25, 2023</span>
-                        </div>
-
-                        {/* Article Title */}
-                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
-                          the transform Community create a lasting impact
-                        </h3>
-
-                        {/* Author Section */}
-                        <div className="flex items-center space-x-3 mb-8">
-                          <img
-                            src="/about/value.jpg?height=32&width=32"
-                            alt="Admin profile"
-                            className="w-8 h-8 rounded-full object-cover"
-                          />
-                          <div className="flex items-center space-x-1">
-                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
-                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
-                              admin
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Footer */}
-                    <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                      <button className="text-sm font-medium group-hover:text-white hover:underline">
-                        Read More
-                      </button>
-                      <ArrowRight className="w-4 h-4 group-hover:text-white" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Article 3 - Mobile */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="group relative bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                    <div className="p-6 relative overflow-hidden">
-                      {/* Hover overlay rises from bottom to top */}
-                      <div className="absolute inset-0 bg-[#008bd0] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                      <div className="relative z-10">
-                        {/* Date Section */}
-                        <div className="flex items-center space-x-2 mb-4 group-hover:bg-white">
-                          <div className="text-gray-400">📅</div>
-                          <span className="text-sm text-gray-500">October 22, 2023</span>
-                        </div>
-
-                        {/* Article Title */}
-                        <h3 className="text-lg font-bold mb-6 leading-tight text-[#002244] group-hover:text-white">
-                          the transform Community create a lasting impact
-                        </h3>
-
-                        {/* Author Section */}
-                        <div className="flex items-center space-x-3 mb-8">
-                          <img
-                            src="/about/value.jpg?height=32&width=32"
-                            alt="Admin profile"
-                            className="w-8 h-8 rounded-full object-cover"
-                          />
-                          <div className="flex items-center space-x-1">
-                            <span className="text-sm text-gray-500 group-hover:text-white">Posted By</span>
-                            <span className="text-sm font-bold text-[#002244] group-hover:text-white">
-                              admin
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Footer */}
-                    <div className="rounded-b-lg border-t border-gray-100 p-4 flex items-center justify-between transition-colors duration-300 group-hover:bg-[#001736] group-hover:text-white">
-                      <button className="text-sm font-medium group-hover:text-white hover:underline">
-                        Read More
-                      </button>
-                      <ArrowRight className="w-4 h-4 group-hover:text-white" />
-                    </div>
-                  </div>
+                <div className="flex justify-center mt-6 space-x-2">
+                  {latestBlogs.map((blog, index) => (
+                    <button
+                      key={blog.id}
+                      onClick={() => setCurrentArticle(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentArticle ? "bg-[#008bd0] w-6" : "bg-gray-300"
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
-            </div>
-
-            {/* Mobile Carousel Navigation Dots */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {[0, 1, 2].map((index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentArticle(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentArticle ? "bg-[#008bd0] w-6" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </section>
 

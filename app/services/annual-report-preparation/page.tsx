@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "Annual Report Preparation & Financial Reporting Services | FinMates",
+  description:
+    "Annual report preparation and financial reporting services for listed and growing companies. Ensure SEBI compliance and investor-ready presentations. Explore services and schedule a discussion.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -62,14 +60,15 @@ const toggleFaq = (index: number) => {
         <div className="relative m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
-            <h1 className="w-full text-center xl:text-7xl font-bold text-white md:text-start text-4xl lg:text-6xl">
-            Annual Report Preparation
+            <h1 className="w-full text-center xl:text-6xl font-bold text-white md:text-start text-4xl lg:text-6xl">
+            Annual Report Preparation for Listed and Growth-Stage Companies
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            for Listed Companies
-            </h1>
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            Turn compliance reporting into investor-ready communication
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              Where Compliance Meets Communication. We deliver comprehensive annual reports that combine regulatory compliance with strategic communication, ensuring your company's story is told effectively while meeting all SEBI and governance requirements.
+              We help you deliver annual reports that are accurate, compliant, and professionally presented so
+              regulators, investors, and stakeholders can trust your story and numbers.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -83,11 +82,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-                Ready for Professional Annual Report Preparation?
+                Result-Based Annual Reporting Framework
               </h3>
               <h2 className="md:text-center text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-p-3  lg:ml-4 lg:text-start ">
                 <div>
-                  <span className="text-p-3">Comprehensive Annual Report Services for Listed Companies</span>
+                  <span className="text-p-3">From Reporting Complexity to Investor-Ready Delivery in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -96,31 +95,41 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "Corporate Profile, MD's Message & Strategy",
-                h2: "Strategic Communication & Leadership Narrative",
-                h3: "We craft compelling corporate profiles and MD's messages that effectively communicate your company's vision, achievements, and strategic direction. Our team ensures your leadership narrative aligns with investor expectations and regulatory requirements.",
+                h1: "Who is this for?",
+                h2: "Listed and preparing-to-list companies",
+                h3: "Finance and compliance teams that need professionally structured, regulator-aligned annual reporting.",
               },
               {
-                h1: "Industry Review, Audited Financials, Governance Reports",
-                h2: "Comprehensive Financial & Governance Documentation",
-                h3: "Our annual reports include detailed industry analysis, complete audited financial statements, and comprehensive governance reports. We ensure all financial data is accurately presented and governance practices are clearly documented.",
+                h1: "What we do",
+                h2: "End-to-end annual report execution",
+                h3: "Corporate narrative, audited financial integration, governance content, disclosures, and layout management.",
               },
               {
-                h1: "AGM Notices, Disclosures & SEBI Format",
-                h2: "Regulatory Compliance & Timely Disclosures",
-                h3: "We prepare AGM notices and all required disclosures in strict adherence to SEBI format and regulations. Our team ensures timely compliance with all regulatory requirements, keeping your company ahead of disclosure obligations.",
+                h1: "Results you get",
+                h2: "Accuracy, compliance, and presentation quality",
+                h3: "Cleaner stakeholder communication, reduced formatting/compliance errors, and stronger investor confidence.",
               },
               {
-                h1: "ESG, CSR & Investor-Ready Visual Layouts",
-                h2: "Modern Reporting with Visual Excellence",
-                h3: "We integrate ESG and CSR reporting with investor-ready visual layouts that make your annual report both informative and visually appealing. Our designs ensure professional presentation while maintaining regulatory compliance.",
+                h1: "Timeline",
+                h2: "30-60 day structured delivery plan",
+                h3: "We execute annual reporting in phases from content collection to final sign-off with milestone visibility.",
+              },
+              {
+                h1: "Compliance depth",
+                h2: "SEBI and governance alignment",
+                h3: "Ensure disclosures, AGM content, governance sections, and statutory formatting meet current expectations.",
+              },
+              {
+                h1: "Investor-ready communication",
+                h2: "Design with strategic clarity",
+                h3: "Professional visual layout and messaging that makes key financial and strategic insights easier to consume.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-base text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-sm text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-sm text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -224,43 +233,7 @@ const toggleFaq = (index: number) => {
               </h2>
 
               {/* FAQ Accordion List */}
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -283,6 +256,8 @@ const toggleFaq = (index: number) => {
           </div>
         </div>
       </section>
+
+      <QuickContactCTA  />  
 
       <Footer/>
       

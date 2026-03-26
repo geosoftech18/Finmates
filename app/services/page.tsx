@@ -1,5 +1,6 @@
 "use client"
 
+import type { Metadata } from "next"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -13,6 +14,8 @@ import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
+
+
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("financial-services")
@@ -207,8 +210,8 @@ export default function ServicesPage() {
         {/* Services Section */}
         <section className="h-full w-full">
           <div className="m-auto flex h-full w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
-            <h1 className="text-xl font-bold md:ml-4 md:text-3xl lg:text-4xl">Our Services</h1>
-            <h2 className="text-center text-2xl font-bold md:ml-4 md:text-3xl lg:text-5xl">Solutions We Provide</h2>
+            <h2 className="text-xl font-bold md:ml-4 md:text-3xl lg:text-4xl">Our Services</h2>
+            <h3 className="text-center text-2xl font-bold md:ml-4 md:text-3xl lg:text-5xl">Solutions We Provide</h3>
             <p className="w-full text-center text-sm md:w-2/3 md:text-lg">
               Get the right team of experts for managing your finance who've helped a series of brands like yours with
               continuous flow of value.
@@ -326,7 +329,7 @@ export default function ServicesPage() {
                 {qualityFeatures[activeTab as keyof typeof qualityFeatures].map((feature, index) => (
                   <Card key={index} className="w-full max-w-sm overflow-hidden rounded-xl shadow-lg">
                     <CardContent className="w-full space-y-3 p-8">
-                      <img alt={feature.title} width="80" height="60" src={feature.icon || "/placeholder.svg"} />
+                      <img alt={feature.title + ' icon'} width="80" height="60" src={feature.icon || "/placeholder.svg"} />
                       <h3 className="text-xl">{feature.title}</h3>
                       <p className="text-lg text-neutral-500">{feature.description}</p>
                     </CardContent>
@@ -381,9 +384,9 @@ export default function ServicesPage() {
                   <div className="z-10 flex h-14 w-14 items-center justify-center rounded-full bg-blue-900 text-center text-xl font-bold text-white max-md:mt-5 md:mb-5">
                     {step.number}
                   </div>
-                  <Card className="group relative flex min-h-[302px] w-full max-w-xs flex-col items-center justify-center gap-5 overflow-hidden rounded-md p-10 text-center shadow-md md:mx-5">
+                    <Card className="group relative flex min-h-[302px] w-full max-w-xs flex-col items-center justify-center gap-5 overflow-hidden rounded-md p-10 text-center shadow-md md:mx-5">
                     <div className="absolute inset-0 bg-blue-900 transform translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0"></div>
-                    <img className="h-10 w-10 relative z-10" alt="" src={step.icon || "/placeholder.svg"} />
+                    <img className="h-10 w-10 relative z-10" alt={step.title + ' illustration'} src={step.icon || "/placeholder.svg"} />
                     <h3 className="text-xl font-bold text-blue-900 group-hover:text-white relative z-10 transition-colors duration-300">{step.title}</h3>
                     <p className="text-sm text-blue-900 group-hover:text-white relative z-10 transition-colors duration-300">{step.description}</p>
                   </Card>
@@ -702,7 +705,7 @@ export default function ServicesPage() {
                         </h5>
                       </div>
                       <div className="mt-10 flex items-center">
-                        <img src={article.image || "/placeholder.svg"} alt="" className="h-10 w-10 rounded-full" />
+                        <img src={article.image || "/placeholder.svg"} alt={`${article.author} profile picture`} className="h-10 w-10 rounded-full" />
                         <div className="ml-5 flex flex-col">
                           <p className="text-gray-500 group-hover:text-white">Posted By</p>
                           <p className="text-lg font-semibold text-blue-900 group-hover:text-white">{article.author}</p>

@@ -1,13 +1,18 @@
-"use client"
+import type { Metadata } from "next"
 import WorkingProcessCarousel from "@/components/working-process-carousel"
-import { useState } from "react"
-
-import { Minus , Plus, HelpCircle } from "lucide-react"
+import { HelpCircle } from "lucide-react"
 import MagneticCursor from "@/components/MagneticCursor"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
+import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
+import QuickContactCTA from "@/components/home/quick-contact-cta"
 
+export const metadata: Metadata = {
+  title: "M&A Advisory & Corporate Fundraising Experts in India | FinMates",
+  description:
+    "M&A advisory and corporate fundraising services for growing companies in India. Get expert support on valuations, due diligence and deal structuring. Contact us to discuss your transaction.",
+}
 
 const faqs = [
     {
@@ -38,13 +43,6 @@ const faqs = [
   ]
 
 export default function Page() {
-
-    const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
-  }
-
   return (
     <main>
       <MagneticCursor/>
@@ -63,18 +61,14 @@ const toggleFaq = (index: number) => {
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
             <h1 className="w-full text-center xl:text-6xl font-bold text-white md:text-start text-4xl lg:text-5xl">
-            Corporate Fundraising and M&A Advisory
+            M&A Advisory and Fundraising for Growth-Stage Companies
             </h1>
-            <h1 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
-            Corporate Finance Solutions
-            </h1>
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            Raise capital, execute deals, and de-risk major financial decisions
+            </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
-              {/* Expert Guidance for Complex Financial Transactions */}
-         
-              
-            We provide end-to-end corporate finance solutions, including pitch deck creation,
-             financial modeling, fundraising advisory, debt financing, due diligence, and M&A support,
-             ensuring streamlined processes and optimal outcomes for our clients.
+              We help businesses prepare for high-stakes transactions with structured financial narratives, clean
+              diligence readiness, and execution support from planning to closure.
             </p>
             <div className="flex justify-center md:items-center md:justify-start">
               <button className="rounded-md bg-[#008bd0] px-8 py-4 font-bold text-white">Lets Connect</button>
@@ -88,11 +82,11 @@ const toggleFaq = (index: number) => {
           <div className="flex w-full flex-col lg:flex-row lg:justify-between">
             <div className="w-full flex-col items-center justify-center">
               <h3 className="mb-5 text-center text-lg text-p-3 md:ml-5 lg:text-start">
-              Corporate Finance Solutions
+              Result-Based M&A and Fundraising Framework
               </h3>
               <h2 className="text-center text-3xl font-bold text-p-3 md:text-3xl lg:ml-4 lg:text-start lg:text-4xl">
                 <div>
-                  <span className="text-p-3">Corporate Solutions and M&A Advisory</span>
+                  <span className="text-p-3">From Funding Pressure to Deal Readiness in 30-60 Days</span>
                 </div>
               </h2>
             </div>
@@ -101,41 +95,41 @@ const toggleFaq = (index: number) => {
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-5 lg:justify-start">
             {[
               {
-                h1: "Pitch deck, Investment teaser",
-                h2: "Pitch Deck & Investment Teaser Creation",
-                h3: "Crafting professional pitch decks and concise investment teasers to attract potential investors by highlighting key business aspects and unique selling points."
+                h1: "Who is this for?",
+                h2: "Founders preparing for fundraising or transactions",
+                h3: "Startups, SMEs, and promoter-led businesses planning capital raise, debt structuring, or M&A activity.",
               },
               {
-                h1: "Financials Model",
-                h2: "Financial Modeling Services",
-                h3: "Creating customized financial models to aid in strategic planning, key decision-making, and understanding crucial business margins for effective management."
+                h1: "What we do",
+                h2: "End-to-end corporate finance support",
+                h3: "Pitch deck, financial model, valuation support, investor communication, diligence prep, and deal structuring support.",
               },
               {
-                h1: "Fund raising — Venture capital and private equity.",
-                h2: "Fundraising Advisory - Venture Capital and Private Equity",
-                h3: "Providing detailed company profiling, deal valuation, negotiation support, and preparation of investment memoranda to access growth capital from private equity, venture capital, and high net worth individuals.",
+                h1: "Results you get",
+                h2: "Sharper positioning and faster decisions",
+                h3: "Better investor conversations, improved transaction confidence, and higher execution readiness across stakeholders.",
               },
               {
-                h1: "Debt financing and debt restructuring.",
-                h2: "Debt Financing and Restructuring Solution",
-                h3: "Advising on debt-raising matters, designing debt and security structures, and offering debt restructuring solutions to alleviate financial burdens and ensure business profitability."
+                h1: "Timeline",
+                h2: "30-60 day readiness cycle",
+                h3: "We build your transaction toolkit and execution roadmap in stages to support timely fundraising or M&A progress.",
               },
               {
-                h1: "Due Diligence.",
-                h2: "Due Diligence Assistance",
-                h3: "Conducting thorough due diligence for investors and vendors across the transaction cycle, simplifying the process, and identifying potential issues to facilitate smooth and fruitful transaction processes.",
+                h1: "Diligence and governance",
+                h2: "Reduce deal risk early",
+                h3: "Identify red flags, organize data rooms, and strengthen governance documentation before investor or buyer scrutiny.",
               },
               {
-                h1: "Mergers & Acquisitions",
-                h2: "Mergers & Acquisitions (M&A) Support",
-                h3: "From inception to integration, we oversee all aspects of M&A transactions, including target identification, negotiation, due diligence, and structuring, ensuring project objectives are met seamlessly.",
+                h1: "Execution support",
+                h2: "Guidance through each transaction stage",
+                h3: "Get practical support across negotiation, structuring, and closure so your team can execute with clarity and speed.",
               },
             ].map((c, i) => (
               <div key={i} className="card-hover flex w-full flex-col items-center justify-center md:w-96">
                 <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-5 rounded-md border border-solid border-gray-300 p-5 md:mx-5">
-                  <h1 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h1>
-                  <h2 className="text-center text-base text-p-3 md:text-start">{c.h2}</h2>
-                  <h3 className="text-center text-sm text-p-3 md:text-start">{c.h3}</h3>
+                  <h2 className="text-center text-lg font-bold text-p-3 md:text-start">{c.h1}</h2>
+                  <h3 className="text-center text-base text-p-3 md:text-start">{c.h2}</h3>
+                  <p className="text-center text-sm text-p-3 md:text-start">{c.h3}</p>
                 </div>
               </div>
             ))}
@@ -323,43 +317,7 @@ const toggleFaq = (index: number) => {
               </h2>
 
               {/* FAQ Accordion List */}
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
-                    {/* Question */}
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full px-6 py-4 text-left flex items-center justify-between transition-colors duration-200 ${openFaq === index ? "bg-[#003b8d] text-white" : "bg-white hover:bg-gray-100"}`}
-                      
-                    >
-                      <span className="text-lg font-medium" >
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 ml-4">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{ backgroundColor: "#002244" }}
-                        >
-                          {openFaq === index ? (
-                            <Minus className="w-4 h-4 text-white" />
-                          ) : (
-                            <Plus className="w-4 h-4 text-white" />
-                          )}
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Answer */}
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 ">
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <ServiceFaqAccordion faqs={faqs} />
 
               {/* Bottom Contact Section */}
               <div className="flex items-center space-x-3 pt-6">
@@ -383,7 +341,7 @@ const toggleFaq = (index: number) => {
         </div>
       </section>
 
-
+      <QuickContactCTA  />  
       
 
       <Footer/>
