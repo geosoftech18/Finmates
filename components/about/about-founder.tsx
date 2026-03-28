@@ -51,7 +51,7 @@ function useScrollReveal() {
 }
 
 const socialLinks = [
-  { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:bg-[#0077b5]' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/ca-pinkesh-jain-bbb5bb110?utm_source=share_via&utm_content=profile&utm_medium=member_android', color: 'hover:bg-[#0077b5]' },
   { name: 'Email', icon: Mail, href: 'mailto:info@finmates.in', color: 'hover:bg-[#008bd0]' },
   { name: 'Phone', icon: Phone, href: 'tel:+919833943776', color: 'hover:bg-[#003b8d]' },
 
