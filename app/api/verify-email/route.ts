@@ -4,6 +4,8 @@ import { generateVerificationCode, storeVerificationCode } from "@/lib/verificat
 
 // Create nodemailer transporter
 function createTransporter() {
+  const allowSelfSigned = process.env.SMTP_ALLOW_SELF_SIGNED === "true"
+
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: parseInt(process.env.SMTP_PORT || "587"),
@@ -12,6 +14,7 @@ function createTransporter() {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
+    tls: allowSelfSigned ? { rejectUnauthorized: false } : undefined,
   })
 }
 

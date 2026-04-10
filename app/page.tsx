@@ -197,7 +197,7 @@ export default function Home() {
       title: "CFO Services",
       subtitle: "Strategic Financial Leadership On-site & Virtually",
       description:
-        "Unlock the expertise of seasoned CFOs to drive strategic decision-making and financial leadership. Whether on-site or virtual, our CFO services optimize cash flow, enhance profitability, and guide your business towards sustainable growth.",
+        "Tap into seasoned CFO wisdom. Steer your ship with confidence. On-site or virtual, we'll sharpen your cash management, boost profits, and chart a course for lasting expansion.",
       illustration: "/services/CFO_Services.jpg?height=200&width=200",
       link:"services/cfo-services"
     },
@@ -206,7 +206,7 @@ export default function Home() {
       title: "F&A Outsourcing",
       subtitle: "Efficient Finance and Accounting Solutions",
       description:
-        "Efficient Finance and Accounting Solutions Transform your finance and accounting functions with FinMates' F&A outsourcing solutions. From meticulous management of Accounts Payable and Collections to seamless Period Closing and",
+        "Revamp your financial machinery. Accounts Payable? Collections? Month-end closes? We handle it all.",
       illustration: "/services/F&A.png?height=200&width=200",
       link:"services/F&A-outsourcing"
     },
@@ -215,7 +215,7 @@ export default function Home() {
       title: "Direct tax and regulatory services",
       subtitle: "Expert Guidance for Complex Financial Transactions",
       description:
-        "Trust FinMates for expert advisory services that navigate the intricacies of direct and indirect taxes, as well as mergers and acquisitions. Our team provides strategic advice to ensure compliance and success in a dynamic financial landscape.",
+        "Confused by taxes or mergers? Let FinMates be your guide. Navigate the maze of direct and indirect taxes. Secure triumphs in a fluid financial arena.",
       illustration: "/services/tax.png?height=200&width=200",
       link:"services/direct-tax"
     },
@@ -224,7 +224,7 @@ export default function Home() {
       title: "Pitch Deck & Fundraising",
       subtitle: "Strategic Financial Services",
       description:
-        "We provide end-to-end corporate finance solutions, including pitch deck creation, financial modeling, fundraising advisory, debt financing, due diligence, and M&A support, ensuring streamlined processes and optimal outcomes for our clients.",
+        "Need funding? We craft pitch decks that resonate. Financial models that impress. From debt to deals, we streamline the process. Optimized results, guaranteed.",
       illustration: "/services/Office_of_CFO.jpg?height=200&width=200",
       link:"services/M&A-Advisory"
     },
@@ -233,7 +233,7 @@ export default function Home() {
       title: "SME IPO readness support",
       subtitle: "Guidance for Going Public",
       description:
-        "Take the leap into the public domain with confidence through FinMates' SME IPO Listing services. Our expert guidance ensures compliance and success in navigating the complexities of going public, propelling your business to the next level.",
+        "Ready to go public? FinMates smoothes the path. Navigate the IPO landscape with assurance. Your next ascent starts here.",
       illustration: "/services/SME_IPO_Listing.jpg?height=200&width=200",
       link:"services/SME-IPO"
     },
@@ -242,7 +242,7 @@ export default function Home() {
       title: "Annual Report Preparation",
       subtitle: "Comprehensive Financial Reporting",
       description:
-        "We prepare comprehensive annual reports for listed companies, ensuring compliance with SEBI regulations and investor-ready visual layouts.",
+        "Annual reports that shine. Compliance assured. Stunning visuals. Let's make an impression.",
         illustration: "/services/F&A.png?height=200&width=200",
       link:"services/annual-report-preparation"
     },
@@ -760,10 +760,8 @@ export default function Home() {
 
               {/* Description Paragraph */}
               <p className="text-[20px] leading-relaxed" style={{ color: "#4b5563" }}>
-              At FinMates, we are more than just financial consultants;
-               we are your dedicated partners in navigating the complex terrain of Finance,
-                Accounts, and Taxation. With a commitment to excellence and client-centric solutions,
-               we bring over 16 years of seasoned expertise to the table.
+              At FinMates, we're not simply bean counters. Think of us as your financial sherpas, guiding you through the often bewildering world where Finance, Accounts, and Taxation converge.
+               We've honed our skills for over 16 years. Experience? We bring it.
               </p>
 
               {/* Key Highlights */}
@@ -793,7 +791,7 @@ export default function Home() {
 
               {/* Closing Tagline */}
               <p className="text-lg italic" style={{ color: "#666666" }}>
-                Partner with FinMates, where financial success meets strategic partnership.
+              Let's build something great, together. Partner with FinMates. Your financial aspirations, amplified.
               </p>
             </div>
           </div>
@@ -859,8 +857,7 @@ export default function Home() {
 
               {/* Description Paragraph */}
               <p className="text-base md:text-lg leading-relaxed" style={{ color: "#001736" }}>
-                At FinMates, our values form the bedrock of our commitment to excellence, integrity, and client
-                satisfaction.
+              At FinMates, our core values are the very foundation. Integrity isn't just a word; it's how we operate. Client contentment? It's the north star guiding our every decision.
               </p>
 
               {/* Value Boxes - 2x2 Grid */}
@@ -880,8 +877,7 @@ export default function Home() {
                       Client-Centric Approach
                     </h3>
                     <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
-                      We prioritize our clients' needs, ensuring tailored solutions for their unique challenges.
-                    </p>
+                    Your needs come first. Always. Bespoke answers to the puzzles you face.                    </p>
                   </div>
                 </div>
 
@@ -900,8 +896,7 @@ export default function Home() {
                       Integrity and Transparency
                     </h3>
                     <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
-                      Upholding the highest ethical standards, we operate with integrity, transparency, and a commitment
-                      to trust.
+                    Ethics? Impeccable. Honesty? Unwavering. Trust? Earned, not given.
                     </p>
                   </div>
                 </div>
@@ -921,8 +916,7 @@ export default function Home() {
                       Innovation and Adaptability
                     </h3>
                     <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
-                      Embracing innovation, we continuously evolve to meet the dynamic demands of the financial
-                      landscape.
+                    The world shifts. So do we. New challenges demand fresh thinking.
                     </p>
                   </div>
                 </div>
@@ -942,8 +936,7 @@ export default function Home() {
                       Collaborative Excellence
                     </h3>
                     <p className="text-sm md:text-lg leading-relaxed" style={{ color: "#001736" }}>
-                      Fostering a culture of collaboration, we bring together diverse expertise to deliver unparalleled
-                      financial solutions.
+                    Many minds. One goal. Superior financial answers, delivered as a team.
                     </p>
                   </div>
                 </div>
@@ -951,8 +944,7 @@ export default function Home() {
 
               {/* Closing Line */}
               <p className="text-base md:text-lg italic pt-4" style={{ color: "#666666" }}>
-                Experience the FinMates difference, where values drive our journey towards success.
-              </p>
+              Experience the FinMates difference. Values that propel you forward.              </p>
             </div>
           </div>
         </div>
@@ -999,7 +991,7 @@ export default function Home() {
                     <div
                       onClick={() => handleCardClick(serviceItem.id)}
                       className={`
-                        group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300
+                        group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300 h-[520px] flex flex-col
                         ${selectedCard === serviceItem.id ? " border-2" : "border-0"}
                         hover:shadow-xl hover:scale-105
                       `}
@@ -1008,16 +1000,16 @@ export default function Home() {
                         animationDuration: selectedCard === serviceItem.id ? "0.6s" : "0s",
                       }}
                     >
-                      <div className="relative overflow-hidden ">
+                      <div className="relative overflow-hidden h-56">
                         <img
                           src={serviceItem.illustration || "/placeholder.svg"}
                           alt={serviceItem.title}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300"></div>
                       </div>
 
-                      <div className="space-y-4 p-4">
+                      <div className="space-y-4 p-4 flex-1 flex flex-col">
                         <h3 className="text-2xl font-bold" style={{ color: "#002244" }}>
                           {serviceItem.title}
                         </h3>
@@ -1031,7 +1023,7 @@ export default function Home() {
                         </p>
 
                         <a href={serviceItem.link}
-                          className="group flex items-center space-x-2 px-6 py-3 "
+                          className="group flex items-center space-x-2 px-6 py-3 mt-auto"
                          >
                           <span className="font-medium">Explore More</span>
                           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1057,7 +1049,7 @@ export default function Home() {
                   >
                     <div
                       className={`
-                        group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300
+                        group bg-white rounded-2xl shadow-lg cursor-pointer transition-all duration-300 h-[560px] flex flex-col
                         ${selectedCard === serviceItem.id ? " border-2" : "border-0"}
                         hover:shadow-xl hover:scale-105
                       `}
@@ -1075,7 +1067,7 @@ export default function Home() {
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300"></div>
                       </div>
 
-                      <div className="space-y-4 p-4">
+                      <div className="space-y-4 p-4 flex-1 flex flex-col">
                         <h3 className="text-2xl font-bold" style={{ color: "#002244" }}>
                           {serviceItem.title}
                         </h3>
@@ -1089,7 +1081,7 @@ export default function Home() {
                         </p>
 
                         <a href={serviceItem.link}
-                          className="group flex items-center space-x-2 px-6 py-3 "
+                          className="group flex items-center space-x-2 px-6 py-3 mt-auto"
                         >
                           <span className="font-medium">Explore More</span>
                           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

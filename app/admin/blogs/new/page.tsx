@@ -19,12 +19,15 @@ export default function NewBlogPage() {
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
+    metaTitle: "",
+    metaDescription: "",
     excerpt: "",
     featuredImage: "",
     author: "Admin",
     published: false,
   })
   const [content, setContent] = useState<any>(null)
+  const [imageFile, setImageFile] = useState<File | null>(null)
 
   const generateSlug = (title: string) => {
     return title
@@ -58,6 +61,25 @@ export default function NewBlogPage() {
 
     setLoading(true)
     try {
+      let uploadedImageUrl = formData.featuredImage
+
+      if (imageFile) {
+        const imageFormData = new FormData()
+        imageFormData.append("image", imageFile)
+
+        const uploadResponse = await fetch("/api/blogs/upload-image", {
+          method: "POST",
+          body: imageFormData,
+        })
+        const uploadResult = await uploadResponse.json()
+
+        if (!uploadResult.success) {
+          throw new Error(uploadResult.message || "Failed to upload featured image")
+        }
+
+        uploadedImageUrl = uploadResult.data.imageUrl
+      }
+
       const response = await fetch("/api/blogs", {
         method: "POST",
         headers: {
@@ -65,6 +87,7 @@ export default function NewBlogPage() {
         },
         body: JSON.stringify({
           ...formData,
+          featuredImage: uploadedImageUrl,
           content,
         }),
       })
@@ -169,6 +192,29 @@ export default function NewBlogPage() {
                     />
                   </div>
                   <div>
+                    <Label htmlFor="metaTitle">Meta Title</Label>
+                    <Input
+                      id="metaTitle"
+                      value={formData.metaTitle}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, metaTitle: e.target.value }))
+                      }
+                      placeholder="SEO title for this blog"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="metaDescription">Meta Description</Label>
+                    <Textarea
+                      id="metaDescription"
+                      value={formData.metaDescription}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, metaDescription: e.target.value }))
+                      }
+                      placeholder="SEO description used in search results"
+                      rows={3}
+                    />
+                  </div>
+                  <div>
                     <Label htmlFor="content">Content *</Label>
                     <Editor
                       content={content}
@@ -199,15 +245,16 @@ export default function NewBlogPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="featuredImage">Featured Image URL</Label>
+                    <Label htmlFor="featuredImage">Featured Image</Label>
                     <Input
                       id="featuredImage"
-                      value={formData.featuredImage}
-                      onChange={(e) =>
-                        setFormData((prev) => ({ ...prev, featuredImage: e.target.value }))
-                      }
-                      placeholder="https://example.com/image.jpg"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                      onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                     />
+                    {imageFile && (
+                      <p className="mt-2 text-xs text-muted-foreground">Selected: {imageFile.name}</p>
+                    )}
                   </div>
                   <div className="flex items-center justify-between">
                     <Label htmlFor="published">Published</Label>

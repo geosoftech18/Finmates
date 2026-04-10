@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { title, slug, excerpt, content, featuredImage, author, published } = body
+    const { title, slug, metaTitle, metaDescription, excerpt, content, featuredImage, author, published } = body
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -78,6 +78,8 @@ export async function POST(request: NextRequest) {
       data: {
         title,
         slug,
+        metaTitle: metaTitle || null,
+        metaDescription: metaDescription || null,
         excerpt: excerpt || null,
         content: contentString,
         featuredImage: featuredImage || null,

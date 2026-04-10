@@ -15,10 +15,10 @@ model Job {
   title       String
   description String
   skills      String[] // Array of skills
-  experience  String   // Experience level (e.g., "0-2 years", "3-5 years")
+  experience  String // Experience level (e.g., "0-2 years", "3-5 years")
   expiryDate  DateTime
   location    String
-  type        String   // "full-time", "part-time", "contract", "internship"
+  type        String // "full-time", "part-time", "contract", "internship"
   status      String   @default("open") // "open", "closed", "paused"
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -34,10 +34,10 @@ model JobApplication {
   name            String
   email           String
   phone           String
-  position        String   // Job position applied for
-  coverLetter     String?  // Optional cover letter
-  resumeUrl       String   // OneDrive URL to the resume
-  currentPosition String?  // Current job position
+  position        String // Job position applied for
+  coverLetter     String? // Optional cover letter
+  resumeUrl       String // OneDrive URL to the resume
+  currentPosition String? // Current job position
   experienceYears Int      @default(0)
   expectedSalary  String?
   portfolioLink   String?
@@ -61,17 +61,19 @@ model JobApplication {
 }
 
 model Blog {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  excerpt     String?  // Short description for listing
-  content     String   // JSON content from TipTap editor
-  featuredImage String? // URL to featured image
-  author      String   @default("Admin")
-  published   Boolean  @default(false)
-  publishedAt DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  metaTitle       String? // SEO meta title
+  metaDescription String? // SEO meta description
+  excerpt         String? // Short description for listing
+  content         String // JSON content from TipTap editor
+  featuredImage   String? // URL to featured image
+  author          String    @default("Admin")
+  published       Boolean   @default(false)
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@map("blogs")
 }

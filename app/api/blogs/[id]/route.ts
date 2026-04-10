@@ -47,7 +47,7 @@ export async function PUT(
   try {
     const resolvedParams = params instanceof Promise ? await params : params
     const body = await request.json()
-    const { title, slug, excerpt, content, featuredImage, author, published } = body
+    const { title, slug, metaTitle, metaDescription, excerpt, content, featuredImage, author, published } = body
 
     // Check if slug is being changed and if it conflicts
     if (slug) {
@@ -69,6 +69,8 @@ export async function PUT(
     const updateData: any = {}
     if (title) updateData.title = title
     if (slug) updateData.slug = slug
+    if (metaTitle !== undefined) updateData.metaTitle = metaTitle || null
+    if (metaDescription !== undefined) updateData.metaDescription = metaDescription || null
     if (excerpt !== undefined) updateData.excerpt = excerpt || null
     if (content) {
       // Ensure content is a string (JSON)

@@ -49,7 +49,7 @@ export default function Page() {
       <FinmatesHeader/>
 
       <section
-        className="relative h-screen w-screen !bg-cover !bg-no-repeat"
+        className="relative h-screen w-screen !bg-cover !bg-no-repeat pt-16"
         style={{
           background:
             'linear-gradient(to right, rgb(17, 24, 39), rgba(12, 98, 197, 0.3)), url("https://images.ctfassets.net/787ztwmlvqd6/A8gYZuZpaevEwYOxtNza9/d9e36e16fd127391179015450269ab9e/WhatsApp_Image_2024-01-19_at_11.30.39.jpeg")',
@@ -57,13 +57,13 @@ export default function Page() {
           backgroundPosition: "center",
         }}
       >
-        <div className="relative m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
+        <div className="relative m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-28 max-md:flex-col md:px-10 md:py-20">
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
-            <h1 className="w-full text-center xl:text-7xl font-bold text-white md:text-start text-4xl lg:text-6xl">
+            <h1 className="w-full text-center xl:text-5xl font-bold text-white md:text-start text-3xl lg:text-5xl">
             Virtual CFO Services for Growing Businesses
             </h1>
-            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-4xl">
+            <h2 className="w-full text-center text-xl font-bold text-white md:text-start md:text-2xl lg:text-3xl">
             Build finance clarity, control cash, and scale with confidence
             </h2>
             <p className="text-center text-lg text-white md:text-start md:text-xl">
