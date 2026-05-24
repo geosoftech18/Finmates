@@ -58,7 +58,7 @@ export function JobDetailsModal({ job, open, onClose, onApply }: JobDetailsModal
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden">
         <DialogHeader className="space-y-4">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
@@ -80,10 +80,7 @@ export function JobDetailsModal({ job, open, onClose, onApply }: JobDetailsModal
               <Building className="h-4 w-4 text-muted-foreground" />
               <span className="text-foreground">{job.department}</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Users className="h-4 w-4 text-muted-foreground" />
-              <span className="text-foreground">{formatExperienceLevel(job.experienceLevel)}</span>
-            </div>
+            
           </div>
         </DialogHeader>
 
@@ -105,9 +102,13 @@ export function JobDetailsModal({ job, open, onClose, onApply }: JobDetailsModal
               <CheckCircle className="h-5 w-5" />
               Required Skills
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 max-w-full min-w-0 max-h-28 overflow-hidden content-start py-2 px-1">
               {job.requiredSkills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="text-sm py-1 px-3">
+                <Badge
+                  key={skill}
+                  variant="secondary"
+                  className="max-w-full shrink whitespace-normal break-words text-left leading-relaxed h-auto py-1.5 px-3 text-sm"
+                >
                   {skill}
                 </Badge>
               ))}
@@ -118,13 +119,13 @@ export function JobDetailsModal({ job, open, onClose, onApply }: JobDetailsModal
 
           {/* Additional Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+            {/* <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                 <Clock className="h-5 w-5" />
                 Experience Level
               </h3>
               <p className="text-muted-foreground">{formatExperienceLevel(job.experienceLevel)}</p>
-            </div>
+            </div> */}
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">

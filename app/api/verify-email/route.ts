@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { isAuthorizedAdminEmail } from "@/lib/auth"
 import { generateVerificationCode, storeVerificationCode } from "@/lib/verification-codes"
 
 // Create nodemailer transporter
@@ -78,6 +79,16 @@ export async function POST(request: NextRequest) {
           { status: 400 },
         )
       }
+    }
+
+    if (!isAuthorizedAdminEmail(trimmedEmail)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Access denied. Only authorized admin can access this panel.",
+        },
+        { status: 403 },
+      )
     }
 
     // Generate verification code

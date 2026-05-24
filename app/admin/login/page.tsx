@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
-import { mockLogin, MOCK_ADMIN } from "@/lib/auth"
+import { createAdminUser, isAuthorizedAdminEmail, normalizeAdminEmail } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -29,8 +29,7 @@ export default function LoginPage() {
       return
     }
 
-    // Check if the email is the admin email
-    if (email !== MOCK_ADMIN.email) {
+    if (!isAuthorizedAdminEmail(email)) {
       setError("Access denied. Only authorized admin can access this panel.")
       return
     }
@@ -44,7 +43,7 @@ export default function LoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: normalizeAdminEmail(email) }),
       })
 
       const result = await response.json()
@@ -76,13 +75,12 @@ export default function LoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, code: verificationCode }),
+        body: JSON.stringify({ email: normalizeAdminEmail(email), code: verificationCode }),
       })
 
       const result = await response.json()
       if (result.success) {
-        // Use the MOCK_ADMIN data for login
-        login(MOCK_ADMIN)
+        login(createAdminUser(email))
         router.push("/admin")
       } else {
         setError(result.message || "Invalid verification code")
@@ -189,12 +187,6 @@ export default function LoginPage() {
               </div>
             )}
           </form>
-          
-          <div className="mt-4 p-3 bg-muted rounded-md text-sm text-muted-foreground">
-            <p className="font-medium">Authorized Admin Email:</p>
-            <p className="font-mono">admin@company.com</p>
-            <p className="mt-1">Only this email can access the admin panel</p>
-          </div>
         </CardContent>
       </Card>
     </div>

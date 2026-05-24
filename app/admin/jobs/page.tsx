@@ -163,16 +163,45 @@ export default function JobsPage() {
     })
   }
 
-  const handleDeleteJob = () => {
+  const handleDeleteJob = async () => {
     if (!deletingJob) return
 
-    const updatedJobs = jobs.filter((job) => job.id !== deletingJob.id)
-    setJobs(updatedJobs)
-    setDeletingJob(null)
-    toast({
-      title: "Job Deleted",
-      description: "Job posting has been deleted successfully.",
-    })
+    try {
+      const response = await fetch(`/api/jobs/${deletingJob.id}`, {
+        method: "DELETE",
+      })
+      const result = await response.json()
+
+      if (!result.success) {
+        toast({
+          title: "Error",
+          description: result.message || "Failed to delete job posting.",
+          variant: "destructive",
+        })
+        return
+      }
+
+      const updatedJobs = jobs.filter((job) => job.id !== deletingJob.id)
+      setJobs(updatedJobs)
+      setFilteredJobs(updatedJobs.filter(
+        (job) =>
+          job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.skills.some((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase())),
+      ))
+      setDeletingJob(null)
+      toast({
+        title: "Job Deleted",
+        description: "Job posting has been deleted successfully.",
+      })
+    } catch (error) {
+      console.error("Error deleting job:", error)
+      toast({
+        title: "Error",
+        description: "Failed to delete job posting. Please try again.",
+        variant: "destructive",
+      })
+    }
   }
 
   const handleStatusChange = (jobId: string, newStatus: Job["status"]) => {
@@ -303,12 +332,13 @@ export default function JobsPage() {
                 </TableHeader>
                 <TableBody>
                   {filteredJobs.map((job) => (
-                    <TableRow 
-                      key={job.id} 
-                      className="hover:bg-muted/50 transition-colors cursor-pointer"
-                      onClick={() => router.push(`/admin/jobs/${job.id}/applicants`)}
-                    >
-                      <TableCell className="font-medium">{job.title}</TableCell>
+                    <TableRow key={job.id} className="hover:bg-muted/50 transition-colors">
+                      <TableCell
+                        className="font-medium cursor-pointer hover:underline"
+                        onClick={() => router.push(`/admin/jobs/${job.id}/applicants`)}
+                      >
+                        {job.title}
+                      </TableCell>
                       <TableCell>{job.location}</TableCell>
                       <TableCell>
                         <Badge className={getTypeColor(job.type)}>{job.type.replace("-", " ")}</Badge>
@@ -355,22 +385,41 @@ export default function JobsPage() {
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => router.push(`/admin/jobs/${job.id}/applicants`)}>
+                          <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                router.push(`/admin/jobs/${job.id}/applicants`)
+                              }}
+                            >
                               <Users className="mr-2 h-4 w-4" />
                               View Applicants
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setEditingJob(job)}>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setEditingJob(job)
+                              }}
+                            >
                               <Edit className="mr-2 h-4 w-4" />
                               Edit
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => handleStatusChange(job.id, job.status === "open" ? "paused" : "open")}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleStatusChange(job.id, job.status === "open" ? "paused" : "open")
+                              }}
                             >
                               <Eye className="mr-2 h-4 w-4" />
                               {job.status === "open" ? "Pause" : "Activate"}
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setDeletingJob(job)} className="text-destructive">
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setDeletingJob(job)
+                              }}
+                              className="text-destructive"
+                            >
                               <Trash2 className="mr-2 h-4 w-4" />
                               Delete
                             </DropdownMenuItem>

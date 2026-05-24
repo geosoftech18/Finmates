@@ -6,18 +6,38 @@ export interface User {
   role: "admin"
 }
 
-// Mock admin user
-export const MOCK_ADMIN: User = {
-  id: "1",
-  email: "pranavkhandekar152@gmail.com",
-  name: "Admin User",
-  role: "admin",
+/** Emails allowed to access the admin panel */
+export const ADMIN_EMAILS = [
+  "pranavkhandekar152@gmail.com",
+  "pinkesh.jain@finmates.in",
+  "amarkorade18@gmail.com",
+] as const
+
+export function normalizeAdminEmail(email: string) {
+  return email.trim().toLowerCase()
 }
 
+export function isAuthorizedAdminEmail(email: string) {
+  const normalized = normalizeAdminEmail(email)
+  return ADMIN_EMAILS.some((adminEmail) => adminEmail === normalized)
+}
+
+export function createAdminUser(email: string): User {
+  const normalized = normalizeAdminEmail(email)
+  return {
+    id: normalized,
+    email: normalized,
+    name: "Admin User",
+    role: "admin",
+  }
+}
+
+// Default admin (first in list) — kept for backward compatibility
+export const MOCK_ADMIN: User = createAdminUser(ADMIN_EMAILS[0])
+
 export async function mockLogin(email: string, password: string): Promise<User | null> {
-  // Mock authentication - in real app, this would call an API
-  if (email === "pranavkhandekar152@gmail.com" && password === "admin123") {
-    return MOCK_ADMIN
+  if (isAuthorizedAdminEmail(email) && password === "admin123") {
+    return createAdminUser(email)
   }
   return null
 }

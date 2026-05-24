@@ -33,7 +33,7 @@ export function ConfirmationDialog({
   variant = "default",
 }: ConfirmationDialogProps) {
   return (
-    <AlertDialog open={isOpen} onOpenChange={onClose}>
+    <AlertDialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>

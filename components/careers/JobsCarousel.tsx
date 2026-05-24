@@ -42,7 +42,7 @@ export function JobsCarousel({ jobs, onJobClick }: JobsCarouselProps) {
         {jobs.map((job) => (
           <Card
             key={job.id}
-            className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-border/50 hover:border-primary/20"
+            className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-border/50 hover:border-primary/20 overflow-hidden min-w-0"
             onMouseEnter={() => setHoveredJob(job.id)}
             onMouseLeave={() => setHoveredJob(null)}
             onClick={() => onJobClick(job)}
@@ -61,35 +61,39 @@ export function JobsCarousel({ jobs, onJobClick }: JobsCarouselProps) {
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="pt-0">
-              <div className="space-y-3">
+            <CardContent className="pt-0 min-w-0">
+              <div className="space-y-3 min-w-0">
                 {/* Location and Department */}
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <MapPin className="h-4 w-4" />
                     <span>{job.location}</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  {/* <div className="flex items-center gap-1">
                     <Building className="h-4 w-4" />
                     <span>{job.department}</span>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Experience Level */}
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                {/* <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <Clock className="h-4 w-4" />
                   <span className="capitalize">{job.experienceLevel} Level</span>
-                </div>
+                </div> */}
 
                 {/* Skills Preview */}
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5 max-w-full min-w-0 max-h-24 overflow-hidden content-start py-1.5 px-1">
                   {job.requiredSkills.slice(0, 3).map((skill) => (
-                    <Badge key={skill} variant="secondary" className="text-xs">
+                    <Badge
+                      key={skill}
+                      variant="secondary"
+                      className="text-xs max-w-full shrink whitespace-normal break-words text-left leading-relaxed h-auto py-1.5 px-2.5"
+                    >
                       {skill}
                     </Badge>
                   ))}
                   {job.requiredSkills.length > 3 && (
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-xs shrink-0">
                       +{job.requiredSkills.length - 3} more
                     </Badge>
                   )}
@@ -121,7 +125,7 @@ export function JobsCarousel({ jobs, onJobClick }: JobsCarouselProps) {
           {jobs.map((job) => (
             <Card
               key={job.id}
-              className="flex-none w-80 cursor-pointer transition-all duration-300 hover:shadow-lg border-border/50 hover:border-primary/20 snap-start"
+              className="flex-none w-80 cursor-pointer transition-all duration-300 hover:shadow-lg border-border/50 hover:border-primary/20 snap-start overflow-hidden min-w-0"
               onClick={() => onJobClick(job)}
             >
               <CardHeader className="pb-3">
@@ -136,8 +140,8 @@ export function JobsCarousel({ jobs, onJobClick }: JobsCarouselProps) {
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="pt-0">
-                <div className="space-y-3">
+              <CardContent className="pt-0 min-w-0">
+                <div className="space-y-3 min-w-0">
                   {/* Location and Department */}
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
@@ -157,14 +161,18 @@ export function JobsCarousel({ jobs, onJobClick }: JobsCarouselProps) {
                   </div>
 
                   {/* Skills Preview */}
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1.5 max-w-full min-w-0 max-h-24 overflow-hidden content-start py-1.5 px-1">
                     {job.requiredSkills.slice(0, 3).map((skill) => (
-                      <Badge key={skill} variant="secondary" className="text-xs">
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="text-xs max-w-full shrink whitespace-normal break-words text-left leading-relaxed h-auto py-1.5 px-2.5"
+                      >
                         {skill}
                       </Badge>
                     ))}
                     {job.requiredSkills.length > 3 && (
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-xs shrink-0">
                         +{job.requiredSkills.length - 3} more
                       </Badge>
                     )}
