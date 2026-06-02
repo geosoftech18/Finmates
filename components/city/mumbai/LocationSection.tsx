@@ -195,8 +195,7 @@ export default function LocationSection() {
               </span>
             </h2>
             <p className="text-base text-gray-500 leading-relaxed">
-              Visit us at our Malad West office or connect remotely — your financial partner is available
-              when you need clarity, compliance, and growth-focused advice.
+            Visit us at our Malad West office or connect remotely—your strategic financial partner is available whenever you need clarity, compliance, and growth-focused advice.  
             </p>
           </div>
 
@@ -239,10 +238,7 @@ export default function LocationSection() {
                     <span className="text-white font-bold text-base">{NAP.name}</span>
                   </div>
                   <p className="text-white/60 text-sm leading-[1.8]">
-                    {NAP.legalName} is based at Jaswanti Allied Business Center in Malad West — a
-                    dedicated hub for Virtual CFO and financial advisory across the Mumbai Metropolitan
-                    Region. We welcome in-person consultations for strategy reviews, onboarding, and
-                    board-level presentations, with convenient road, rail, and metro access nearby.
+                    {NAP.legalName}  is based at Jaswant Allied Business Center in Malad West—a dedicated hub for Virtual CFO and finance advisory services across the Mumbai Metropolitan Region. We welcome our clients for on-site strategy reviews, financial roadmapping sessions, and board-level consultations, with convenient road, rail, and metro links nearby.  
                   </p>
                 </div>
 

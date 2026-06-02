@@ -15,7 +15,7 @@ const services = [
     icon: BarChart2,
     title: 'Cash Flow Forecasting & Working Capital Management',
     tag: 'Liquidity Intelligence',
-    body: `Stop flying blind on runway. We deploy rolling 13-week cash flow models, AR/AP cycle optimisation, and daily liquidity dashboards calibrated to Mumbai's extended debtor cycles. Every cash in-flow and out-flow is visible so growth decisions are made on fact, not instinct.`,
+    body: `•	 Staying on top of your cash runway requires dynamic 13-week rolling models, AR/AP cycle optimization, and liquidity structures calibrated to Mumbai's extended debtor cycles. Every cash inflow and outflow is visible so growth decisions are made on fact, not intuition. `,
     link: '#cash-flow-forecasting',
     linkLabel: 'Explore Cash Flow Services',
     accent: '#008bd0',
@@ -28,7 +28,7 @@ const services = [
     icon: GitBranch,
     title: 'Strategic Financial Modelling & Scenario Planning',
     tag: 'Growth Architecture',
-    body: `Whether you're raising a Series A, restructuring debt, or stress-testing a new market entry, our CFOs build dynamic 3–5-year financial models with bull, base, and bear scenarios. Negotiate with investors and lenders from a position of rigorous analytical strength.`,
+    body: `Whether you are planning a capital raise or mapping a multi-year market expansion, our Virtual CFOs build dynamic 3-5 year financial models with integrated scenario analysis. Negotiate with investors and lenders from a position of rigorous operational data. `,
     link: '#financial-modelling',
     linkLabel: 'Explore Financial Modelling',
     accent: '#323a85',
@@ -41,7 +41,7 @@ const services = [
     icon: ShieldCheck,
     title: 'Tax Strategy & Regulatory Compliance',
     tag: 'Risk Elimination',
-    body: `Maharashtra's compliance landscape — GST reconciliation, advance tax planning, PT filings, FEMA, and STPI/SEZ certifications — demands a proactive approach. Our Virtual CFOs maintain a structured compliance calendar, coordinate statutory audits, and engineer legitimate tax positions that protect margins without surprises.`,
+    body: `Maharashtra's complex compliance landscape—covering GST, Corporate Tax, Advance Tax, PT, FEMA, and STPI/SEZ certifications—demands a proactive approach. Our Virtual CFOs engineer legitimate tax optimization positions that protect your operating margins. `,
     link: '#tax-compliance',
     linkLabel: 'Explore Compliance Services',
     accent: '#008bd0',
@@ -54,7 +54,7 @@ const services = [
     icon: LayoutDashboard,
     title: 'Advanced MIS Reporting & Executive Dashboards',
     tag: 'Boardroom Intelligence',
-    body: `Transform raw financial data into decisions. We design real-time MIS dashboards with automated KPI tracking — unit economics, contribution margins, department-level P&Ls, and cohort analyses — that give your board and investors a single source of financial truth.`,
+    body: `Turn raw accounting data into clear corporate decisions. We design automated executive dashboards tracking key unit economics, contribution margins, and department-level burn, giving your board and investors a single source of truth. `,
     link: '#mis-reporting',
     linkLabel: 'Explore MIS & Reporting',
     accent: '#002244',
@@ -257,9 +257,7 @@ export default function ServicesGrid() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
-            Four high-impact financial disciplines — delivered by senior CFO professionals who
-            understand Mumbai's regulatory environment, competitive talent market, and capital
-            ecosystem as well as you do.
+          Four high-impact financial disciplines—delivered by senior CFO professionals who understand Mumbai's regulatory environment, competitive talent market, and capital ecosystem as well as you do.  
           </p>
         </div>
 

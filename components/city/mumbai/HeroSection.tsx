@@ -320,10 +320,7 @@ export default function HeroSection() {
             <p
               className={`text-base sm:text-lg text-white/75 leading-relaxed max-w-xl mb-8 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-              You're scaling fast — your finances should keep up. Our Virtual CFO services
-              give Mumbai businesses direct access to Fortune-500-grade financial strategy,
-              proactive cash-flow management, and board-ready reporting at a fraction of
-              the cost of a full-time executive hire.
+             You're scaling fast—your finances should keep up. Our Virtual CFO services give Mumbai businesses direct access to Fortune-500-grade financial strategy, proactive cash-flow management, and board-ready reporting at a fraction of the cost of a full-time executive hire.  
             </p>
 
             {/* Trust badges row */}

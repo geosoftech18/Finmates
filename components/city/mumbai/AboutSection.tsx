@@ -28,12 +28,10 @@ export default function AboutSection() {
               <span className="text-p-2">Finance Partner</span>
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-            FinMates was founded with a clear mission: give every ambitious founder and business leader access to the kind of strategic financial guidance that was once exclusive to large corporates with deep pockets.
+            FinMates was founded with a clear mission: give every ambitious founder and business leader access to the kind of strategic financial guidance that was once exclusive to large corporates with deep pockets. 
             </p>
             <p className="text-slate-600 leading-relaxed mb-8">
-              We are not just accountants. We are strategic finance partners who sit alongside your
-              leadership team, analyze what is actually driving your business, and build the
-              financial systems that translate ambition into measurable outcomes.
+            We are not just accountants. We are strategic finance partners who sit alongside your leadership team, analyze what is actually driving your business, and build the financial systems that translate ambition into measurable outcomes.  
             </p>
 
             <div className="space-y-3 mb-8">

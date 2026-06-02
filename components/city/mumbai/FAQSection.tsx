@@ -8,11 +8,11 @@ const faqs = [
   {
     id: 'q1',
     question: 'What is the difference between a Virtual CFO and an in-house accountant for my Mumbai business?',
-    answer: `This is one of the most important distinctions a growing Mumbai business can understand. A traditional in-house accountant — or even a part-time CA firm — is fundamentally a backward-looking function. Their mandate is to accurately record what has already happened: reconcile ledgers, file GST returns, prepare year-end financials, and keep your books clean for audit. This is essential work, but it is reactive by nature.
+    answer: `This is one of the most important distinctions a growing Mumbai business can understand. A traditional in-house accountant or even a standard transactional CA firm is fundamentally a backward-looking function. Their mandate is to accurately record what has already happened, reconcile past ledgers, file GST returns, and keep your books clean for an audit. This work is essential, but it is reactive by nature.  
 
-A Virtual CFO operates in an entirely different dimension. The focus is on forward-looking financial strategy — the kind that drives decisions before money moves, not after. For a business in Mumbai's competitive environment, that means building rolling 12-month cash flow forecasts, conducting sensitivity analysis on your margins before you sign a new vendor contract, structuring your working capital facilities proactively rather than scrambling for a CC limit when a payment cycle tightens, and preparing investor-grade MIS that can survive due diligence scrutiny.
+A Virtual CFO operates in an entirely different dimension. The focus is on forward-looking financial strategy—the kind that guides decisions before money moves, not after. For a company navigating Mumbai's highly competitive commercial ecosystem, that means building rolling 12-month cash flow forecasts, conducting sensitivity analyses on your margins before you sign a new vendor contract, structuring your working capital facilities proactively, and preparing investor-grade MIS that can survive intense due diligence. 
 
-Think of it this way: your accountant is your financial historian; your Virtual CFO is your financial architect. Mumbai businesses that have scaled past ₹2–3 crore in annual revenue typically find that retrospective bookkeeping alone can no longer answer their most pressing questions — "Can we afford to hire this team?", "Should we take on this order given our current liquidity?", "What does our runway look like if a major client delays payment?" A Virtual CFO answers those questions with data, models, and strategic discipline.`,
+Think of it this way: your accountant is your financial historian; your Virtual CFO is your financial architect.  `,
     category: 'Role & Value',
   },
   {

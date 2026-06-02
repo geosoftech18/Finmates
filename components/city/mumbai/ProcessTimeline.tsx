@@ -11,9 +11,9 @@ const steps = [
     phase: 'Financial Health Audit & Diagnosis',
     duration: 'Week 1–2',
     tag: 'Discovery',
-    body: `We begin with a rigorous, no-assumptions-made deep dive into your business's financial anatomy. Our CFOs analyse three years of historical ledgers, reconcile your balance sheet line-by-line, and map every material cash flow gap — identifying hidden capital leakages that most founders never knew existed.
+    body: `•	 We begin with a rigorous, no-assumptions deep dive into your business's financial anatomy. Our CFOs analyze three years of historical ledgers, reconcile your balance sheet line-by-line, and map every material cash flow gap—identifying hidden capital leakages that most founders never knew existed. 
 
-    We benchmark your unit economics, working-capital cycle, and cost structure against Mumbai sector peers. The output is a candid, prioritised Financial Health Report that names the three to five highest-leverage interventions available to your business right now — not generic advice, but a fact-based, company-specific diagnosis.`,
+   We benchmark your unit economics, working-capital cycle, and cost structure against Mumbai sector peers.  `,
     deliverables: ['Financial Health Report', 'Capital leakage map', 'Benchmark analysis', 'Intervention priority list'],
     accent: '#008bd0',
     light: 'rgba(0,139,208,0.08)',
@@ -149,8 +149,7 @@ export default function ProcessTimeline() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
-            From the first diagnostic call to long-term strategic partnership — a clear,
-            structured path with defined deliverables at every milestone.
+         Your Roadmap to Financial Clarity: How It Works Sub-text: From the first diagnostic call to a long-term strategic partnership—a clear, structured path with defined deliverables at every milestone.  
           </p>
         </div>
 
