@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import nodemailer from "nodemailer"
 import { generateApplicationConfirmationEmail } from "@/lib/email-templates"
+import { createMailTransporter, getFromHeader, getOwnerEmail, isMailConfigured } from "@/lib/mail"
 import { uploadResumeToSupabase, isSupabaseConfigured } from "@/lib/supabase-storage"
 import { writeFile, mkdir } from "fs/promises"
 import { join } from "path"
@@ -147,8 +147,18 @@ export async function POST(request: NextRequest) {
 
     console.log("Application saved successfully:", jobApplication.id)
 
-    // Send confirmation email
+    // Send owner notification and applicant confirmation emails
     try {
+      await sendOwnerNotificationEmail({
+        applicantName: applicationData.name,
+        applicantEmail: applicationData.email,
+        applicantPhone: applicationData.phone,
+        jobTitle: job.title,
+        applicationId: jobApplication.id,
+        currentPosition: applicationData.currentPosition,
+        experienceYears: applicationData.experienceYears,
+        expectedSalary: applicationData.expectedSalary,
+      })
       await sendConfirmationEmail({
         applicantName: applicationData.name,
         applicantEmail: applicationData.email,
@@ -206,44 +216,72 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Create nodemailer transporter
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  })
+type ApplicationEmailData = {
+  applicantName: string
+  applicantEmail: string
+  applicantPhone: string
+  jobTitle: string
+  applicationId: string
+  currentPosition: string
+  experienceYears: number
+  expectedSalary: string
 }
 
-// Send confirmation email
-async function sendConfirmationEmail(applicationData: any) {
-  // Check if SMTP credentials are configured
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+function getOwnerNotificationHtml(data: ApplicationEmailData) {
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px; color: #111827;">
+      <h2 style="margin: 0 0 8px; color: #003b8d;">New Job Application</h2>
+      <p style="margin: 0 0 20px; color: #4b5563;">A candidate submitted a job application on the website.</p>
+      <div style="background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px;">
+        <p style="margin: 0 0 10px;"><strong>Application ID:</strong> ${data.applicationId}</p>
+        <p style="margin: 0 0 10px;"><strong>Position:</strong> ${data.jobTitle}</p>
+        <p style="margin: 0 0 10px;"><strong>Name:</strong> ${data.applicantName}</p>
+        <p style="margin: 0 0 10px;"><strong>Email:</strong> ${data.applicantEmail}</p>
+        <p style="margin: 0 0 10px;"><strong>Phone:</strong> ${data.applicantPhone}</p>
+        <p style="margin: 0 0 10px;"><strong>Current Position:</strong> ${data.currentPosition}</p>
+        <p style="margin: 0 0 10px;"><strong>Experience:</strong> ${data.experienceYears} years</p>
+        <p style="margin: 0;"><strong>Expected Salary:</strong> ${data.expectedSalary}</p>
+      </div>
+    </div>
+  `
+}
+
+async function sendOwnerNotificationEmail(data: ApplicationEmailData) {
+  if (!isMailConfigured()) {
+    console.warn("SMTP credentials not configured, skipping owner notification email")
+    return
+  }
+
+  const transporter = createMailTransporter()
+
+  await transporter.sendMail({
+    from: getFromHeader(),
+    to: getOwnerEmail(),
+    subject: `New Job Application: ${data.jobTitle} — ${data.applicantName}`,
+    html: getOwnerNotificationHtml(data),
+    replyTo: data.applicantEmail,
+  })
+
+  console.log(`Owner notification sent for application: ${data.applicationId}`)
+}
+
+async function sendConfirmationEmail(applicationData: Parameters<typeof generateApplicationConfirmationEmail>[0]) {
+  if (!isMailConfigured()) {
     console.warn("SMTP credentials not configured, skipping confirmation email")
     return
   }
 
-  try {
-    const transporter = createTransporter()
-    const { subject, html } = generateApplicationConfirmationEmail(applicationData)
+  const transporter = createMailTransporter()
+  const { subject, html } = generateApplicationConfirmationEmail(applicationData)
 
-    const mailOptions = {
-      from: `FinMates <noreply@finmates.in>`,
-      to: applicationData.applicantEmail,
-      subject: subject,
-      html: html,
-    }
+  await transporter.sendMail({
+    from: getFromHeader(),
+    to: applicationData.applicantEmail,
+    subject,
+    html,
+  })
 
-    await transporter.sendMail(mailOptions)
-    console.log(`Confirmation email sent to: ${applicationData.applicantEmail}`)
-  } catch (error) {
-    console.error("Error sending confirmation email:", error)
-    throw error
-  }
+  console.log(`Confirmation email sent to: ${applicationData.applicantEmail}`)
 }
 
 // Save resume file to Supabase storage or local filesystem

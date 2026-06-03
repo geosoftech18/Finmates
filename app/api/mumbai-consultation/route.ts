@@ -1,8 +1,8 @@
-import { type NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { type NextRequest, NextResponse } from 'next/server'
+import { createMailTransporter, getFromHeader, getOwnerEmail, isMailConfigured } from '@/lib/mail'
 
-const SERVICE_NAME = "CFO Services"
-const INQUIRY_SOURCE = "Mumbai City Page — Free CFO Consultation"
+const SERVICE_NAME = 'CFO Services'
+const INQUIRY_SOURCE = 'Mumbai City Page — Free CFO Consultation'
 
 type MumbaiConsultationPayload = {
   name: string
@@ -11,32 +11,13 @@ type MumbaiConsultationPayload = {
   company: string
 }
 
-function createTransporter() {
-  const allowSelfSigned = process.env.SMTP_ALLOW_SELF_SIGNED === "true"
-
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587", 10),
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-    tls: allowSelfSigned ? { rejectUnauthorized: false } : undefined,
-  })
-}
-
-function getAdminEmail() {
-  return process.env.ADMIN_EMAIL || process.env.CONTACT_EMAIL || process.env.SMTP_USER || "info@finmates.in"
-}
-
 function escapeHtml(value: string) {
   return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;")
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
 }
 
 function getAdminEmailHtml(data: MumbaiConsultationPayload) {
@@ -86,58 +67,57 @@ function getUserConfirmationHtml(data: MumbaiConsultationPayload) {
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as Partial<MumbaiConsultationPayload>
-    const name = body.name?.trim() || ""
-    const email = body.email?.trim().toLowerCase() || ""
-    const phone = body.phone?.trim() || ""
-    const company = body.company?.trim() || ""
+    const name = body.name?.trim() || ''
+    const email = body.email?.trim().toLowerCase() || ''
+    const phone = body.phone?.trim() || ''
+    const company = body.company?.trim() || ''
 
     if (!name || !email || !phone || !company) {
       return NextResponse.json(
-        { success: false, message: "Name, email, phone and company are required." },
+        { success: false, message: 'Name, email, phone and company are required.' },
         { status: 400 },
       )
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ success: false, message: "Please enter a valid email address." }, { status: 400 })
+      return NextResponse.json({ success: false, message: 'Please enter a valid email address.' }, { status: 400 })
     }
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!isMailConfigured()) {
       return NextResponse.json(
-        { success: false, message: "Email service is not configured. Please contact support." },
+        { success: false, message: 'Email service is not configured. Please contact support.' },
         { status: 500 },
       )
     }
 
     const payload: MumbaiConsultationPayload = { name, email, phone, company }
-    const transporter = createTransporter()
-    const adminEmail = getAdminEmail()
-    const fromAddress = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER || "noreply@finmates.in"
+    const transporter = createMailTransporter()
+    const ownerEmail = getOwnerEmail()
 
     await transporter.sendMail({
-      from: `FinMates <${fromAddress}>`,
-      to: adminEmail,
+      from: getFromHeader(),
+      to: ownerEmail,
       subject: `${SERVICE_NAME} Inquiry: ${name} — Mumbai Consultation`,
       html: getAdminEmailHtml(payload),
       replyTo: email,
     })
 
     await transporter.sendMail({
-      from: `FinMates <${fromAddress}>`,
+      from: getFromHeader(),
       to: email,
-      subject: "We received your CFO consultation request - FinMates",
+      subject: 'We received your CFO consultation request - FinMates',
       html: getUserConfirmationHtml(payload),
     })
 
     return NextResponse.json({
       success: true,
-      message: "Thanks! Your consultation request has been submitted successfully.",
+      message: 'Thanks! Your consultation request has been submitted successfully.',
     })
   } catch (error) {
-    console.error("Mumbai consultation submission error:", error)
+    console.error('Mumbai consultation submission error:', error)
     return NextResponse.json(
-      { success: false, message: "Failed to submit consultation request. Please try again." },
+      { success: false, message: 'Failed to submit consultation request. Please try again.' },
       { status: 500 },
     )
   }

@@ -1,23 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
 import { isAuthorizedAdminEmail } from "@/lib/auth"
+import { createMailTransporter, getFromHeader, isMailConfigured } from "@/lib/mail"
 import { generateVerificationCode, storeVerificationCode } from "@/lib/verification-codes"
-
-// Create nodemailer transporter
-function createTransporter() {
-  const allowSelfSigned = process.env.SMTP_ALLOW_SELF_SIGNED === "true"
-
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-    tls: allowSelfSigned ? { rejectUnauthorized: false } : undefined,
-  })
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -95,7 +79,7 @@ export async function POST(request: NextRequest) {
     const verificationCode = generateVerificationCode()
 
     // Check if SMTP credentials are configured
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!isMailConfigured()) {
       console.warn("SMTP credentials not configured, using mock verification")
       // Store verification code for testing
       storeVerificationCode(trimmedEmail, verificationCode, 10)
@@ -117,10 +101,10 @@ export async function POST(request: NextRequest) {
     storeVerificationCode(trimmedEmail, verificationCode, 10)
 
     // Create transporter and send email
-    const transporter = createTransporter()
+    const transporter = createMailTransporter()
 
     const mailOptions = {
-      from: `FinMates <noreply@finmates.in>`,
+      from: getFromHeader(),
       to: trimmedEmail,
       subject: "Finmates - Email Verification Code",
       html: `

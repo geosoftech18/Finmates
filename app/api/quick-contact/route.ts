@@ -1,27 +1,11 @@
-import { type NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { type NextRequest, NextResponse } from 'next/server'
+import { createMailTransporter, getFromHeader, getOwnerEmail, isMailConfigured } from '@/lib/mail'
 
 type QuickContactPayload = {
   name: string
   email: string
   phone: string
   service: string
-}
-
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587", 10),
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  })
-}
-
-function getAdminEmail() {
-  return "info@finmates.in"
 }
 
 function getAdminEmailHtml(data: QuickContactPayload) {
@@ -59,51 +43,52 @@ function getUserConfirmationHtml(data: QuickContactPayload) {
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as Partial<QuickContactPayload>
-    const name = body.name?.trim() || ""
-    const email = body.email?.trim().toLowerCase() || ""
-    const phone = body.phone?.trim() || ""
-    const service = body.service?.trim() || ""
+    const name = body.name?.trim() || ''
+    const email = body.email?.trim().toLowerCase() || ''
+    const phone = body.phone?.trim() || ''
+    const service = body.service?.trim() || ''
 
     if (!name || !email || !phone || !service) {
-      return NextResponse.json({ success: false, message: "Name, email, phone and service are required." }, { status: 400 })
+      return NextResponse.json({ success: false, message: 'Name, email, phone and service are required.' }, { status: 400 })
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ success: false, message: "Please enter a valid email address." }, { status: 400 })
+      return NextResponse.json({ success: false, message: 'Please enter a valid email address.' }, { status: 400 })
     }
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!isMailConfigured()) {
       return NextResponse.json(
-        { success: false, message: "Email service is not configured. Please contact support." },
+        { success: false, message: 'Email service is not configured. Please contact support.' },
         { status: 500 },
       )
     }
 
-    const transporter = createTransporter()
-    const adminEmail = getAdminEmail()
-    const fromAddress = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER || "noreply@finmates.in"
+    const transporter = createMailTransporter()
+    const ownerEmail = getOwnerEmail()
+    const payload = { name, email, phone, service }
 
     await transporter.sendMail({
-      from: `FinMates <${fromAddress}>`,
-      to: adminEmail,
-      subject: "New Quick Form enquiry from website",
-      html: getAdminEmailHtml({ name, email, phone, service }),
+      from: getFromHeader(),
+      to: ownerEmail,
+      subject: 'New Quick Form enquiry from website',
+      html: getAdminEmailHtml(payload),
+      replyTo: email,
     })
 
     await transporter.sendMail({
-      from: `FinMates <${fromAddress}>`,
+      from: getFromHeader(),
       to: email,
-      subject: "We received your enquiry - FinMates",
-      html: getUserConfirmationHtml({ name, email, phone, service }),
+      subject: 'We received your enquiry - FinMates',
+      html: getUserConfirmationHtml(payload),
     })
 
     return NextResponse.json({
       success: true,
-      message: "Thanks! Your enquiry has been submitted successfully.",
+      message: 'Thanks! Your enquiry has been submitted successfully.',
     })
   } catch (error) {
-    console.error("Quick contact submission error:", error)
-    return NextResponse.json({ success: false, message: "Failed to submit enquiry. Please try again." }, { status: 500 })
+    console.error('Quick contact submission error:', error)
+    return NextResponse.json({ success: false, message: 'Failed to submit enquiry. Please try again.' }, { status: 500 })
   }
 }
