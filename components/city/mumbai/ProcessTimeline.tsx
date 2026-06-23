@@ -11,10 +11,10 @@ const steps = [
     phase: 'Financial Health Audit & Diagnosis',
     duration: 'Week 1–2',
     tag: 'Discovery',
-    body: `•	 We begin with a rigorous, no-assumptions deep dive into your business's financial anatomy. Our CFOs analyze three years of historical ledgers, reconcile your balance sheet line-by-line, and map every material cash flow gap—identifying hidden capital leakages that most founders never knew existed. 
+    body: `We start with a rigorous, no-assumptions deep dive into your business's financial anatomy. Your assigned CFO reviews three years of historical ledgers, reconciles your balance sheet line-by-line, and maps every material cash flow gap — surfacing capital leakages that most founders never knew existed. 
 
-   We benchmark your unit economics, working-capital cycle, and cost structure against Mumbai sector peers.  `,
-    deliverables: ['Financial Health Report', 'Capital leakage map', 'Benchmark analysis', 'Intervention priority list'],
+  We then benchmark your unit economics, working-capital cycle, and cost structure against Mumbai sector peers, giving you an unvarnished picture of where you actually stand.  `,
+    deliverables: ['Comprehensive Financial Health Report ', 'Capital leakage and waste map ', 'Industry benchmark analysis ', 'Industry benchmark analysis '],
     accent: '#008bd0',
     light: 'rgba(0,139,208,0.08)',
     border: 'rgba(0,139,208,0.2)',
@@ -25,9 +25,9 @@ const steps = [
     phase: 'Strategic Blueprint & System Setup',
     duration: 'Week 3–5',
     tag: 'Architecture',
-    body: `With the diagnostic complete, we move from insight to infrastructure. Your assigned Virtual CFO architects a fully customised financial operating model — dynamic 12-month projections with scenario branches, a rolling cash flow forecast calibrated to your specific revenue cycle, and a structured cap table and funding strategy if required.
+    body: `With the diagnostic complete, we move from insight to infrastructure. Your Virtual CFO builds a fully customised financial operating model — dynamic 12-month projections with scenario branches, a rolling cash flow forecast calibrated to your specific revenue cycle, and a structured cap table and funding strategy where required. 
 
-Simultaneously, we design and deploy your executive MIS dashboard: a single, real-time view of your P&L, cash position, burn rate, and operational KPIs — built to the precision standards expected by institutional investors and lenders. By the end of this phase, your financial reporting will be indistinguishable from that of a company ten times your size.`,
+We simultaneously design and deploy your executive MIS dashboard: a single, real-time view of your P&L, cash position, burn rate, and operational KPIs. By the end of this phase, your financial reporting will be indistinguishable from that of a company three times your size. `,
     deliverables: ['Custom 12-month financial model', 'Rolling cash flow framework', 'Executive MIS dashboard', 'Investor-ready reporting pack'],
     accent: '#323a85',
     light: 'rgba(50,58,133,0.08)',
@@ -39,9 +39,9 @@ Simultaneously, we design and deploy your executive MIS dashboard: a single, rea
     phase: 'Ongoing Advisory & Execution',
     duration: 'Month 2 onwards',
     tag: 'Partnership',
-    body: `This is where long-term financial transformation happens. Your Virtual CFO becomes a permanent fixture in your leadership rhythm — attending weekly finance reviews, monthly board meetings, and quarterly strategic planning sessions. We actively manage compliance calendars across GST, advance tax, and Maharashtra statutory filings so nothing surprises you at year-end.
+    body: `This is where lasting financial transformation happens. Your Virtual CFO becomes a permanent fixture in your leadership rhythm — attending weekly finance reviews, monthly board meetings, and quarterly strategic planning sessions. 
 
-As your business grows, we evolve your financial architecture with it: renegotiating vendor terms, supporting fundraising rounds, stress-testing new market entries, and continuously recalibrating your cash reserves to ensure your runway stays firmly in your control. You gain a seasoned financial co-pilot without the ₹60–80L annual cost of a full-time CFO hire.`,
+As your business grows, we grow your financial architecture with it: renegotiating vendor terms, supporting fundraising rounds, stress-testing new market entries, and continuously recalibrating your cash reserves. You gain a seasoned financial co-pilot without the ₹60–80L annual overhead of a full-time CFO hire. `,
     deliverables: ['Weekly & monthly CFO reviews', 'Proactive compliance management', 'Fundraising & investor support', 'Ongoing model recalibration'],
     accent: '#008bd0',
     light: 'rgba(37,99,234,0.08)',
@@ -149,7 +149,7 @@ export default function ProcessTimeline() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
-         Your Roadmap to Financial Clarity: How It Works Sub-text: From the first diagnostic call to a long-term strategic partnership—a clear, structured path with defined deliverables at every milestone.  
+          From the first diagnostic call to a long-term strategic partnership — a structured path with clear deliverables at every milestone.  
           </p>
         </div>
 

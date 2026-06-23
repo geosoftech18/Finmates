@@ -210,8 +210,7 @@ export default function TrustSection() {
             </span>
           </h2>
           <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Backed by India's highest financial certifications and trusted by Mumbai's fastest-growing
-            businesses across logistics, technology, and manufacturing.
+          Trusted by founders, promoters, and finance heads across Mumbai's logistics, technology, retail, and healthcare sectors. Here's what strategic CFO support delivers in practice. 
           </p>
         </div>
 

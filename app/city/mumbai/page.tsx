@@ -16,7 +16,14 @@ import FinmatesHeader from '@/components/header2';
 import ServiceAreas from '@/components/city/mumbai/ServiceAreas';
 import { ConsultationModalProvider } from '@/components/city/mumbai/ConsultationModal';
 import CTASection from '@/components/city/mumbai/CTASection';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Virtual CFO Services in Mumbai | FinMates ',
+  description:
+    'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs. Book a free consultation today. ',
+  generator: 'GEO SOFTECH',
+}
 
 export default function Home() {
   return (
@@ -35,9 +42,9 @@ export default function Home() {
       <Industries />
       <ServiceAreas />
       <LocationSection />
-      <CTASection/>
       <FAQSection />
       <LongFormContent />
+      <CTASection/>
       <FooterTop />
       <Footer/>
       </main>

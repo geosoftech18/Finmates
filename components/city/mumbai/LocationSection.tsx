@@ -195,7 +195,8 @@ export default function LocationSection() {
               </span>
             </h2>
             <p className="text-base text-gray-500 leading-relaxed">
-            Visit us at our Malad West office or connect remotely—your strategic financial partner is available whenever you need clarity, compliance, and growth-focused advice.  
+            Visit us at our Malad West office or connect remotely — your dedicated finance partner is available whenever you need strategic clarity, compliance guidance, or growth-focused advisory. <br /> <br />
+            Visit us at our Malad West office or connect remotely — your dedicated finance partner is available whenever you need strategic clarity, compliance guidance, or growth-focused advisory. 
             </p>
           </div>
 

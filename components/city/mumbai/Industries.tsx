@@ -14,7 +14,7 @@ const industries = [
     icon: '💻',
     name: 'SaaS & Technology',
     challenges: ['MRR/ARR tracking', 'Churn analysis', 'Burn rate optimization'],
-    solution: 'SaaS-specific financial models, cohort analysis, and investor-ready unit economics.',
+    solution: 'SaaS-specific financial models, cohort analysis, and investor-ready unit economics built for Mumbai\'s growing tech ecosystem. .',
     img: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg',
   },
   {
@@ -28,7 +28,7 @@ const industries = [
     icon: '🏭',
     name: 'Manufacturing',
     challenges: ['Working capital cycles', 'COGS optimization', 'Inventory management'],
-    solution: 'Manufacturing cost accounting, capacity utilization models, and margin improvement plans.',
+    solution: 'Manufacturing cost accounting, capacity utilisation models, and margin improvement programs for Mumbai-region production businesses. ',
     img: 'https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg',
   },
   {
@@ -49,7 +49,7 @@ const industries = [
     icon: '🍽️',
     name: 'Restaurants & F&B',
     challenges: ['Food cost control', 'Outlet P&L', 'Franchise finance'],
-    solution: 'Recipe costing, outlet-level dashboards, and expansion financial modeling.',
+    solution: 'Recipe costing, outlet-level dashboards, and expansion financial modelling for restaurant groups across Mumbai. ',
     img: 'https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg',
   },
   {
@@ -331,8 +331,7 @@ export default function Industries() {
             <span className="text-p-2">Across 15+ Industries</span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Generic financial advice doesn't work. We bring deep sector knowledge to every
-            engagement, understanding your industry's unique financial dynamics.
+            Generic financial templates don't work for complex businesses. We bring deep sector knowledge to every engagement — understanding your industry's unit economics, compliance obligations, and growth dynamics from day one.
           </p>
         </div>
 

@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, CheckCircle2, TrendingUp, Shield, Clock } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
 
+
+
+
 const valuePoints = [
   { line1: 'Strategic CFO', line2: 'Advisory' },
   { line1: 'Dedicated Finance', line2: 'Expert' },
@@ -289,19 +292,19 @@ export default function HeroSection() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#008bd0] inline-block" />
-              Mumbai's Premier Virtual CFO Practice
+              Mumbai's Most Trusted Virtual CFO Practice 
             </div>
 
             {/* H1 — semantic, SEO-optimized */}
             <h1
               className={`text-2xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white leading-[1.12] tracking-tight mb-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-              Virtual CFO Services {" "}
+              Virtual CFO Services  {" "}
               <span className="md:block mt-1" style={{ color: '#60c8f0' }}>
                 in Mumbai {" "}
               </span>
               <span className="md:block text-white mt-1">
-                Built for Ambitious{' '}
+              Built for Businesses That Mean to {' '}
                 <span
                   className="relative inline-block"
                   style={{
@@ -311,7 +314,7 @@ export default function HeroSection() {
                     backgroundClip: 'text',
                   }}
                 >
-                  Growth
+                  Scale
                 </span>
               </span>
             </h1>
@@ -320,7 +323,7 @@ export default function HeroSection() {
             <p
               className={`text-base sm:text-lg text-white/75 leading-relaxed max-w-xl mb-8 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-             You're scaling fast—your finances should keep up. Our Virtual CFO services give Mumbai businesses direct access to Fortune-500-grade financial strategy, proactive cash-flow management, and board-ready reporting at a fraction of the cost of a full-time executive hire.  
+             You don't need a full-time CFO to get full-time financial clarity. FinMates gives Mumbai founders and business owners direct access to senior CFO expertise — covering cash flow, compliance, fundraising, and strategic planning — at a cost that makes business sense.  
             </p>
 
             {/* Trust badges row */}

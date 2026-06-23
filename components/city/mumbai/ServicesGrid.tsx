@@ -15,7 +15,7 @@ const services = [
     icon: BarChart2,
     title: 'Cash Flow Forecasting & Working Capital Management',
     tag: 'Liquidity Intelligence',
-    body: `•	 Staying on top of your cash runway requires dynamic 13-week rolling models, AR/AP cycle optimization, and liquidity structures calibrated to Mumbai's extended debtor cycles. Every cash inflow and outflow is visible so growth decisions are made on fact, not intuition. `,
+    body: `Staying solvent while scaling requires more than a monthly bank reconciliation. We install dynamic 13-week rolling cash flow models, AR/AP cycle optimisation, and liquidity structures calibrated to Mumbai's extended debtor cycles. Every significant cash movement is visible — so every growth decision is grounded in fact, not guesswork. `,
     link: '#cash-flow-forecasting',
     linkLabel: 'Explore Cash Flow Services',
     accent: '#008bd0',
@@ -28,7 +28,7 @@ const services = [
     icon: GitBranch,
     title: 'Strategic Financial Modelling & Scenario Planning',
     tag: 'Growth Architecture',
-    body: `Whether you are planning a capital raise or mapping a multi-year market expansion, our Virtual CFOs build dynamic 3-5 year financial models with integrated scenario analysis. Negotiate with investors and lenders from a position of rigorous operational data. `,
+    body: `Whether you're preparing for a capital raise or mapping a three-year market expansion, your Virtual CFO builds dynamic financial models with integrated scenario analysis. You negotiate with investors and lenders from a position of rigorous, defensible data — not optimistic projections.  `,
     link: '#financial-modelling',
     linkLabel: 'Explore Financial Modelling',
     accent: '#323a85',
@@ -41,7 +41,7 @@ const services = [
     icon: ShieldCheck,
     title: 'Tax Strategy & Regulatory Compliance',
     tag: 'Risk Elimination',
-    body: `Maharashtra's complex compliance landscape—covering GST, Corporate Tax, Advance Tax, PT, FEMA, and STPI/SEZ certifications—demands a proactive approach. Our Virtual CFOs engineer legitimate tax optimization positions that protect your operating margins. `,
+    body: `Maharashtra's compliance landscape — spanning GST, Corporate Tax, Advance Tax, Professional Tax, FEMA, and STPI/SEZ certifications — demands a proactive finance team, not a reactive one. Our Virtual CFOs engineer legitimate tax optimisation positions that protect your operating margins all year round.  `,
     link: '#tax-compliance',
     linkLabel: 'Explore Compliance Services',
     accent: '#008bd0',
@@ -54,7 +54,7 @@ const services = [
     icon: LayoutDashboard,
     title: 'Advanced MIS Reporting & Executive Dashboards',
     tag: 'Boardroom Intelligence',
-    body: `Turn raw accounting data into clear corporate decisions. We design automated executive dashboards tracking key unit economics, contribution margins, and department-level burn, giving your board and investors a single source of truth. `,
+    body: `Turn raw accounting data into clear, confident decisions. We design automated executive dashboards tracking key unit economics, contribution margins, and department-level burn — giving your board and investors a single, authoritative source of truth.   `,
     link: '#mis-reporting',
     linkLabel: 'Explore MIS & Reporting',
     accent: '#002244',
@@ -242,7 +242,7 @@ export default function ServicesGrid() {
             className="text-2xl sm:text-4xl lg:text-[2.6rem] font-bold leading-[1.15] tracking-tight mb-4"
             style={{ color: '#002244' }}
           >
-            Enterprise-Grade Financial Guidance {" "}
+            Enterprise-Grade CFO Services, {" "}
             <span
               className="md:block mt-1"
               style={{
@@ -252,12 +252,12 @@ export default function ServicesGrid() {
                 backgroundClip: 'text',
               }}
             >
-              Tailored for Mumbai Businesses
+              Tailored for Mumbai Businesses 
             </span>
           </h2>
 
           <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
-          Four high-impact financial disciplines—delivered by senior CFO professionals who understand Mumbai's regulatory environment, competitive talent market, and capital ecosystem as well as you do.  
+          Four high-impact financial disciplines — delivered by senior CFO professionals who understand Mumbai's regulatory environment, competitive cost structure, and capital ecosystem as well as you do.  
           </p>
         </div>
 

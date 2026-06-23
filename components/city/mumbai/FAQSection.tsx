@@ -7,44 +7,48 @@ import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal
 const faqs = [
   {
     id: 'q1',
-    question: 'What is the difference between a Virtual CFO and an in-house accountant for my Mumbai business?',
-    answer: `This is one of the most important distinctions a growing Mumbai business can understand. A traditional in-house accountant or even a standard transactional CA firm is fundamentally a backward-looking function. Their mandate is to accurately record what has already happened, reconcile past ledgers, file GST returns, and keep your books clean for an audit. This work is essential, but it is reactive by nature.  
+    question: ' What is the difference between a Virtual CFO and an in-house accountant for my Mumbai business? ',
+    answer: `A traditional in-house accountant is a backward-looking function — recording what has already happened, filing GST returns, and maintaining clean books. This work is essential, but it is reactive. 
 
-A Virtual CFO operates in an entirely different dimension. The focus is on forward-looking financial strategy—the kind that guides decisions before money moves, not after. For a company navigating Mumbai's highly competitive commercial ecosystem, that means building rolling 12-month cash flow forecasts, conducting sensitivity analyses on your margins before you sign a new vendor contract, structuring your working capital facilities proactively, and preparing investor-grade MIS that can survive intense due diligence. 
+A Virtual CFO operates in an entirely different dimension. The focus is forward-looking financial strategy: building 12-month cash flow forecasts, stress-testing margins before you sign new vendor contracts, structuring your working capital proactively, and preparing investor-grade MIS that holds up under due diligence. 
 
-Think of it this way: your accountant is your financial historian; your Virtual CFO is your financial architect.  `,
+Think of it this way: your accountant is your financial historian. Your Virtual CFO is your financial architect.  `,
     category: 'Role & Value',
   },
   {
     id: 'q2',
-    question: 'How is a Virtual CFO priced, and how does it compare to the cost of a full-time CFO in Mumbai?',
-    answer: `Virtual CFO services are structured around two primary commercial models, and the right choice depends on where your business is in its growth journey.
+    question: 'How much do Virtual CFO services cost in Mumbai, and how does it compare to hiring a full-time CFO? ',
+    answer: `Virtual CFO services are structured across two models: 
 
-Monthly retainer model: Typically ranging from ₹30,000 to ₹1,20,000 per month depending on scope. This provides ongoing access to a dedicated CFO team for continuous financial oversight, monthly MIS preparation, board-level reporting, compliance calendars, and strategic advisory. This model suits businesses with consistent complexity: funding-stage startups, manufacturers with multi-location operations, or services firms managing investor relationships.
+Monthly retainer: Typically ₹30,000 to ₹1,20,000 per month depending on scope — covering ongoing financial oversight, MIS preparation, board reporting, compliance management, and strategic advisory. This suits startups, funded companies, and SMEs with consistent complexity. 
 
-Project-based model: Applies to discrete, high-stakes engagements such as Series A fundraise preparation, ERP implementation oversight, M&A financial due diligence, or a one-time restructuring exercise. These are scoped, time-bound, and priced on deliverables.
+Project-based: For discrete, high-stakes engagements such as Series A fundraise preparation, M&A due diligence, or one-time financial restructuring exercises. 
 
-A qualified CFO in Mumbai — one with the pedigree to meaningfully guide your financial strategy — commands a CTC of ₹35 to ₹70 lakh per annum, before PF, gratuity, ESOP, and office overhead. For most businesses below ₹25 crore in revenue, that cost is economically indefensible. A Virtual CFO delivers the same strategic depth — often from a team of specialists rather than a single individual — at 15–25% of that cost, with no long-term employment liability and the flexibility to scale scope up or down as your needs evolve.
-
-Now consider the alternative. A qualified CFO in Mumbai — one with the pedigree to meaningfully guide your financial strategy — commands a CTC of ₹35 to ₹70 lakh per annum, before PF, gratuity, ESOP, and office overhead. For most businesses below ₹25 crore in revenue, this cost is economically indefensible. A Virtual CFO delivers the same strategic depth — often from a team of specialists rather than a single individual — at 15–25% of that cost, with no long-term employment liability and the flexibility to scale scope up or down as your needs evolve.`,
+A qualified CFO in Mumbai commands ₹35–70 lakh per annum in CTC — before PF, gratuity, ESOP, and overhead. For most businesses below ₹25 crore in revenue, that cost is difficult to justify. Our outsourced CFO services deliver the same strategic depth at 15–25% of that cost, with no long-term employment liability and the flexibility to scale scope as your needs evolve. `,
     category: 'Pricing',
   },
   {
     id: 'q3',
-    question: 'How does your Virtual CFO team stay current with Mumbai and Maharashtra tax and regulatory compliance requirements?',
-    answer: `Maharashtra is one of India's most actively regulated commercial jurisdictions, and the compliance calendar for a Mumbai-based business is genuinely demanding. Between central obligations — quarterly TDS filings, monthly GSTR-1 and GSTR-3B, advance tax instalments, annual ITR and income tax audit deadlines — and state-level requirements such as Maharashtra Professional Tax (PT), MLWF contributions, PTRC and PTEC registration maintenance, and Shop & Establishment Act renewals, the exposure surface is wide.
+    question: 'How does a Virtual CFO handle Maharashtra\'s complex tax and compliance requirements? ',
+    answer: `Maharashtra is one of India's most actively regulated commercial jurisdictions. A Mumbai-registered business must manage central obligations — TDS, GSTR-1/3B, advance tax, annual ITR — alongside state-level requirements including Maharashtra Professional Tax (PT), MLWF contributions, PTRC/PTEC maintenance, and Shop & Establishment renewals. 
 
-Our approach operates on four levels: dedicated compliance specialists who track regulatory updates from the CBDT, CBIC, Maharashtra GST authority, and the MCA in real time; proprietary compliance calendars issued to every client at onboarding — a forward-looking schedule mapping every filing deadline and statutory renewal 12 months out; active representation before the GST Council and ICAI; and sector-specific compliance leads for specialised businesses such as healthcare operators navigating Clinical Establishment Act obligations or tech startups managing FEMA and ECB rules. The result is zero compliance surprises and an audit-ready financial posture year-round.`,
+Our approach operates on four levels: dedicated compliance specialists tracking regulatory updates from the CBDT, CBIC, and Maharashtra GST authority in real time; a forward-looking compliance calendar issued to every client at onboarding; sector-specific compliance leads for specialised businesses; and active coordination with your statutory auditors. The result is zero compliance surprises and an audit-ready financial posture throughout the year. `,
     category: 'Compliance',
   },
   {
     id: 'q4',
-    question: 'How is my company\'s financial data kept secure and confidential when working with an outsourced CFO?',
-    answer: `Data confidentiality is non-negotiable when a third party has visibility into your most sensitive financial information, and we treat this with the same rigour a listed company's audit committee would demand.
+    question: 'Can a Virtual CFO support our fundraising process or SME IPO preparation? ',
+    answer: `Yes — fundraising and capital market advisory are core strengths of the FinMates team. We have supported over 40 fundraising processes for Mumbai-based startups and growth-stage businesses, covering Series A/B equity rounds, structured debt financing, and SME IPO listing readiness. 
 
-Our infrastructure is entirely cloud-hosted on enterprise-grade platforms — Microsoft Azure and AWS — with AES-256 encryption at rest and TLS 1.3 in transit. Access to client data is role-based and on the principle of least privilege: only team members directly assigned to your engagement can view your files, and all access events are logged and auditable.
+Every engagement begins with a comprehensive Non-Disclosure Agreement and a Data Processing Agreement compliant with India's Digital Personal Data Protection Act, 2023. We work within your existing accounting environment — Zoho Books, QuickBooks, or Tally Prime — meaning your data never migrates to an unfamiliar system.  `,
+    category: 'Security',
+  },
+  {
+    id: 'q5',
+    question: 'Is my company\'s financial data secure when working with an outsourced CFO team? ',
+    answer: `Data security is treated as a non-negotiable. Our infrastructure is hosted on enterprise-grade cloud platforms — Microsoft Azure and AWS — with AES-256 encryption at rest and TLS 1.3 in transit. Access to client data is strictly role-based: only team members directly assigned to your engagement can view your files, and all access events are logged and auditable. 
 
-Every client engagement begins with a comprehensive Non-Disclosure Agreement and a Data Processing Agreement compliant with India's Digital Personal Data Protection Act, 2023 — specifically naming the categories of data accessed, the permitted use, the retention period, and the deletion protocol at engagement end. Operationally, we use dedicated client workspaces within platforms like Zoho Books, QuickBooks, or Tally Prime — whichever your business already runs — meaning your data never moves to a new system. Annual third-party security audits and ISO 27001-aligned information security protocols ensure our posture remains current as the threat landscape evolves.`,
+Our fundraising support includes pitch deck architecture, financial model preparation, investor-grade MIS structuring, data room management, and term sheet review. For SME IPO readiness, we coordinate SEBI compliance preparation, investor-ready annual report design, and due diligence support. Our clients consistently raise faster, at stronger valuations, with less friction. `,
     category: 'Security',
   },
 ];
