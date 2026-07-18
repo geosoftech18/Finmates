@@ -1,6 +1,5 @@
 "use client"
 
-import type { Metadata } from "next"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,6 +13,9 @@ import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
+import JsonLd from "@/components/seo/JsonLd"
+import { buildServicesItemListJsonLd } from "@/lib/seo-schemas"
 
 
 
@@ -180,6 +182,7 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <JsonLd data={buildServicesItemListJsonLd()} />
       <MagneticCursor/>
      <FinmatesHeader/>
       
@@ -188,7 +191,16 @@ export default function ServicesPage() {
         {/* Hero Section */}
         <section className="h-full w-full bg-blue-800">
           <div className="m-auto flex h-full w-full max-w-7xl items-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
-            <div className="flex w-full flex-col items-center md:flex-row md:justify-between">
+            <div className="flex w-full flex-col">
+              <PageBreadcrumbs
+                className="mb-6"
+                variant="light"
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Services" },
+                ]}
+              />
+              <div className="flex w-full flex-col items-center md:flex-row md:justify-between">
               <div className="flex-col items-center justify-center">
                 <h3 className="mb-5 text-center text-lg text-white md:ml-5 md:text-start">Our Expertise</h3>
                 <h1 className="w-full text-center text-3xl font-bold text-white md:ml-4 md:w-2/3 md:text-4xl lg:text-5xl">
@@ -203,6 +215,7 @@ export default function ServicesPage() {
                 Be Strategic about your business finance at every stage of your journey. Our experienced professionals
                 can simplify your complex problems with ease.
               </p>
+              </div>
             </div>
           </div>
         </section>

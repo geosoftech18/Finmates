@@ -9,6 +9,7 @@ import MagneticCursor from "@/components/MagneticCursor"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import { format } from "date-fns"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
 
 const TipTapViewer = dynamic(() => import("@/components/blog/TipTapViewer"), {
   ssr: false,
@@ -89,6 +90,15 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
 
       <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] text-white mt-24 pb-10">
         <div className="container mx-auto px-6 max-w-4xl">
+          <PageBreadcrumbs
+            className="mb-4"
+            variant="light"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: blog.title },
+            ]}
+          />
           <Button variant="ghost" className="mb-6 text-white hover:bg-white/20" onClick={() => router.push("/blog")}>
             <ArrowLeft className="mr-2 w-4 h-4" />
             Back to Blogs

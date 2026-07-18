@@ -7,11 +7,16 @@ import Footer from "@/components/footer"
 import FinmatesHeader from "@/components/header2"
 import ServiceFaqAccordion from "@/components/services/ServiceFaqAccordion"
 import QuickContactCTA from "@/components/home/quick-contact-cta"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
+import JsonLd from "@/components/seo/JsonLd"
+import { pageCanonical } from "@/lib/seo"
+import { buildFaqPageJsonLd, buildServiceJsonLd } from "@/lib/seo-schemas"
 
 export const metadata: Metadata = {
   title: "F&A Outsourcing & Accounting Services for Businesses | FinMates",
   description:
     "F&A outsourcing and accounting services that streamline bookkeeping, payables and reporting. Reduce costs, improve accuracy and free internal teams. Learn more about outsourcing with FinMates.",
+  ...pageCanonical("/services/F&A-outsourcing"),
 }
 
 const faqs = [
@@ -45,6 +50,18 @@ const faqs = [
 export default function Page() {
   return (
     <main>
+      <JsonLd
+        data={[
+          buildServiceJsonLd({
+            name: "F&A Outsourcing",
+            description:
+              "F&A outsourcing and accounting services that streamline bookkeeping, payables and reporting for growing businesses.",
+            path: "/services/F&A-outsourcing",
+            serviceType: "Finance and Accounting Outsourcing",
+          }),
+          buildFaqPageJsonLd(faqs),
+        ]}
+      />
       <MagneticCursor/>
      <FinmatesHeader/>
 
@@ -60,6 +77,15 @@ export default function Page() {
         <div className="relative m-auto flex h-full w-full max-w-8xl items-center justify-center gap-10 px-6 py-20 max-md:flex-col md:px-10 md:py-20">
           <div className="top-50 absolute -left-30 z-0 h-110 w-110 rounded-full bg-blue-900"></div>
           <div className="relative z-10 w-full max-w-5xl space-y-5 md:space-y-8">
+            <PageBreadcrumbs
+              className="mb-2 justify-center md:justify-start"
+              variant="light"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Services", href: "/services" },
+                { label: "F&A Outsourcing" },
+              ]}
+            />
             <h1 className="w-full text-center xl:text-5xl font-bold text-white md:text-start text-3xl lg:text-5xl">
             F&A Outsourcing for Growing Businesses
             </h1>

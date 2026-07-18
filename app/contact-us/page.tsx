@@ -6,17 +6,23 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import ContactForm from "@/components/contact/contact-form"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
+import JsonLd from "@/components/seo/JsonLd"
+import { pageCanonical } from "@/lib/seo"
+import { buildContactPageJsonLd } from "@/lib/seo-schemas"
 import { Facebook, Twitter, Linkedin, Instagram, Github, Youtube, Locate, LocateIcon, Landmark, LandmarkIcon, LucideLandmark, MapPin, Phone, Clock, MagnetIcon } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Contact Expert CFO & Financial Advisory Team in India | FinMates",
   description:
     "Contact our expert CFO and financial advisory team in India for tailored business solutions. Get support on taxation, compliance and fundraising. Reach out today to get started.",
+  ...pageCanonical("/contact-us"),
 }
 
 export default function ContactPage() {
   return (
     <>
+    <JsonLd data={buildContactPageJsonLd()} />
     <MagnetIcon/>
     <FinmatesHeader/>
     <div className="min-h-screen mt-20 bg-white">
@@ -24,6 +30,14 @@ export default function ContactPage() {
       {/* Header */}
       <header className="bg-blue-600 text-white py-18">
         <div className="container mx-auto px-4">
+          <PageBreadcrumbs
+            className="mb-6 justify-start"
+            variant="light"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Contact Us" },
+            ]}
+          />
           <h1 className="text-5xl font-semibold text-center">Contact Us</h1>
         </div>
       </header>

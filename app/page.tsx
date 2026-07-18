@@ -25,6 +25,7 @@ import { TestimonialCard } from "@/components/testimonials/testimonial-card"
 import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
 import { useRouter } from "next/navigation"
+import { buildBreadcrumbJsonLd } from "@/lib/seo"
 
 interface HomeBlog {
   id: string
@@ -526,6 +527,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbJsonLd([{ label: "Home", href: "/" }])),
+        }}
+      />
       <MagneticCursor />
 
       <FinmatesHeader/>

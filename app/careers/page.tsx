@@ -11,6 +11,7 @@ import type { Job } from "@/types/job"
 import { JobsCarousel } from "@/components/careers/JobsCarousel"
 import { JobDetailsModal } from "@/components/careers/JobDetailsModal"
 import { ApplyForm } from "@/components/careers/ApplyForm"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
 
 export default function CareersPage() {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
@@ -112,6 +113,14 @@ export default function CareersPage() {
 
       <main>
         <div className="m-auto flex aspect-square h-96 w-full max-w-7xl flex-col items-center justify-center gap-5 overflow-hidden rounded-b-full bg-gradient-to-bl from-[#003b8d] to-[#e6edf7] px-5 pb-10 pt-20 md:h-[600px] md:py-32">
+          <PageBreadcrumbs
+            className="mb-2 justify-center"
+            variant="dark"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Careers" },
+            ]}
+          />
           <h1 className="text-2xl font-bold text-black md:text-3xl">Career Opportunities at FinMates</h1>
           <h2 className="text-xl font-bold text-black md:text-2xl">Begin your Finmates journey!</h2>
         </div>

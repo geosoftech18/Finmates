@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, CheckCircle2, TrendingUp, Shield, Clock } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
+import PageBreadcrumbs from '@/components/seo/PageBreadcrumbs';
 
 
 
@@ -278,6 +279,14 @@ export default function HeroSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pt-32 lg:pb-24 w-full">
+        <PageBreadcrumbs
+          className="mb-6"
+          variant="light"
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Mumbai' },
+          ]}
+        />
         <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr] gap-12 lg:gap-16 items-center">
 
           {/* ── Column 1: Copy (60%) ── */}

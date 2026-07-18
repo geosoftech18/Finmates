@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, ArrowRight, Clock } from "lucide-react"
 import { format } from "date-fns"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
 
 interface Blog {
   id: string
@@ -53,6 +54,14 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#003b8d] to-[#008bd0] pt-40 md:pt-32 pb-18 text-white ">
         <div className="container mx-auto px-6 max-w-7xl">
+          <PageBreadcrumbs
+            className="mb-6"
+            variant="light"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog" },
+            ]}
+          />
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6">
               Our Blog

@@ -12,6 +12,7 @@ import { TestimonialSlider } from "@/components/testimonials/slider"
 import { testimonials } from "@/components/testimonials/data"
 import { useRouter } from "next/navigation"
 import AboutFounder from "@/components/about/about-founder"
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs"
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -453,6 +454,14 @@ export default function Home() {
          onMouseLeave={() => setIsCarouselHovered(false)}
        >
          <div className="max-w-7xl mx-auto">
+           <PageBreadcrumbs
+             className="mb-6"
+             variant="dark"
+             items={[
+               { label: "Home", href: "/" },
+               { label: "About" },
+             ]}
+           />
            <div className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-500 ease-in-out ${
              isTransitioning ? 'opacity-90 scale-[0.98]' : 'opacity-100 scale-100'
            }`}>

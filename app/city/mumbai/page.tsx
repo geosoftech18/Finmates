@@ -16,18 +16,40 @@ import FinmatesHeader from '@/components/header2';
 import ServiceAreas from '@/components/city/mumbai/ServiceAreas';
 import { ConsultationModalProvider } from '@/components/city/mumbai/ConsultationModal';
 import CTASection from '@/components/city/mumbai/CTASection';
+import JsonLd from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
+import { pageCanonical } from '@/lib/seo';
+import { buildServiceJsonLd, buildWebPageJsonLd } from '@/lib/seo-schemas';
 
 export const metadata: Metadata = {
   title: 'Virtual CFO Services in Mumbai | FinMates ',
   description:
     'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs. Book a free consultation today. ',
   generator: 'GEO SOFTECH',
+  ...pageCanonical('/city/mumbai'),
 }
 
 export default function Home() {
   return (
     <ConsultationModalProvider>
+      <JsonLd
+        data={[
+          buildWebPageJsonLd({
+            name: 'Virtual CFO Services in Mumbai',
+            description:
+              'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs.',
+            path: '/city/mumbai',
+          }),
+          buildServiceJsonLd({
+            name: 'Virtual CFO Services in Mumbai',
+            description:
+              'Virtual CFO services in Mumbai for startups and SMEs — strategic financial leadership without full-time CFO cost.',
+            path: '/city/mumbai',
+            serviceType: 'Virtual CFO Services',
+            areaServed: 'Mumbai, India',
+          }),
+        ]}
+      />
       <div className="mumbai-page min-h-screen bg-white text-p-3">
        <MagnetIcon/>
        <FinmatesHeader/>
