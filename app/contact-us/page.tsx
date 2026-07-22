@@ -28,7 +28,7 @@ export default function ContactPage() {
     <div className="min-h-screen mt-20 bg-white">
       
       {/* Header */}
-      <header className="bg-blue-600 text-white py-18">
+      <header className="bg-blue-600 text-white py-14">
         <div className="container mx-auto px-4">
           <PageBreadcrumbs
             className="mb-6 justify-start"
