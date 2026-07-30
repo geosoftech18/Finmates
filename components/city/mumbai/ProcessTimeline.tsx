@@ -14,7 +14,7 @@ const steps = [
     body: `We start with a rigorous, no-assumptions deep dive into your business's financial anatomy. Your assigned CFO reviews three years of historical ledgers, reconciles your balance sheet line-by-line, and maps every material cash flow gap — surfacing capital leakages that most founders never knew existed. 
 
   We then benchmark your unit economics, working-capital cycle, and cost structure against Mumbai sector peers, giving you an unvarnished picture of where you actually stand.  `,
-    deliverables: ['Comprehensive Financial Health Report ', 'Capital leakage and waste map ', 'Industry benchmark analysis ', 'Industry benchmark analysis '],
+    deliverables: ['Comprehensive Financial Health Report ', 'Capital leakage and waste map ', 'Industry benchmark analysis ', 'Working-capital cycle assessment'],
     accent: '#008bd0',
     light: 'rgba(0,139,208,0.08)',
     border: 'rgba(0,139,208,0.2)',
@@ -290,8 +290,8 @@ export default function ProcessTimeline() {
                       Deliverables
                     </p>
                     <ul className="flex flex-col gap-3">
-                      {step.deliverables.map((d) => (
-                        <li key={d} className="flex items-start gap-2.5">
+                      {step.deliverables.map((d, i) => (
+                        <li key={`${step.number}-d-${i}`} className="flex items-start gap-2.5">
                           <span
                             className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                             style={{ backgroundColor: `${step.accent}18` }}
@@ -415,8 +415,8 @@ export default function ProcessTimeline() {
                         Deliverables
                       </p>
                       <ul className="grid grid-cols-1 gap-1.5">
-                        {step.deliverables.map((d) => (
-                          <li key={d} className="flex items-center gap-2">
+                        {step.deliverables.map((d, i) => (
+                          <li key={`${step.number}-m-${i}`} className="flex items-center gap-2">
                             <span
                               className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                               style={{ backgroundColor: step.accent }}

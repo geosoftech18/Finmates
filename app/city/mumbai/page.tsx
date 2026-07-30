@@ -6,7 +6,12 @@ import TrustSection from '@/components/city/mumbai/TrustSection';
 import LocationSection from '@/components/city/mumbai/LocationSection';
 import FAQSection from '@/components/city/mumbai/FAQSection';
 import AboutSection from '@/components/city/mumbai/AboutSection';
+import CostCapabilityMatrix from '@/components/city/mumbai/CostCapabilityMatrix';
+import Section203Guide from '@/components/city/mumbai/Section203Guide';
 import CoreServices from '@/components/city/mumbai/CoreServices';
+import SectorEdge from '@/components/city/mumbai/SectorEdge';
+import DigitalInfrastructure from '@/components/city/mumbai/DigitalInfrastructure';
+// import PricingTiers from '@/components/city/mumbai/PricingTiers';
 import Industries from '@/components/city/mumbai/Industries';
 import LongFormContent from '@/components/city/mumbai/LongFormContent';
 import FooterTop from '@/components/city/mumbai/Footer-top';
@@ -22,11 +27,26 @@ import { pageCanonical } from '@/lib/seo';
 import { buildServiceJsonLd, buildWebPageJsonLd } from '@/lib/seo-schemas';
 
 export const metadata: Metadata = {
-  title: 'Virtual CFO Services in Mumbai | FinMates ',
+  title: 'Virtual CFO Services in Mumbai | FinMates',
   description:
-    'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs. Book a free consultation today. ',
+    'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs. Book a free consultation today.',
   generator: 'GEO SOFTECH',
   ...pageCanonical('/city/mumbai'),
+  openGraph: {
+    title: 'Virtual CFO Services in Mumbai | FinMates',
+    description:
+      'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs.',
+    url: 'https://www.finmates.in/city/mumbai',
+    siteName: 'FinMates',
+    type: 'website',
+    locale: 'en_IN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Virtual CFO Services in Mumbai | FinMates',
+    description:
+      'Hire a Virtual CFO in Mumbai without the full-time cost. FinMates delivers strategic financial leadership for startups & SMEs.',
+  },
 }
 
 export default function Home() {
@@ -57,10 +77,15 @@ export default function Home() {
       <HeroSection />
       <LocalMarketSection />
       <AboutSection />
+      <CostCapabilityMatrix />
+      <Section203Guide />
       <ServicesGrid />
       <ProcessTimeline />
       <TrustSection />
       <CoreServices />
+      <SectorEdge />
+      <DigitalInfrastructure />
+      {/* <PricingTiers /> */}
       <Industries />
       <ServiceAreas />
       <LocationSection />

@@ -10,10 +10,22 @@ export function absoluteUrl(path = '/') {
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
 }
 
-export function pageCanonical(path: string): { alternates: { canonical: string } } {
+/** Canonical + explicit index/follow for public marketing pages. */
+export function pageCanonical(path: string): {
+  alternates: { canonical: string }
+  robots: { index: true; follow: true; googleBot: { index: true; follow: true } }
+} {
   return {
     alternates: {
       canonical: absoluteUrl(path),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
   }
 }

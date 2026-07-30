@@ -51,12 +51,79 @@ Every engagement begins with a comprehensive Non-Disclosure Agreement and a Data
 Our fundraising support includes pitch deck architecture, financial model preparation, investor-grade MIS structuring, data room management, and term sheet review. For SME IPO readiness, we coordinate SEBI compliance preparation, investor-ready annual report design, and due diligence support. Our clients consistently raise faster, at stronger valuations, with less friction. `,
     category: 'Security',
   },
+  {
+    id: 'q6',
+    question: 'Understanding the role of a Virtual CFO and how this service operates within your business',
+    answer: `A Virtual CFO delivers senior-grade fiscal leadership, overseeing cash runways, budgets, board decks, and regulatory adherence on a fractional or retainer basis. This avoids the heavy salary overhead of an in-house executive.
+
+Your business gains a collective of seasoned accountants who plug into your setup via remote tools and periodic in-person huddles.`,
+    category: 'Role & Value',
+  },
+  {
+    id: 'q7',
+    question: 'Pricing structures for Virtual CFO services in the Mumbai market',
+    answer: `FinMates provides tiered, modular service levels matching your business scale and current operational friction. Retainers typically start near ₹15,000 monthly for young ventures, climbing past ₹75,000 for mature mid-market firms needing help with capital raises and heavy board interactions.
+
+This path slashes typical executive payroll burdens by eighty to eighty-five per cent compared to hiring a full-time leader locally.`,
+    category: 'Pricing',
+  },
+  {
+    id: 'q8',
+    question: 'Distinguishing the forward-looking role of a Virtual CFO from traditional Chartered Accountant services',
+    answer: `Traditional accountants look backwards, keeping your ledger straight, filing tax returns, and handling audits. A Virtual CFO steers the windshield, not the rearview mirror.
+
+We map out future scenarios, hunt for hidden margin leakages, assist with equity rounds, and decode daily metrics to fuel top-line and bottom-line expansion.`,
+    category: 'Role & Value',
+  },
+  {
+    id: 'q9',
+    question: 'Legal requirements regarding full-time CFO appointments under the Companies Act',
+    answer: `Section 203 of the Companies Act, 2013 mandates a whole-time Chief Financial Officer only for listed entities and public firms with paid-up capital crossing ₹10 Crore. Private outfits and expanding smaller enterprises falling below this mark have zero legal obligation to hire a permanent executive.
+
+They can freely employ fractional financial experts to govern their books.`,
+    category: 'Compliance',
+  },
+  {
+    id: 'q10',
+    question: 'Onboarding timelines and initial steps when partnering with FinMates',
+    answer: `Getting started takes under forty-eight hours. We kick off with a swift thirty-minute diagnostic talk, request read-only entry to your ledger systems like Tally or Zoho, and pinpoint immediate cash leaks or compliance risks.
+
+From there, we hand over the reins to your dedicated lead advisor.`,
+    category: 'Onboarding',
+  },
+  {
+    id: 'q11',
+    question: 'Availability of in-person attendance for board reviews and investor presentations in Mumbai',
+    answer: `Physical presence is part of our package. Our core team operates out of the Mumbai Metropolitan Region.
+
+We travel directly to your office or neutral venues for board sessions, debt talks, and pitch meets across BKC, Nariman Point, Andheri, and Thane.`,
+    category: 'Service Delivery',
+  },
+  {
+    id: 'q12',
+    question: 'Software integrations and ERP compatibility',
+    answer: `Our workflows sync directly with standard accounting platforms, payment gateways, and business intelligence systems. This includes setups like Tally Prime, Zoho, SAP Business One, RazorpayX, and Power BI.
+
+If your firm still relies on paper ledgers, we can guide the transition to cloud-based systems.`,
+    category: 'Integrations',
+  },
+  {
+    id: 'q13',
+    question: 'Security protocols and measures protecting your proprietary financial information',
+    answer: `Data protection remains a non-negotiable priority. We sign mutual non-disclosure pacts before touching a single spreadsheet.
+
+Your files, projections, and reports live on encrypted cloud vaults with restricted entry, accessible only to the specific advisory team assigned to your account.`,
+    category: 'Security',
+  },
 ];
 
 const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
   'Role & Value': { bg: 'rgba(0,139,208,0.08)', text: '#008bd0', border: 'rgba(0,139,208,0.2)' },
   'Pricing': { bg: 'rgba(13,126,86,0.08)', text: '#0d7e56', border: 'rgba(13,126,86,0.2)' },
   'Compliance': { bg: 'rgba(180,83,9,0.08)', text: '#b45309', border: 'rgba(180,83,9,0.2)' },
+  'Onboarding': { bg: 'rgba(8,145,178,0.08)', text: '#0891b2', border: 'rgba(8,145,178,0.2)' },
+  'Service Delivery': { bg: 'rgba(124,58,237,0.08)', text: '#7c3aed', border: 'rgba(124,58,237,0.2)' },
+  'Integrations': { bg: 'rgba(190,24,93,0.08)', text: '#be185d', border: 'rgba(190,24,93,0.2)' },
   'Security': { bg: 'rgba(50,58,133,0.1)', text: '#323a85', border: 'rgba(50,58,133,0.2)' },
 };
 

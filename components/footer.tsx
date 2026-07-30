@@ -16,7 +16,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/contact">
+                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/contact-us">
                   Contact Us
                 </a>
               </li>
