@@ -11,7 +11,7 @@ import Section203Guide from '@/components/city/mumbai/Section203Guide';
 import CoreServices from '@/components/city/mumbai/CoreServices';
 import SectorEdge from '@/components/city/mumbai/SectorEdge';
 import DigitalInfrastructure from '@/components/city/mumbai/DigitalInfrastructure';
-// import PricingTiers from '@/components/city/mumbai/PricingTiers';
+import PricingTiers from '@/components/city/mumbai/PricingTiers';
 import Industries from '@/components/city/mumbai/Industries';
 import LongFormContent from '@/components/city/mumbai/LongFormContent';
 import FooterTop from '@/components/city/mumbai/Footer-top';
@@ -85,7 +85,7 @@ export default function Home() {
       <CoreServices />
       <SectorEdge />
       <DigitalInfrastructure />
-      {/* <PricingTiers /> */}
+      <PricingTiers />
       <Industries />
       <ServiceAreas />
       <LocationSection />

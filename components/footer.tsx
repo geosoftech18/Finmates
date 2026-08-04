@@ -70,12 +70,12 @@ export default function Footer() {
             <ul className="space-y-3">
               <h3 className="text-lg md:text-xl font-bold text-gray-200">Cities We Serve</h3>
               <li>
-                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/city/mumbai">
+                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="/city/mumbai">
                   Mumbai
                 </a>
               </li>
               <li>
-                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="https://www.finmates.in/">
+                <a className="text-sm md:text-base text-gray-200 hover:text-white transition-colors" href="/city/indore">
                   Indore
                 </a>
               </li>

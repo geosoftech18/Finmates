@@ -92,13 +92,19 @@ export function buildWebSiteJsonLd() {
 }
 
 export function buildServiceJsonLd(service: ServiceSchemaInput) {
-  const areaServed =
-    typeof service.areaServed === 'string' && service.areaServed.toLowerCase().includes('mumbai')
+  const rawArea = typeof service.areaServed === 'string' ? service.areaServed.trim() : ''
+  const lower = rawArea.toLowerCase()
+  const areaServed = !rawArea
+    ? { '@type': 'Country', name: 'India' }
+    : lower.includes('mumbai')
       ? { '@type': 'City', name: 'Mumbai' }
-      : {
-          '@type': 'Country',
-          name: typeof service.areaServed === 'string' ? service.areaServed : 'India',
-        }
+      : lower.includes('indore')
+        ? { '@type': 'City', name: 'Indore' }
+        : lower === 'india'
+          ? { '@type': 'Country', name: 'India' }
+          : rawArea.includes(',')
+            ? { '@type': 'City', name: rawArea.split(',')[0].trim() }
+            : { '@type': 'Country', name: rawArea }
 
   return {
     '@context': 'https://schema.org',
