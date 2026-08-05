@@ -40,7 +40,7 @@ const GOOGLE_MAPS_PLACE_URL =
 
 /** Embed URL from Google Maps → Share → Embed a map (required for iframe) */
 const GOOGLE_MAPS_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.789!2d72.8356336!3d19.1899435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b758aa3e3a65%3A0x59367728835180d8!2sFinMate%20Business%20Solutions%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1735689600000!5m2!1sen!2sin';
+  'https://www.google.com/maps?q=MM+Tower,+Ushaganj,+Chhawni,+Indore,+Madhya+Pradesh+452001&output=embed';
 
 const directions = [
   {
@@ -55,8 +55,8 @@ const directions = [
   },
   {
     icon: Building2,
-    label: 'Registered office',
-    detail: 'Malad West, Mumbai — remote-first delivery with scheduled Indore visits',
+    label: 'Indore office',
+    detail: 'MM Tower, above Union Bank, Ushaganj, Chhawni — central Indore, near Rajwada',
   },
   {
     icon: Car,
@@ -109,8 +109,8 @@ export default function LocationSection() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 19.1899435,
-      longitude: 72.8382085,
+      latitude: 22.7097948,
+      longitude: 75.8767238,
     },
     openingHoursSpecification: [
       {
