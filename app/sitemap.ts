@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/seo'
 
+/** Always rebuild sitemap so newly published blogs appear without a full redeploy. */
+export const revalidate = 3600
+
 /** Encode each path segment so sitemap XML never contains raw `&` (invalid XML). */
 function sitemapLoc(path: string): string {
   if (!path || path === '/') return `${SITE_URL}/`
@@ -52,17 +55,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const blogs = await prisma.blog.findMany({
       where: { published: true },
       select: { slug: true, updatedAt: true, publishedAt: true },
-      orderBy: { publishedAt: 'desc' },
+      orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
     })
 
-    blogEntries = blogs.map((blog) => ({
-      url: sitemapLoc(`/blog/${blog.slug}`),
-      lastModified: blog.updatedAt || blog.publishedAt || now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  } catch {
+    blogEntries = blogs
+      .filter((blog) => Boolean(blog.slug?.trim()))
+      .map((blog) => ({
+        url: sitemapLoc(`/blog/${blog.slug.trim()}`),
+        lastModified: blog.updatedAt || blog.publishedAt || now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }))
+  } catch (error) {
     // Keep static sitemap available even if DB is unreachable
+    console.error('Sitemap blog fetch failed:', error)
     blogEntries = []
   }
 
