@@ -275,7 +275,14 @@ export default function CostCapabilityMatrix() {
             className="text-2xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.15] tracking-tight mb-5"
             style={{ color: '#002244' }}
           >
-            Full-Time CFO vs. FinMates Virtual CFO:{' '}
+            Full-Time CFO vs. FinMates{' '}
+            <a
+              href="/services/cfo-services"
+              className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:opacity-90"
+            >
+              Virtual CFO
+            </a>
+            :{' '}
             <span
               className="md:block mt-1"
               style={{

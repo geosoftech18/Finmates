@@ -1,3 +1,5 @@
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
+
 const areas = [
   {
     name: 'Indore',
@@ -63,7 +65,14 @@ export default function ServiceAreas() {
                 {a.name}
               </h3>
               <p className={`text-xs leading-relaxed mb-4 ${a.highlight ? 'text-slate-400' : 'text-slate-500'}`}>
-                {a.desc}
+                <LinkifyVirtualCfo
+                  text={a.desc}
+                  className={
+                    a.highlight
+                      ? 'text-[#60c8f0] font-semibold underline underline-offset-2 decoration-[#60c8f0]/70 hover:text-white'
+                      : undefined
+                  }
+                />
               </p>
               <div className="space-y-1">
                 {a.zones.map((z) => (

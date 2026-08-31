@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useConsultationModal } from '@/components/city/indore/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 import {
   MapPin,
   Phone,
@@ -196,9 +197,7 @@ export default function LocationSection() {
               </span>
             </h2>
             <p className="text-base text-gray-500 leading-relaxed">
-              Remote-first Virtual CFO delivery with scheduled on-site sessions across Vijay Nagar,
-              Palasia, Super Corridor, and the Pithampur–Rau industrial belt — whenever you need
-              strategic clarity, compliance guidance, or growth-focused advisory.
+              <LinkifyVirtualCfo text="Remote-first Virtual CFO delivery with scheduled on-site sessions across Vijay Nagar, Palasia, Super Corridor, and the Pithampur–Rau industrial belt — whenever you need strategic clarity, compliance guidance, or growth-focused advisory." />
             </p>
           </div>
 
@@ -241,9 +240,10 @@ export default function LocationSection() {
                     <span className="text-white font-bold text-base">{NAP.name}</span>
                   </div>
                   <p className="text-white/60 text-sm leading-[1.8]">
-                    {NAP.legalName} delivers Virtual CFO and finance advisory services across Indore
-                    and central Madhya Pradesh. Connect remotely or schedule on-site strategy reviews,
-                    financial roadmapping sessions, and board-level consultations in your Indore office.
+                    <LinkifyVirtualCfo
+                      text={`${NAP.legalName} delivers Virtual CFO and finance advisory services across Indore and central Madhya Pradesh. Connect remotely or schedule on-site strategy reviews, financial roadmapping sessions, and board-level consultations in your Indore office.`}
+                      variant="light"
+                    />
                   </p>
                 </div>
 

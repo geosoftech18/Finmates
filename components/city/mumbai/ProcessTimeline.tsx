@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Search, Compass, Repeat2, ArrowRight } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 
 const steps = [
   {
@@ -272,7 +273,9 @@ export default function ProcessTimeline() {
                     >
                       {step.phase}
                     </h3>
-                    <p className="text-base text-gray-600 leading-[1.8]">{step.body}</p>
+                    <p className="text-base text-gray-600 leading-[1.8]">
+                      <LinkifyVirtualCfo text={step.body} />
+                    </p>
                   </div>
 
                   {/* Right: deliverables */}
@@ -406,7 +409,9 @@ export default function ProcessTimeline() {
                     >
                       {step.phase}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-4">{step.body}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                      <LinkifyVirtualCfo text={step.body} />
+                    </p>
                     <div className="border-t pt-4" style={{ borderColor: step.border }}>
                       <p
                         className="text-[11px] font-bold uppercase tracking-widest mb-2.5"

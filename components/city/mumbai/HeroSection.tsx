@@ -308,7 +308,15 @@ export default function HeroSection() {
             <h1
               className={`text-2xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white leading-[1.12] tracking-tight mb-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-              Virtual CFO Services  {" "}
+              Virtual{' '}
+              <a
+                href="/services/cfo-services"
+                className="underline underline-offset-4 decoration-[#60c8f0]/80 hover:text-white"
+                style={{ color: '#60c8f0' }}
+              >
+                CFO Services
+              </a>{' '}
+              {" "}
               <span className="md:block mt-1" style={{ color: '#60c8f0' }}>
                 in Mumbai {" "}
               </span>
@@ -332,7 +340,14 @@ export default function HeroSection() {
             <p
               className={`text-base sm:text-lg text-white/75 leading-relaxed max-w-xl mb-8 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-             You don't need a full-time CFO to get full-time financial clarity. FinMates gives Mumbai founders and business owners direct access to senior CFO expertise — covering cash flow, compliance, fundraising, and strategic planning — at a cost that makes business sense.  
+             You don't need a full-time CFO to get full-time financial clarity. FinMates gives Mumbai founders and business owners direct access to senior{' '}
+              <a
+                href="/services/cfo-services"
+                className="text-[#60c8f0] font-semibold underline underline-offset-2 decoration-[#60c8f0]/70 hover:text-white"
+              >
+                CFO expertise
+              </a>
+              {' '}— covering cash flow, compliance, fundraising, and strategic planning — at a cost that makes business sense.
             </p>
 
             {/* Trust badges row */}

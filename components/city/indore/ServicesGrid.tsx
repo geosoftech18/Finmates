@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useConsultationModal } from '@/components/city/indore/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 import {
   BarChart2,
   GitBranch,
@@ -137,7 +138,9 @@ function ServiceCard({
       </h3>
 
       {/* Body copy */}
-      <p className="text-sm text-gray-600 leading-relaxed flex-1">{service.body}</p>
+      <p className="text-sm text-gray-600 leading-relaxed flex-1">
+        <LinkifyVirtualCfo text={service.body} />
+      </p>
 
       {/* Feature pill list */}
       <ul className="flex flex-col gap-1.5 mt-5">

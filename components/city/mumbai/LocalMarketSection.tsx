@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Waves, Scale, TrendingDown, TrendingUp, ShieldCheck, BarChart3, Landmark, ArrowUpRight } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 
 const painPoints = [
   {
@@ -632,7 +633,9 @@ export default function LocalMarketSection() {
                   {card.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 leading-relaxed flex-1">{card.body}</p>
+                <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                  <LinkifyVirtualCfo text={card.body} />
+                </p>
 
                 <div
                   className="mt-6 pt-5 border-t flex items-end gap-3"

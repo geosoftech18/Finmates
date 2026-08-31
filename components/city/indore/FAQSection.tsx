@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/indore/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 
 const faqs = [
   {
@@ -226,7 +227,7 @@ function AccordionItem({
                 key={i}
                 className="text-sm sm:text-[0.9rem] text-gray-600 leading-[1.85] mb-3 last:mb-0"
               >
-                {para.trim()}
+                {para.trim() ? <LinkifyVirtualCfo text={para.trim()} /> : null}
               </p>
             ))}
           </div>
@@ -318,16 +319,19 @@ export default function FAQSection() {
               style={{ color: '#002244' }}
             >
               Frequently Asked Questions About {" "}
-              <span
-                className="md:block mt-1"
-                style={{
-                  backgroundImage: 'linear-gradient(90deg, #008bd0, #323a85)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                Virtual CFO Services in Indore
+              <span className="md:block mt-1">
+                <a
+                  href="/services/cfo-services"
+                  className="font-bold underline underline-offset-4 decoration-[#008bd0]/50 hover:opacity-90"
+                  style={{
+                    backgroundImage: 'linear-gradient(90deg, #008bd0, #323a85)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  Virtual CFO Services in Indore
+                </a>
               </span>
             </h2>
             <p className="text-base text-gray-500 leading-relaxed max-w-xl mx-auto">

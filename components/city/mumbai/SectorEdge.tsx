@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 
 const sectors = [
   {
@@ -141,7 +142,14 @@ export default function SectorEdge() {
             className="text-2xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.15] tracking-tight mb-5"
             style={{ color: '#002244' }}
           >
-            Bespoke Virtual CFO Services for{' '}
+            Bespoke{' '}
+            <a
+              href="/services/cfo-services"
+              className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3"
+            >
+              Virtual CFO Services
+            </a>{' '}
+            for{' '}
             <span
               className="md:block mt-1"
               style={{
@@ -155,9 +163,7 @@ export default function SectorEdge() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Mumbai thrives on commercial diversity. Standardised financial management fails because
-            cash drivers differ wildly from one trade to another. FinMates shapes each Virtual CFO
-            partnership around the daily rhythm of your distinct market.
+            <LinkifyVirtualCfo text="Mumbai thrives on commercial diversity. Standardised financial management fails because cash drivers differ wildly from one trade to another. FinMates shapes each Virtual CFO partnership around the daily rhythm of your distinct market." />
           </p>
         </div>
 

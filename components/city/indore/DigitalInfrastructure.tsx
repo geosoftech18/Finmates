@@ -15,6 +15,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { useConsultationModal } from '@/components/city/indore/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 
 const stackGroups = [
   {
@@ -155,10 +156,10 @@ export default function DigitalInfrastructure() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-white/60 leading-relaxed">
-            The FinMates Virtual CFO service stands apart by embedding specialised digital systems
-            directly into your daily monetary operations. We discard the chaotic patchwork of
-            isolated spreadsheets. Instead, we establish a unified, cloud-based network that runs on
-            autopilot.
+            <LinkifyVirtualCfo
+              text="The FinMates Virtual CFO service stands apart by embedding specialised digital systems directly into your daily monetary operations. We discard the chaotic patchwork of isolated spreadsheets. Instead, we establish a unified, cloud-based network that runs on autopilot."
+              variant="light"
+            />
           </p>
         </div>
 

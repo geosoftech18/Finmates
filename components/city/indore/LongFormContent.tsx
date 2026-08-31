@@ -1,3 +1,5 @@
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
+
 export default function LongFormContent() {
   return (
     <section className="section-padding bg-slate-50">
@@ -5,7 +7,13 @@ export default function LongFormContent() {
         <div className="max-w-4xl mx-auto">
           <div className="section-label">Deep Dive</div>
           <h2 className="text-2xl md:text-4xl font-bold text-p-3 mb-8 leading-tight">
-            The Complete Guide to Virtual CFO Services
+            The Complete Guide to{' '}
+            <a
+              href="/services/cfo-services"
+              className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3"
+            >
+              Virtual CFO Services
+            </a>
             <br />
             <span className="text-p-2">in Indore — What Every Business Leader Must Know</span>
           </h2>
@@ -22,7 +30,11 @@ export default function LongFormContent() {
               The businesses that scale from ₹5 crore to ₹50 crore in this city are not necessarily the ones with the best product or the largest team. They are the businesses that know their unit economics cold, manage cash flow with discipline, and make decisions backed by real financial data. 
               </p>
               <p className="text-slate-600 leading-relaxed">
-              This is precisely where a Virtual CFO becomes a transformative force — replacing reactive financial management with proactive, forward-looking architecture that makes your business measurably more fundable, more scalable, and more resilient. 
+              This is precisely where a{' '}
+              <a href="/services/cfo-services" className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3">
+                Virtual CFO
+              </a>{' '}
+              becomes a transformative force — replacing reactive financial management with proactive, forward-looking architecture that makes your business measurably more fundable, more scalable, and more resilient.
               </p>
             </div>
 
@@ -37,7 +49,11 @@ export default function LongFormContent() {
               In our experience working with 150+ Indore businesses, the average company without proper CFO oversight carries 3–5 significant financial inefficiencies that collectively cost ₹50 lakhs to ₹2 crores annually. These range from legacy vendor contracts with bloated margins to product lines that appear profitable but are margin-negative on full cost attribution. 
               </p>
               <p className="text-slate-600 leading-relaxed">
-              The return on a Virtual CFO engagement is rarely a question of "can we afford this?" — it's almost always "how much longer can we afford not to have this?" 
+              The return on a{' '}
+              <a href="/services/cfo-services" className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3">
+                Virtual CFO engagement
+              </a>{' '}
+              is rarely a question of "can we afford this?" — it's almost always "how much longer can we afford not to have this?"
               </p>
             </div>
 
@@ -46,7 +62,7 @@ export default function LongFormContent() {
               Cash Flow Management: The Non-Negotiable for Indore Growth 
               </h3>
               <p className="text-slate-600 leading-relaxed mb-4">
-              Cash flow management is arguably the most critical function our Virtual CFOs perform. Indore's B2B payment culture — with standard terms stretching 30–90 days across pharma, auto components, and trading businesses — creates a structural working capital challenge for most growing businesses. 
+                <LinkifyVirtualCfo text="Cash flow management is arguably the most critical function our Virtual CFOs perform. Indore's B2B payment culture — with standard terms stretching 30–90 days across pharma, auto components, and trading businesses — creates a structural working capital challenge for most growing businesses." />
               </p>
               <p className="text-slate-600 leading-relaxed mb-4">
               A well-implemented 13-week rolling cash forecast eliminates the most damaging source of founder anxiety: financial surprise. When you have complete cash visibility four quarters out, you negotiate from strength — with suppliers, lenders, investors, and your own team. 
@@ -100,6 +116,32 @@ export default function LongFormContent() {
               FinMates has supported over 40 fundraising processes for Indore-based startups and growth-stage businesses. Our investor readiness program has a consistent outcome: clients raise faster, at stronger valuations, with meaningfully less dilution than comparable businesses operating without CFO support. 
               </p>
             </div>
+
+            {/* SEO interlinks — contextual related pages */}
+            <nav
+              aria-label="Related Virtual CFO pages"
+              className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8"
+            >
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                Related pages
+              </p>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li>
+                  Explore our full{' '}
+                  <a href="/services/cfo-services" className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3">
+                    CFO Services &amp; Virtual CFO offering
+                  </a>{' '}
+                  for startups and SMEs across India.
+                </li>
+                <li>
+                  Also serving Mumbai? See{' '}
+                  <a href="/city/mumbai" className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3">
+                    Virtual CFO Services in Mumbai
+                  </a>
+                  .
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

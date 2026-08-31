@@ -295,6 +295,44 @@ export default function Page() {
         </div>
       </section> */}
 
+      {/* SEO city interlinks — lightweight, no layout disruption */}
+      <section className="w-full bg-neutral-50 border-y border-slate-100" aria-label="City-specific Virtual CFO services">
+        <div className="m-auto max-w-7xl px-6 py-10 md:px-10">
+          <p className="text-sm font-semibold uppercase tracking-wider text-p-2 mb-2">
+            City-focused Virtual CFO
+          </p>
+          <h2 className="text-xl sm:text-2xl font-bold text-p-3 mb-3">
+            Explore Virtual CFO Services by City
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl mb-5">
+            Looking for local market context? Visit our city pages for Mumbai and Indore — covering
+            pricing, compliance, sector focus, and how FinMates delivers{' '}
+            <a href="/services/cfo-services" className="text-p-2 font-medium hover:underline">
+              Virtual CFO services
+            </a>{' '}
+            on the ground.
+          </p>
+          <ul className="flex flex-wrap gap-3 text-sm">
+            <li>
+              <a
+                href="/city/mumbai"
+                className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-medium text-p-3 hover:border-p-2 hover:text-p-2 transition-colors"
+              >
+                Virtual CFO Services in Mumbai
+              </a>
+            </li>
+            <li>
+              <a
+                href="/city/indore"
+                className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-medium hover:border-p-2 hover:text-p-2 transition-colors text-p-3"
+              >
+                Virtual CFO Services in Indore
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
        {/* FAQ Section */}
        <section className="md:py-20 md:pt-48 bg-white">
         <div className="max-w-7xl  mx-auto px-6">

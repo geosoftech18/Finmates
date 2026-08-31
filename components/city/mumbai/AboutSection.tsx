@@ -30,8 +30,25 @@ export default function AboutSection() {
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
             FinMates was founded with one clear conviction: strategic financial guidance shouldn't be a privilege reserved for large corporates with deep pockets. 
             </p>
-            <p className="text-slate-600 leading-relaxed mb-8">
+            <p className="text-slate-600 leading-relaxed mb-4">
             We are not a bookkeeping firm. We are a finance partnership — sitting alongside your leadership team, analyzing what actually drives your business, and building the financial systems that turn your growth ambitions into measurable outcomes. 
+            </p>
+            <p className="text-slate-600 leading-relaxed mb-8">
+              Learn more about our nationwide{' '}
+              <a
+                href="/services/cfo-services"
+                className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3"
+              >
+                CFO Services &amp; Virtual CFO
+              </a>{' '}
+              offering, or explore{' '}
+              <a
+                href="/city/indore"
+                className="text-p-2 font-semibold underline underline-offset-2 decoration-2 hover:text-p-3"
+              >
+                Virtual CFO Services in Indore
+              </a>
+              .
             </p>
 
             <div className="space-y-3 mb-8">

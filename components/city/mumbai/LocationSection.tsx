@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useConsultationModal } from '@/components/city/mumbai/ConsultationModal';
+import LinkifyVirtualCfo from '@/components/seo/LinkifyVirtualCfo';
 import {
   MapPin,
   Phone,
@@ -239,7 +240,10 @@ export default function LocationSection() {
                     <span className="text-white font-bold text-base">{NAP.name}</span>
                   </div>
                   <p className="text-white/60 text-sm leading-[1.8]">
-                    {NAP.legalName}  is based at Jaswant Allied Business Center in Malad West—a dedicated hub for Virtual CFO and finance advisory services across the Mumbai Metropolitan Region. We welcome our clients for on-site strategy reviews, financial roadmapping sessions, and board-level consultations, with convenient road, rail, and metro links nearby.  
+                    <LinkifyVirtualCfo
+                      text={`${NAP.legalName} is based at Jaswant Allied Business Center in Malad West—a dedicated hub for Virtual CFO and finance advisory services across the Mumbai Metropolitan Region. We welcome our clients for on-site strategy reviews, financial roadmapping sessions, and board-level consultations, with convenient road, rail, and metro links nearby.`}
+                      variant="light"
+                    />
                   </p>
                 </div>
 
