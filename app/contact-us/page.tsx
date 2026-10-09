@@ -69,18 +69,18 @@ export default function ContactPage() {
             {/* Contact Details */}
             <div className="space-y-6 ">
               <div className="flex items-start p-4 rounded-md space-x-3 border">
-                <div className="w-10 h-10 mt-7 bg-[#008bd0] rounded-full flex items-center justify-center text-white text-sm font-bold">
+                <div className="w-14 h-10 mt-7 bg-[#008bd0] rounded-full flex items-center justify-center text-white text-sm font-bold">
                   <MapPin/>
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-gray-800">Address.</h4>
                   <p className="text-base text-[#001736]">
                     
-                    Finmate Business Solutions Pvt Ltd. Lmt B-715 Jaswanti Allied
+                    Finmate Business Solutions Pvt Ltd. 1502, Arc One (Lotus) Monginis factory Lane New Link Road, 
                     <br />
-                    Business Center, Ramchandra Lane, Kanchpada Malad W ,
+                    opposite City Mall & Tanisque Showroom ,Andheri West, 
                     <br />
-                    Mumbai - 400064.
+                    Mumbai, Maharashtra 400053.
                     
                   </p>
                 </div>
@@ -180,16 +180,16 @@ export default function ContactPage() {
                   <MapPin className="text-[#001736] mt-1 flex-shrink-0" size={35} />
                   <div className="text-left">
                     <a
-                      href="https://www.google.com/maps/place/FinMate+Business+Solutions+Pvt+Ltd/@19.1897926,72.8395672,15z/data=!4m6!3m5!1s0x3be7b758aa3e3a65:0x59367728835180d8!8m2!3d19.1899435!4d72.8382085!16s%2Fg%2F11j7yhk_vr?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D"
+                      href="https://maps.app.goo.gl/HSrmsZegSDVtfqH78?g_st=iw"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#001736] text-xl hover:underline transition-all duration-200"
                     >
-                      B-715 Jaswanti Allied Business Center,
+                      1502, Arc One (Lotus) Monginis factory Lane New Link Road, 
                       <br />
-                      Ramchandra Ln, Kanchpada, Malad
+                      opposite City Mall & Tanisque Showroom ,Andheri West, 
                       <br />
-                      West, Mumbai, Maharashtra 400064
+                      Mumbai, Maharashtra 400053.
                     </a>
                   </div>
                 </div>
